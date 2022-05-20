@@ -1,9 +1,9 @@
-package kg.peaksoft.peaksoftlmsm1.service;
+package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.request.UserRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.response.UserResponse;
-import kg.peaksoft.peaksoftlmsm1.entity.securityEntity.User;
-import kg.peaksoft.peaksoftlmsm1.repository.UserRepository;
+import kg.peaksoft.peaksoftlmsm1.db.entity.User;
+import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

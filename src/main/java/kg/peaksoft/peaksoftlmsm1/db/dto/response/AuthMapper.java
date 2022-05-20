@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.dto.response;
 
-import kg.peaksoft.peaksoftlmsm1.entity.securityEntity.Role;
-import kg.peaksoft.peaksoftlmsm1.entity.securityEntity.User;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
+import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
