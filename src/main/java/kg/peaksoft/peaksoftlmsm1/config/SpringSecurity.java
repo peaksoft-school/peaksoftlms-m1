@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.config;
 
-import kg.peaksoft.peaksoftlmsm1.service.UserService;
+import kg.peaksoft.peaksoftlmsm1.db.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

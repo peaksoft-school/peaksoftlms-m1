@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.entity.securityEntity;
+package kg.peaksoft.peaksoftlmsm1.db.entity;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

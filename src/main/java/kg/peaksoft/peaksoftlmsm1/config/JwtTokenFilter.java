@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.config;
 
-import kg.peaksoft.peaksoftlmsm1.service.UserService;
+import kg.peaksoft.peaksoftlmsm1.db.service.UserService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

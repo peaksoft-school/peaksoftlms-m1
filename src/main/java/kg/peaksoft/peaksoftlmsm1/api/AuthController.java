@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.api.apiController;
+package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,10 +8,10 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.request.UserRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.response.AuthMapper;
 import kg.peaksoft.peaksoftlmsm1.db.dto.response.AuthResponse;
 import kg.peaksoft.peaksoftlmsm1.db.dto.response.UserResponse;
-import kg.peaksoft.peaksoftlmsm1.entity.securityEntity.User;
+import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.exception.ExceptionType;
-import kg.peaksoft.peaksoftlmsm1.repository.UserRepository;
-import kg.peaksoft.peaksoftlmsm1.service.UserService;
+import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
+import kg.peaksoft.peaksoftlmsm1.db.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
