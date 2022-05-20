@@ -183,6 +183,7 @@
 						</executions>
 					</plugin>
 				</plugins>
+				<finalName>peaksoftlms-m1</finalName>
 			</build>
 		</profile>
 	</profiles>
