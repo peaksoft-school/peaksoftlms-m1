@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/jwt")
+@RequestMapping("/api/public")
 @Tag(name = "Authentication", description = "User with role ADMIN, INSTRUCTOR, STUDENT can authenticate")
 public class AuthController {
 
@@ -34,7 +34,7 @@ public class AuthController {
     private final AuthMapper authMapper;
 
     @PostMapping("login")
-    @Operation(summary = "All users can authenticate", description = "Login all users")
+    @Operation(summary = "sign in method", description = "Login Admin, Instructor, Student")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         try {
             UsernamePasswordAuthenticationToken authenticationToken =
@@ -48,31 +48,35 @@ public class AuthController {
     }
 
     @PostMapping("registration")
-    @Operation(summary = "All users can registration", description = "Users can registration")
+    @Operation(summary = "method create", description = "Admin can registration Student and Instructor")
     public UserResponse create(@RequestBody UserRequest userRequest) {
         return userService.create(userRequest);
     }
 
     @PutMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @Operation(summary = "method update", description = "Admin can update Student and Instructor")
     public UserResponse update(@PathVariable Long id, @RequestBody UserRequest userRequest){
         return userService.update(id,userRequest);
     }
 
     @DeleteMapping ("{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @Operation(summary = "method delete", description = "Admin can delete Student and Instructor")
     public UserResponse delete(@PathVariable Long id){
         return userService.delete(id);
     }
 
     @GetMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @Operation(summary = "method getById", description = "Admin can get by ID Student and Instructor")
     public UserResponse getById(@PathVariable Long id){
         return userService.getById(id);
     }
 
     @GetMapping()
     @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @Operation(summary = "method get all", description = "Admin can get all Student and Instructor")
     public List<User> getAll(){
         return userService.getAll();
     }
