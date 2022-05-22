@@ -48,35 +48,35 @@ public class AuthController {
     }
 
     @PostMapping("registration")
-    @Operation(summary = "method create", description = "Admin can registration Student and Instructor")
+    @Operation(summary = "Admin can registration Student and Instructor", description = "Admin can registration Student and Instructor")
     public UserResponse create(@RequestBody UserRequest userRequest) {
         return userService.create(userRequest);
     }
 
     @PutMapping("{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "method update", description = "Admin can update Student and Instructor")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Admin can update Student and Instructor", description = "Admin can update Student and Instructor")
     public UserResponse update(@PathVariable Long id, @RequestBody UserRequest userRequest){
         return userService.update(id,userRequest);
     }
 
     @DeleteMapping ("{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "method delete", description = "Admin can delete Student and Instructor")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Admin can delete Student and Instructor", description = "Admin can delete Student and Instructor")
     public UserResponse delete(@PathVariable Long id){
         return userService.delete(id);
     }
 
     @GetMapping("{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "method getById", description = "Admin can get by ID Student and Instructor")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Admin can get by ID Student and Instructor", description = "Admin can get by ID Student and Instructor")
     public UserResponse getById(@PathVariable Long id){
         return userService.getById(id);
     }
 
     @GetMapping()
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @Operation(summary = "method get all", description = "Admin can get all Student and Instructor")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Admin can get all Student and Instructor", description = "Admin can get all Student and Instructor")
     public List<User> getAll(){
         return userService.getAll();
     }
