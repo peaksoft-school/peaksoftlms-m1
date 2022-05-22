@@ -4,6 +4,7 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
+import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,24 +25,15 @@ public class CourseService {
     }
 
     public CourseResponce update(Long id, CourseRequest courseRequest){
-        Optional<Course> course = courseRepository.findById(id);
-        if(course.isEmpty()){
-            System.out.println(course + "with id not found");
-        }
-        mapToUpdate(course.get(), courseRequest);
-        return mapToResponse(courseRepository.save(course.get()));
-    }
-
-    public List<Course> courseList() {
-        return courseRepository.findAll();
+        Optional<Course> optional = Optional.ofNullable(courseRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Entity", "id", id)));
+        mapToUpdate(optional.get(), courseRequest);
+        return mapToResponse(courseRepository.save(optional.get()));
     }
 
     public CourseResponce getById(Long id){
-        Optional<Course> course = courseRepository.findById(id);
-        if(course.isEmpty()){
-            System.out.println(course + "with id not found");
-        }
-        return mapToResponse(courseRepository.save(course.get()));
+        return mapToResponse(courseRepository.findById(id).orElseThrow(()
+                -> new ResourceNotFoundException("Entity", "id", id)));
     }
 
     public List<Course> getAll(){
@@ -49,7 +41,8 @@ public class CourseService {
     }
 
     public CourseResponce delete(Long id){
-        Course course = courseRepository.findById(id).get();
+        Course course = courseRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Entity", "id", id));
         courseRepository.deleteById(id);
         return mapToResponse(course);
     }
