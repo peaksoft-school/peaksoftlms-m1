@@ -12,7 +12,7 @@ import java.util.Date;
 public class CourseRequest {
 
     private String image;
-    private String name_course;
-    private Date start_course;
+    private String nameCourse;
+    private Date startCourse;
     private String description;
 }

@@ -51,16 +51,16 @@ public class CourseService {
     public Course mapToEntity(CourseRequest courseRequest) {
         Course course = new Course();
         course.setImage(courseRequest.getImage());
-        course.setNameCourse(courseRequest.getName_course());
-        course.setStartCourse(courseRequest.getStart_course());
+        course.setNameCourse(courseRequest.getNameCourse());
+        course.setStartCourse(courseRequest.getStartCourse());
         course.setDescription(courseRequest.getDescription());
         return course;
     }
 
     public Course mapToUpdate(Course course, CourseRequest courseRequest) {
         course.setImage(courseRequest.getImage());
-        course.setNameCourse(courseRequest.getName_course());
-        course.setStartCourse(courseRequest.getStart_course());
+        course.setNameCourse(courseRequest.getNameCourse());
+        course.setStartCourse(courseRequest.getStartCourse());
         course.setDescription(courseRequest.getDescription());
         return course;
     }
@@ -69,8 +69,8 @@ public class CourseService {
         return CourseResponce.builder()
                 .id(course.getId())
                 .image(course.getImage())
-                .name_course(course.getNameCourse())
-                .start_course(course.getStartCourse())
+                .nameCourse(course.getNameCourse())
+                .startCourse(course.getStartCourse())
                 .description(course.getDescription())
                 .build();
     }
