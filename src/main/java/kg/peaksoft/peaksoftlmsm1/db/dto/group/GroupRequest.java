@@ -12,7 +12,7 @@ import java.util.Date;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class GroupRequest {
 
-    private String group_name;
+    private String groupName;
     private Date startDate;
     private String description;
     private Course course;

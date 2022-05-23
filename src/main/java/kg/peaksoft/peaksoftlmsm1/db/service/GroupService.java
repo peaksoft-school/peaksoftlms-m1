@@ -54,7 +54,7 @@ public class GroupService {
 
     public Group mapToEntity(GroupRequest groupRequest){
         Group group = new Group();
-        group.setGroupName(groupRequest.getGroup_name());
+        group.setGroupName(groupRequest.getGroupName());
         group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
         group.setCourse(groupRequest.getCourse());
@@ -62,7 +62,7 @@ public class GroupService {
     }
 
     public Group mapToUpdate(Group group, GroupRequest groupRequest){
-        group.setGroupName(groupRequest.getGroup_name());
+        group.setGroupName(groupRequest.getGroupName());
         group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
         group.setCourse(groupRequest.getCourse());
@@ -72,7 +72,7 @@ public class GroupService {
     public GroupResponse mapToResponse(Group group){
         return GroupResponse.builder()
                 .id(group.getId())
-                .group_name(group.getGroupName())
+                .groupName(group.getGroupName())
                 .startDate(group.getStartDate())
                 .description(group.getDescription())
                 .course(group.getCourse())
