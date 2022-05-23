@@ -63,5 +63,6 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
         user3.setRoles(Arrays.asList(studentRole));
         user3.setCreated(LocalDateTime.now());
         userRepository.save(user3);
+
     }
 }
