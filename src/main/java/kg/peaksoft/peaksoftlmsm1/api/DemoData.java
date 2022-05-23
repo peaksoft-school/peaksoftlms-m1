@@ -36,30 +36,30 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event) {
         Role adminRole = new Role("ROLE_ADMIN");
         User user1 = new User();
-        user1.setFirstName("Aaaa");
-        user1.setLastName("Aaaa");
-        user1.setPassword(passwordEncoder.encode("Aaaa"));
-        user1.setEmail("aaaa@test.com");
+        user1.setFirstName("admin");
+        user1.setLastName("admin");
+        user1.setPassword(passwordEncoder.encode("admin"));
+        user1.setEmail("admin@gmail.com");
         user1.setRoles(Arrays.asList(adminRole));
         user1.setCreated(LocalDateTime.now());
         userRepository.save(user1);
 
         Role instructorRole = new Role("ROLE_INSTRUCTOR");
         User user2 = new User();
-        user2.setFirstName("Bbbb");
-        user2.setLastName("Bbbb");
-        user2.setPassword(passwordEncoder.encode("bbbb"));
-        user2.setEmail("bbbb@test.com");
+        user2.setFirstName("instrucotor");
+        user2.setLastName("instrucotor");
+        user2.setPassword(passwordEncoder.encode("instrucotor"));
+        user2.setEmail("instructor@gmail.com");
         user2.setRoles(Arrays.asList(instructorRole));
         user2.setCreated(LocalDateTime.now());
         userRepository.save(user2);
 
         Role studentRole = new Role("ROLE_STUDENT");
         User user3 = new User();
-        user3.setFirstName("Cccc");
-        user3.setLastName("Cccc");
-        user3.setPassword(passwordEncoder.encode("cccc"));
-        user3.setEmail("cccc@test.com");
+        user3.setFirstName("student");
+        user3.setLastName("student");
+        user3.setPassword(passwordEncoder.encode("student"));
+        user3.setEmail("student@gmail.com");
         user3.setRoles(Arrays.asList(studentRole));
         user3.setCreated(LocalDateTime.now());
         userRepository.save(user3);
