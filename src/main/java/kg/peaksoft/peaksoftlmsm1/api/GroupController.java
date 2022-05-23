@@ -1,10 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.api;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import kg.peaksoft.peaksoftlmsm1.db.service.GroupService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/group")
+@RequestMapping("api/groups")
 public class GroupController {
 
     private final GroupService groupService;

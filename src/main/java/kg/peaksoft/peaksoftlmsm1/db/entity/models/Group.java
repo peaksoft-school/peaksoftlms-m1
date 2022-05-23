@@ -1,8 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,7 +9,8 @@ import java.util.Date;
 @Table(name = "groups")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class Group {
 
     @Id
@@ -20,8 +19,8 @@ public class Group {
     private Long id;
     @Column(name = "group_name")
     private String groupName;
-    @Column(name = "start_of_group")
-    private Date starOfGroup;
+    @Column(name = "start_date")
+    private Date startDate;
     private String description;
 
     @ManyToOne

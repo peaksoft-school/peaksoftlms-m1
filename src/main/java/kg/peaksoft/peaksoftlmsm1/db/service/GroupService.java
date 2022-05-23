@@ -1,12 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
-import kg.peaksoft.peaksoftlmsm1.db.dto.request.UserRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.response.UserResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -61,7 +56,7 @@ public class GroupService {
     public Group mapToEntity(GroupRequest groupRequest){
         Group group = new Group();
         group.setGroupName(groupRequest.getGroup_name());
-        group.setStarOfGroup(groupRequest.getStar_of_group());
+        group.setStartDate(groupRequest.getStart_date());
         group.setDescription(groupRequest.getDescription());
         group.setCourse(groupRequest.getCourse());
         return group;
@@ -69,7 +64,7 @@ public class GroupService {
 
     public Group mapToUpdate(Group group, GroupRequest groupRequest){
         group.setGroupName(groupRequest.getGroup_name());
-        group.setStarOfGroup(groupRequest.getStar_of_group());
+        group.setStartDate(groupRequest.getStart_date());
         group.setDescription(groupRequest.getDescription());
         group.setCourse(groupRequest.getCourse());
         return group;
@@ -79,7 +74,7 @@ public class GroupService {
         return GroupResponse.builder()
                 .id(group.getId())
                 .group_name(group.getGroupName())
-                .star_of_group(group.getStarOfGroup())
+                .start_date(group.getStartDate())
                 .description(group.getDescription())
                 .course(group.getCourse())
         .build();
