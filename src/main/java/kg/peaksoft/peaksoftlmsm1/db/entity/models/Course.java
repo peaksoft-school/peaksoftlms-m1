@@ -19,6 +19,8 @@ public class Course {
     @SequenceGenerator(name = "course_gen", sequenceName = "course_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
+    @Column(name = "course_img")
+    private String image;
     @Column(name = "name_course")
     private String nameCourse;
     @Column(name = "start_course")

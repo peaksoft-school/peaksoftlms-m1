@@ -11,6 +11,7 @@ import java.util.Date;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CourseRequest {
 
+    private String image;
     private String name_course;
     private Date start_course;
     private String description;
