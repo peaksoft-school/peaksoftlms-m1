@@ -46,9 +46,9 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
 
         Role instructorRole = new Role("ROLE_INSTRUCTOR");
         User user2 = new User();
-        user2.setFirstName("instrucotor");
-        user2.setLastName("instrucotor");
-        user2.setPassword(passwordEncoder.encode("instrucotor"));
+        user2.setFirstName("instructor");
+        user2.setLastName("instructor");
+        user2.setPassword(passwordEncoder.encode("instructor"));
         user2.setEmail("instructor@gmail.com");
         user2.setRoles(Arrays.asList(instructorRole));
         user2.setCreated(LocalDateTime.now());
