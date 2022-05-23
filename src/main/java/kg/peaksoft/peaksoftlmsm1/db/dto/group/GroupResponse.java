@@ -17,7 +17,7 @@ public class GroupResponse {
 
     private Long id;
     private String group_name;
-    private Date start_date;
+    private Date startDate;
     private String description;
     private Course course;
 }

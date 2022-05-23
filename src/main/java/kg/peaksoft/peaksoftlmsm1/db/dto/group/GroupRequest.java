@@ -13,7 +13,7 @@ import java.util.Date;
 public class GroupRequest {
 
     private String group_name;
-    private Date start_date;
+    private Date startDate;
     private String description;
     private Course course;
 }

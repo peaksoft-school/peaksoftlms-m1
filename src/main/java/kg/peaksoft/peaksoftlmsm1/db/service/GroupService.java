@@ -5,7 +5,6 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +55,7 @@ public class GroupService {
     public Group mapToEntity(GroupRequest groupRequest){
         Group group = new Group();
         group.setGroupName(groupRequest.getGroup_name());
-        group.setStartDate(groupRequest.getStart_date());
+        group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
         group.setCourse(groupRequest.getCourse());
         return group;
@@ -64,7 +63,7 @@ public class GroupService {
 
     public Group mapToUpdate(Group group, GroupRequest groupRequest){
         group.setGroupName(groupRequest.getGroup_name());
-        group.setStartDate(groupRequest.getStart_date());
+        group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
         group.setCourse(groupRequest.getCourse());
         return group;
@@ -74,7 +73,7 @@ public class GroupService {
         return GroupResponse.builder()
                 .id(group.getId())
                 .group_name(group.getGroupName())
-                .start_date(group.getStartDate())
+                .startDate(group.getStartDate())
                 .description(group.getDescription())
                 .course(group.getCourse())
         .build();
