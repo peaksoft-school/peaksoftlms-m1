@@ -17,6 +17,8 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "group_gen")
     @SequenceGenerator(name = "group_gen",sequenceName = "group_seq",allocationSize = 1)
     private Long id;
+    @Column(name = "group_img")
+    private String image;
     @Column(name = "group_name")
     private String groupName;
     @Column(name = "start_date")

@@ -12,6 +12,7 @@ import java.util.Date;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class GroupRequest {
 
+    private String image;
     private String groupName;
     private Date startDate;
     private String description;
