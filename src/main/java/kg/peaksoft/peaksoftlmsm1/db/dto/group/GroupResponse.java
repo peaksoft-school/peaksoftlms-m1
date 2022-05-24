@@ -16,6 +16,7 @@ import java.util.Date;
 public class GroupResponse {
 
     private Long id;
+    private String image;
     private String groupName;
     private Date startDate;
     private String description;
