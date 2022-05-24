@@ -4,8 +4,11 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
+import kg.peaksoft.peaksoftlmsm1.db.responseAll.GroupResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,15 +44,18 @@ public class GroupService {
         return mapToResponse(groupRepository.save(group.get()));
     }
 
-    public List<Group> getAll(){
-        return groupRepository.findAll();
-    }
-
     public GroupResponse delete(Long id){
         Group group = groupRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Entity", "id", id));
         groupRepository.deleteById(id);
         return mapToResponse(group);
+    }
+
+    public GroupResponseAll getAllGroups(int page, int size){
+        GroupResponseAll groupResponseAll = new GroupResponseAll();
+        Pageable pageable = PageRequest.of(page-1, size);
+        groupResponseAll.setGroupResponses(map(groupRepository.findGroupBy(pageable)));
+        return groupResponseAll;
     }
 
     public Group mapToEntity(GroupRequest groupRequest){
@@ -89,4 +95,5 @@ public class GroupService {
         }
         return responses;
     }
+
 }
