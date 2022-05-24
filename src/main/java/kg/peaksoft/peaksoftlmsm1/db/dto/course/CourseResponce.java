@@ -16,6 +16,7 @@ import java.util.Date;
 public class CourseResponce {
 
     private Long id;
+    private String image;
     private String nameCourse;
     private Date startCourse;
     private String description;
