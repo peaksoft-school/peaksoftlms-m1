@@ -4,8 +4,11 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
+import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,6 +50,12 @@ public class CourseService {
         return mapToResponse(course);
     }
 
+    public CourseResponseAll getAllCourses(int page, int size){
+        CourseResponseAll courseResponseAll = new CourseResponseAll();
+        Pageable pageable = PageRequest.of(page-1, size);
+        courseResponseAll.setCourseResponses(map(courseRepository.findAllBy(pageable)));
+        return courseResponseAll;
+    }
 
     public Course mapToEntity(CourseRequest courseRequest) {
         Course course = new Course();
