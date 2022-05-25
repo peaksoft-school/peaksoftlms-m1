@@ -1,19 +1,16 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models;
 
-import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "courses")
+@Table(name = "course")
 public class Course {
 
     @Id
@@ -29,7 +26,4 @@ public class Course {
     private Date startCourse;
     @Column(name = "description")
     private String description;
-
-    @ManyToMany(mappedBy = "courses")
-    private List<User> users;
 }
