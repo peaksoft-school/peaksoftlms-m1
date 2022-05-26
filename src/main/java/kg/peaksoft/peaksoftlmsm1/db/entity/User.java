@@ -26,6 +26,7 @@ import java.util.Set;
 @Getter@Setter
 @Builder
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(generator = "user_gen", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_gen", sequenceName = "user_sec", allocationSize = 1)
@@ -65,6 +66,7 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "groups_id"))
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Group> groups;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

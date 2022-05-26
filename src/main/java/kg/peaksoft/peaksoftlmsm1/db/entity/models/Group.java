@@ -36,4 +36,5 @@ public class Group {
     @ManyToMany(mappedBy = "groups")
     private List<User> users;
 
+
 }
