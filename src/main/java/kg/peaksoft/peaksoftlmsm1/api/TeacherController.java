@@ -18,7 +18,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("api/teachers")
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
-@Tag(name = "Group controller", description = "ADMIN create, update, and delete")
+@Tag(name = "Teacher controller", description = "ADMIN create, update, and delete")
 public class TeacherController {
 
     private final TeacherService teacherService;
