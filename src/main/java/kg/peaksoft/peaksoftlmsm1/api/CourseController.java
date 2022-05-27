@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @RestController
@@ -56,6 +54,7 @@ public class CourseController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get all", description = "admin can get all courses")
     public CourseResponseAll getAll(@RequestParam int size,
                                     @RequestParam int page){
