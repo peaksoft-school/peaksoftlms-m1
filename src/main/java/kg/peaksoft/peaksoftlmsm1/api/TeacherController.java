@@ -1,10 +1,13 @@
 package kg.peaksoft.peaksoftlmsm1.api;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponce;
+import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
+import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import kg.peaksoft.peaksoftlmsm1.db.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,6 +26,7 @@ import javax.validation.Valid;
 public class TeacherController {
 
     private final TeacherService teacherService;
+    private final CourseService courseService;
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
@@ -51,5 +56,13 @@ public class TeacherController {
     public ResponseEntity<String> delete(@PathVariable Long id) {
         teacherService.delete(id);
         return new ResponseEntity<>("Teacher deleted successfully.", HttpStatus.OK);
+    }
+
+    @JsonIgnore
+    @GetMapping("/courses/{username}")
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR','ROLE_ADMIN')")
+    public List<Course> getByUserCourses(@PathVariable String username){
+        List<Course> courseList = courseService.findCoursesByUser(username);
+        return courseList;
     }
 }

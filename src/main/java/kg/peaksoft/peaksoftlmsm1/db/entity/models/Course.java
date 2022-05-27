@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import lombok.*;
 
@@ -29,7 +30,11 @@ public class Course {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "users_courses",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
 
 }

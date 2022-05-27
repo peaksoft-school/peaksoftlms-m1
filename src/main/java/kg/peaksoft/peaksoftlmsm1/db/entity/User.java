@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.Specialization;
 import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.StudyFormat;
@@ -45,6 +46,7 @@ public class User implements UserDetails {
     private LocalDateTime created;
     private boolean isActive;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),

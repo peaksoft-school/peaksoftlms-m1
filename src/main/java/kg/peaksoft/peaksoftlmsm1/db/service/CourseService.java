@@ -2,8 +2,10 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
+import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class CourseService {
 
     private final CourseRepository courseRepository;
+    private final UserRepository userRepository;
+    private final TeacherService teacherService;
 
     public CourseResponce save(CourseRequest courseRequest){
         Course course = mapToEntity(courseRequest);
@@ -50,6 +54,11 @@ public class CourseService {
         return mapToResponse(course);
     }
 
+    public List<Course> findCoursesByUser(String username){
+        List<Course> courseList = courseRepository.findAllByUsername(username);
+        return courseList;
+    }
+
     public CourseResponseAll getAllCourses(int page, int size){
         CourseResponseAll courseResponseAll = new CourseResponseAll();
         Pageable pageable = PageRequest.of(page-1, size);
@@ -59,18 +68,26 @@ public class CourseService {
 
     public Course mapToEntity(CourseRequest courseRequest) {
         Course course = new Course();
+        List<User> userList = new ArrayList<>();
         course.setImage(courseRequest.getImage());
         course.setNameCourse(courseRequest.getNameCourse());
         course.setStartCourse(courseRequest.getStartCourse());
         course.setDescription(courseRequest.getDescription());
+        User user = userRepository.findById(courseRequest.getUser()).get();
+        userList.add(user);
+        course.setUsers(userList);
         return course;
     }
 
     public Course mapToUpdate(Course course, CourseRequest courseRequest) {
+        List<User> userList = new ArrayList<>();
         course.setImage(courseRequest.getImage());
         course.setNameCourse(courseRequest.getNameCourse());
         course.setStartCourse(courseRequest.getStartCourse());
         course.setDescription(courseRequest.getDescription());
+        User user = userRepository.findById(courseRequest.getUser()).get();
+        userList.add(user);
+        course.setUsers(userList);
         return course;
     }
 
