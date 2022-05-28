@@ -15,4 +15,5 @@ public class CourseRequest {
     private String nameCourse;
     private Date startCourse;
     private String description;
+    private Long user;
 }

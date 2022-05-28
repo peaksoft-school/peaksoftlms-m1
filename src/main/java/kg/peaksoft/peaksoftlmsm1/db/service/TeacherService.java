@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -19,13 +19,13 @@ public class TeacherService {
 
     private final UserRepository userRepository;
 
-    public TeacherResponce create(TeacherRequest request){
+    public TeacherResponse create(TeacherRequest request){
         User user = mapToEntity(request);
         userRepository.save(user);
         return mapToResponse(user);
     }
 
-    public TeacherResponce update(Long id, TeacherRequest request){
+    public TeacherResponse update(Long id, TeacherRequest request){
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty()){
             System.out.println(user + "with id not found");
@@ -34,7 +34,7 @@ public class TeacherService {
         return mapToResponse(userRepository.save(user.get()));
     }
 
-    public TeacherResponce getById(Long id){
+    public TeacherResponse getById(Long id){
         Optional<User> user = userRepository.findById(id);
         if(user.isEmpty()){
             System.out.println(user + "with id not found");
@@ -42,7 +42,7 @@ public class TeacherService {
         return mapToResponse(userRepository.save(user.get()));
     }
 
-    public TeacherResponce delete(Long id){
+    public TeacherResponse delete(Long id){
         User group = userRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Entity", "id", id));
         userRepository.deleteById(id);
@@ -74,8 +74,8 @@ public class TeacherService {
         return user;
     }
 
-    public TeacherResponce mapToResponse(User user){
-        return TeacherResponce.builder()
+    public TeacherResponse mapToResponse(User user){
+        return TeacherResponse.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -86,8 +86,8 @@ public class TeacherService {
                 .build();
     }
 
-    public List<TeacherResponce> map(List<User> userList){
-        List<TeacherResponce> responses = new ArrayList<>();
+    public List<TeacherResponse> map(List<User> userList){
+        List<TeacherResponse> responses = new ArrayList<>();
         for(User user: userList){
             responses.add(mapToResponse(user));
         }
