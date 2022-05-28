@@ -20,7 +20,6 @@ public class TeacherService {
     private final TeacherEditMapper teacherEditMapper;
     private final TeacherViewMapper teacherViewMapper;
 
-
     public TeacherResponse create(TeacherRequest request){
         User user = teacherEditMapper.mapToEntity(request);
         userRepository.save(user);
@@ -50,5 +49,4 @@ public class TeacherService {
         userRepository.deleteById(id);
         return teacherViewMapper.mapToResponse(group);
     }
-
 }
