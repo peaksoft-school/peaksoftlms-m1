@@ -46,12 +46,10 @@ import java.util.Optional;
         return presentationViewMapper.mapToResponse(presentationRepository.save(presentation.get()));
     }
 
-    public PresentationResponse delete(Long id){
-
+    public void delete(Long id){
         Presentation presentation = presentationRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Entity", "id", id));
         presentationRepository.deleteById(id);
-        return presentationViewMapper.mapToResponse(presentation);
     }
 
 

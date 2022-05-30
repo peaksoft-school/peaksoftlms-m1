@@ -46,10 +46,10 @@ public class PresentationController {
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method delete", description = "Only Instructor can delete presentation")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    @Operation(summary = "method delete", description = "Instructor can delete presentation")
+    public ResponseEntity<PresentationResponse> delete(@PathVariable Long id) {
         presentationService.delete(id);
-        return new ResponseEntity<>("Entity deleted successfully.", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
