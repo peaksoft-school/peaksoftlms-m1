@@ -49,7 +49,8 @@ public class VideoLessonController {
     @DeleteMapping("{id}")
     public ResponseEntity<VideoLessonResponse> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok(service.getById(id));
+        VideoLessonResponse response = new VideoLessonResponse();
+        return ResponseEntity.ok(response);
     }
 
 }
