@@ -26,7 +26,6 @@ public class Presentation {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
 }

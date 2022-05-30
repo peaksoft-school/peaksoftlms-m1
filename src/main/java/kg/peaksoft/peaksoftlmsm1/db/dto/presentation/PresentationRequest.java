@@ -13,6 +13,6 @@ public class PresentationRequest {
     private String name;
     private String description;
     private String file;
-    private Long LessonId;
+    private Long lessonId;
 }
 
