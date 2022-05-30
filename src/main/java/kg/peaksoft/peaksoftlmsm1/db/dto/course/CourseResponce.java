@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CourseResponce {
 

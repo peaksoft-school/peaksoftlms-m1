@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-@Builder
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserResponse {
 

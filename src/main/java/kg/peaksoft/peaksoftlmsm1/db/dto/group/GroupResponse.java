@@ -12,7 +12,6 @@ import java.util.Date;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-@Builder
 public class GroupResponse {
 
     private Long id;

@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @Getter
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-@Builder
 public class StudentResponse {
     private Long id;
     private String firstName;
