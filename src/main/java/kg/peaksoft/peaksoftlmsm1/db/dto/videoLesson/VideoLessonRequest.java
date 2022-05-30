@@ -13,4 +13,5 @@ public class VideoLessonRequest {
     private String name;
     private String description;
     private String link;
+    private  Long aLongId;
 }
