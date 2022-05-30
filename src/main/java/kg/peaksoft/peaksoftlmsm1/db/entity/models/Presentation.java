@@ -25,7 +25,8 @@ public class Presentation {
     private String file;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "presentation")
+    @OneToOne
+    @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
 }
