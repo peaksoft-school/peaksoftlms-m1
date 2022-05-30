@@ -44,12 +44,12 @@ public class VideoLessonController {
         return ResponseEntity.ok(service.getById(id));
     }
 
-    @DeleteMapping("{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Only Instructor can delete videoLesson")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @DeleteMapping("{id}")
+    public ResponseEntity<VideoLessonResponse> delete(@PathVariable Long id) {
         service.delete(id);
-        return new ResponseEntity<>("Entity deleted successfully.", HttpStatus.OK);
+        return ResponseEntity.ok(service.getById(id));
     }
 
 }
