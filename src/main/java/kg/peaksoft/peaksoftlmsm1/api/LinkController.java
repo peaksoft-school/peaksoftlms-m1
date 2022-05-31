@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.link.LinkRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.link.LinkResponse;
-import kg.peaksoft.peaksoftlmsm1.db.service.LessonService;
 import kg.peaksoft.peaksoftlmsm1.db.service.LinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,34 +22,34 @@ public class LinkController {
 
     private final LinkService linkService;
 
-    @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Only Instructor can create link")
+    @PostMapping
     public ResponseEntity<LinkResponse> create(@RequestBody @Valid LinkRequest request){
         return new ResponseEntity<>(linkService.create(request), HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Only Instructor can update link")
+    @PutMapping("{id}")
     public ResponseEntity<LinkResponse> update(@PathVariable Long id, @Valid @RequestBody LinkRequest request){
         LinkResponse linkResponse = linkService.update(id, request);
         return new ResponseEntity<>(linkResponse, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id link")
+    @GetMapping("{id}")
     public ResponseEntity<LinkResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(linkService.getById(id));
     }
 
-    @DeleteMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Only Instructor can delete link")
+    @DeleteMapping("{id}")
     public ResponseEntity<LinkResponse> delete(@PathVariable Long id) {
         linkService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
