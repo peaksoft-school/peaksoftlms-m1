@@ -22,35 +22,34 @@ public class PresentationController {
 
     private final PresentationService presentationService;
 
-    @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Only Instructor can create presentation")
+    @PostMapping
     public ResponseEntity<PresentationResponse> create(@RequestBody @Valid PresentationRequest request){
         return new ResponseEntity<>(presentationService.create(request), HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Only Instructor can update presentation")
+    @PutMapping("{id}")
     public ResponseEntity<PresentationResponse> update(@PathVariable Long id, @Valid @RequestBody PresentationRequest request){
         PresentationResponse presentationResponse = presentationService.update(id, request);
         return new ResponseEntity<>(presentationResponse, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id presentation")
+    @GetMapping("{id}")
     public ResponseEntity<PresentationResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(presentationService.getById(id));
     }
 
-    @DeleteMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Instructor can delete presentation")
+    @DeleteMapping("{id}")
     public ResponseEntity<PresentationResponse> delete(@PathVariable Long id) {
         presentationService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
 

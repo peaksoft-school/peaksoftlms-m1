@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-    @RequiredArgsConstructor
-    public class PresentationService {
-
+@RequiredArgsConstructor
+public class PresentationService {
 
     private final PresentationRepository presentationRepository;
     private final PresentationEditMapper presentationEditMapper;
@@ -25,7 +24,6 @@ import java.util.Optional;
         Presentation presentation = presentationEditMapper.create(presentationRequest);
         presentationRepository.save(presentation);
         return presentationViewMapper.mapToResponse(presentation);
-
     }
 
     public PresentationResponse update(Long id, PresentationRequest presentationRequest) {
@@ -35,7 +33,6 @@ import java.util.Optional;
         }
         presentationEditMapper.update(presentation.get(), presentationRequest);
         return presentationViewMapper.mapToResponse(presentationRepository.save(presentation.get()));
-
     }
 
     public PresentationResponse getById(Long id){
