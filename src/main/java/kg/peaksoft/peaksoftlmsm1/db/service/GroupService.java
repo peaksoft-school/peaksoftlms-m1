@@ -2,6 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
+import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.GroupEditMapper;
+import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.GroupViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.GroupResponseAll;
@@ -11,8 +13,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,11 +20,14 @@ import java.util.Optional;
 public class GroupService {
 
     private final GroupRepository groupRepository;
+    private final GroupEditMapper groupEditMapper;
+    private final GroupViewMapper groupViewMapper;
+
 
     public GroupResponse create(GroupRequest groupRequest){
-      Group group = mapToEntity(groupRequest);
+      Group group = groupEditMapper.mapToEntity(groupRequest);
       groupRepository.save(group);
-      return mapToResponse(group);
+      return groupViewMapper.mapToResponse(group);
     }
 
     public GroupResponse update(Long id, GroupRequest groupRequest){
@@ -32,8 +35,8 @@ public class GroupService {
         if(group.isEmpty()){
             System.out.println(group + "with id not found");
         }
-        mapToUpdate(group.get(), groupRequest);
-        return mapToResponse(groupRepository.save(group.get()));
+        groupEditMapper.mapToUpdate(group.get(), groupRequest);
+        return groupViewMapper.mapToResponse(groupRepository.save(group.get()));
     }
 
     public GroupResponse getById(Long id){
@@ -41,59 +44,21 @@ public class GroupService {
         if(group.isEmpty()){
             System.out.println(group + "with id not found");
         }
-        return mapToResponse(groupRepository.save(group.get()));
+        return groupViewMapper.mapToResponse(groupRepository.save(group.get()));
     }
 
     public GroupResponse delete(Long id){
         Group group = groupRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Entity", "id", id));
         groupRepository.deleteById(id);
-        return mapToResponse(group);
+        return groupViewMapper.mapToResponse(group);
     }
 
     public GroupResponseAll getAllGroups(int page, int size){
         GroupResponseAll groupResponseAll = new GroupResponseAll();
         Pageable pageable = PageRequest.of(page-1, size);
-        groupResponseAll.setGroupResponses(map(groupRepository.findGroupBy(pageable)));
+        groupResponseAll.setGroupResponses(groupViewMapper.map(groupRepository.findGroupBy(pageable)));
         return groupResponseAll;
-    }
-
-    public Group mapToEntity(GroupRequest groupRequest){
-        Group group = new Group();
-        group.setImage(groupRequest.getImage());
-        group.setGroupName(groupRequest.getGroupName());
-        group.setStartDate(groupRequest.getStartDate());
-        group.setDescription(groupRequest.getDescription());
-        group.setCourse(groupRequest.getCourse());
-        return group;
-    }
-
-    public Group mapToUpdate(Group group, GroupRequest groupRequest){
-        group.setImage(groupRequest.getImage());
-        group.setGroupName(groupRequest.getGroupName());
-        group.setStartDate(groupRequest.getStartDate());
-        group.setDescription(groupRequest.getDescription());
-        group.setCourse(groupRequest.getCourse());
-        return group;
-    }
-
-    public GroupResponse mapToResponse(Group group){
-        return GroupResponse.builder()
-                .image(group.getImage())
-                .id(group.getId())
-                .groupName(group.getGroupName())
-                .startDate(group.getStartDate())
-                .description(group.getDescription())
-                .course(group.getCourse())
-        .build();
-    }
-
-    public List<GroupResponse> map(List<Group> groupList){
-        List<GroupResponse> responses = new ArrayList<>();
-        for(Group group: groupList){
-            responses.add(mapToResponse(group));
-        }
-        return responses;
     }
 
 }
