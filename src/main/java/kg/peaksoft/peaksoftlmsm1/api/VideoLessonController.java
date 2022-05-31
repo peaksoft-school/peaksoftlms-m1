@@ -49,7 +49,7 @@ public class VideoLessonController {
     @DeleteMapping("{id}")
     public ResponseEntity<VideoLessonResponse> delete(@PathVariable Long id) {
         service.delete(id);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
