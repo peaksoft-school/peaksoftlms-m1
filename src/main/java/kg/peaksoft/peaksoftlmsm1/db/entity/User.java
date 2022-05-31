@@ -59,7 +59,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<Course> courses;
+    private List<Course> courses;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(cascade = CascadeType.ALL)
