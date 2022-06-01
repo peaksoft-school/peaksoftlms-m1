@@ -28,38 +28,39 @@ public class TeacherController {
     private final TeacherService teacherService;
     private final CourseService courseService;
 
-    @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can create teacher")
+    @PostMapping
     public ResponseEntity<TeacherResponse> create(@RequestBody @Valid TeacherRequest request){
         return new ResponseEntity<>(teacherService.create(request), HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}")
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method update", description = "admin can update teacher")
+    @PutMapping("{id}")
     public ResponseEntity<TeacherResponse> update(@PathVariable Long id, @Valid @RequestBody TeacherRequest request){
         TeacherResponse teacherResponse = teacherService.update(id, request);
         return new ResponseEntity<>(teacherResponse, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method getByID", description = "admin can getById teacher")
+    @GetMapping("{id}")
     public ResponseEntity<TeacherResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(teacherService.getById(id));
     }
 
-    @DeleteMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method delete", description = "admin can delete teacher")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         teacherService.delete(id);
         return new ResponseEntity<>("Teacher deleted successfully.", HttpStatus.OK);
     }
 
-    @GetMapping("/courses")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @GetMapping("/courses")
     public List<Course> getByUserCourses(Authentication authentication){
         User user = (User) authentication.getPrincipal();
         return user.getCourses();
