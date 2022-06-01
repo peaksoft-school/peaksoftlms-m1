@@ -25,7 +25,7 @@ public class Presentation {
     private String file;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(mappedBy = "presentation")
     private Lesson lesson;
 
 }
