@@ -53,11 +53,6 @@ public class CourseService {
         return courseViewMapper.mapToResponse(course);
     }
 
-    public List<Course> findCoursesByUser(String username){
-        List<Course> courseList = courseRepository.findAllByUsername(username);
-        return courseList;
-    }
-
     public CourseResponseAll getAllCourses(int page, int size){
         CourseResponseAll courseResponseAll = new CourseResponseAll();
         Pageable pageable = PageRequest.of(page-1, size);

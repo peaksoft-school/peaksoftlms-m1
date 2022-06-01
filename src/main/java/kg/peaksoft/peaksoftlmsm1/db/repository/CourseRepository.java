@@ -14,7 +14,4 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<Course> findAllBy(Pageable pageable);
 
-    @Query("Select c from Course c join c.users u where u.firstName = :username")
-    List<Course> findAllByUsername(@Param("username") String username);
-
 }
