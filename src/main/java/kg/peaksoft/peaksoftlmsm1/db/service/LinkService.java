@@ -45,10 +45,11 @@ public class LinkService {
         return linkViewMapper.mapToResponse(linkRepository.save(link.get()));
     }
 
-    public void delete(Long id){
-        linkRepository.findById(id).orElseThrow(() ->
+    public LinkResponse delete(Long id){
+        Link link = linkRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Entity", "id", id));
         linkRepository.deleteById(id);
+        return linkViewMapper.mapToResponse(link);
     }
 
 }
