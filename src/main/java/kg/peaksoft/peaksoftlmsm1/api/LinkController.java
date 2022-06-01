@@ -16,8 +16,8 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/links")
 @Tag(name = "link controller", description = "Instructor can create, update, and delete")
+@RequestMapping("api/links")
 public class LinkController {
 
     private final LinkService linkService;
@@ -51,5 +51,4 @@ public class LinkController {
         linkService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
