@@ -44,9 +44,9 @@ public class StudentService {
     }
 
     public StudentResponse delete(Long id){
-        User group = userRepository.findById(id).orElseThrow(() ->
+        User user = userRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Entity", "id", id));
         userRepository.deleteById(id);
-        return studentViewMapper.mapToResponse(group);
+        return studentViewMapper.mapToResponse(user);
     }
 }

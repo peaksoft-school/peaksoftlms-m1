@@ -59,5 +59,4 @@ public class CourseService {
         courseResponseAll.setCourseResponses(courseViewMapper.map(courseRepository.findAllBy(pageable)));
         return courseResponseAll;
     }
-
 }
