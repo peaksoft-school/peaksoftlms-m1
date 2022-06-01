@@ -26,7 +26,6 @@ import java.util.List;
 public class TeacherController {
 
     private final TeacherService teacherService;
-    private final CourseService courseService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can create teacher")
@@ -61,7 +60,7 @@ public class TeacherController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @GetMapping("/courses")
-    public List<Course> getByUserCourses(Authentication authentication){
+    public List<Course> getCoursesByUser(Authentication authentication){
         User user = (User) authentication.getPrincipal();
         return user.getCourses();
     }
