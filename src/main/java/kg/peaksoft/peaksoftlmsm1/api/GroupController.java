@@ -53,6 +53,8 @@ public class GroupController {
         return new ResponseEntity<>("Group deleted successfully.", HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "method get all", description = "admin can get all")
     @GetMapping
     public GroupResponseAll getAll(@RequestParam int size,
                                    @RequestParam int page){
