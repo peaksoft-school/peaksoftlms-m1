@@ -48,9 +48,9 @@ public class CourseController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method delete", description = "admin can delete")
     @DeleteMapping("{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<CourseResponce> delete(@PathVariable Long id) {
         courseService.delete(id);
-        return new ResponseEntity<>("Entity deleted successfully.", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

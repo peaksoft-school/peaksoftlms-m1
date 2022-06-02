@@ -47,8 +47,8 @@ public class LessonController {
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Only Instructor can delete lesson")
     @DeleteMapping("{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<LessonResponse> delete(@PathVariable Long id) {
         lessonService.delete(id);
-        return new ResponseEntity<>("Entity deleted successfully.", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
