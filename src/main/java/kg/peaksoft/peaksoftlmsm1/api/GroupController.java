@@ -56,6 +56,8 @@ public class GroupController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get all", description = "admin can get all")
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "method get all", description = "admin can get all groups")
     public GroupResponseAll getAll(@RequestParam int size,
                                    @RequestParam int page){
         return groupService.getAllGroups(size, page);

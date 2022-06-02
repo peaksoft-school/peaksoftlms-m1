@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.Specialization;
 import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.StudyFormat;
@@ -45,6 +46,7 @@ public class User implements UserDetails {
     private LocalDateTime created;
     private boolean isActive;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -57,7 +59,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<Course> courses;
+    private List<Course> courses;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(cascade = CascadeType.ALL)
