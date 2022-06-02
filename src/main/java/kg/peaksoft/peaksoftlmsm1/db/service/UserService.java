@@ -6,6 +6,7 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.request.UserRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.response.UserResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
+import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -61,7 +62,8 @@ public class UserService implements UserDetailsService {
     }
 
     public UserResponse delete(Long id){
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id).orElseThrow(() ->
+             new ResourceNotFoundException("Entity", "id", id));
         userRepository.deleteById(id);
         return userViewMapper.mapToResponse(user);
     }

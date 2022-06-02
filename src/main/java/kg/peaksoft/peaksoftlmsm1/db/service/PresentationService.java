@@ -49,8 +49,6 @@ public class PresentationService {
         presentationRepository.deleteById(id);
         return presentationViewMapper.mapToResponse(presentation);
     }
-
-
 }
 
 
