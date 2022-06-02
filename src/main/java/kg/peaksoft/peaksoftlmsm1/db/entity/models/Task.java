@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "task")
@@ -21,9 +24,17 @@ public class Task {
     @SequenceGenerator(name = "task_gen",sequenceName = "task_seq",allocationSize = 1)
     private Long id;
     private String name;
+    private String text;
+    private String link;
+    private String image;
+    private String code;
 
     @JsonIgnore
     @OneToOne(mappedBy = "task")
     private Lesson lesson;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "file_id")
+    private FilePath file;
 }
