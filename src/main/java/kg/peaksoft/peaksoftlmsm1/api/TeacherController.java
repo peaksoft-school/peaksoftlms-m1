@@ -6,7 +6,6 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
-import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import kg.peaksoft.peaksoftlmsm1.db.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
