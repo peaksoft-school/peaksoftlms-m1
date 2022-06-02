@@ -51,5 +51,4 @@ public class VideoLessonController {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
