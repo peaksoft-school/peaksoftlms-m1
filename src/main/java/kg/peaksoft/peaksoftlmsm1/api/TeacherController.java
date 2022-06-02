@@ -20,9 +20,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/teachers")
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @Tag(name = "Teacher controller", description = "ADMIN create, update, and delete")
+@RequestMapping("api/teachers")
 public class TeacherController {
 
     private final TeacherService teacherService;
@@ -33,7 +33,6 @@ public class TeacherController {
     public ResponseEntity<TeacherResponse> create(@RequestBody @Valid TeacherRequest request){
         return new ResponseEntity<>(teacherService.create(request), HttpStatus.CREATED);
     }
-
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method update", description = "admin can update teacher")

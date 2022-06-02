@@ -17,42 +17,44 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/groups")
 @Tag(name = "Group controller", description = "ADMIN create, update, and delete")
+@RequestMapping("api/groups")
 public class GroupController {
 
     private final GroupService groupService;
 
-    @PostMapping
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can registration group")
+    @PostMapping
     public ResponseEntity<GroupResponse> create(@RequestBody @Valid GroupRequest request){
         return new ResponseEntity<>(groupService.create(request), HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method update", description = "admin can update group")
+    @PutMapping("{id}")
     public ResponseEntity<GroupResponse> update(@PathVariable Long id, @Valid @RequestBody GroupRequest request){
         GroupResponse groupResponse = groupService.update(id, request);
         return new ResponseEntity<>(groupResponse, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get by id", description = "admin, instructor can get by id")
+    @GetMapping("{id}")
     public ResponseEntity<GroupResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(groupService.getById(id));
     }
 
-    @DeleteMapping("{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method delete", description = "admin can delete")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         groupService.delete(id);
         return new ResponseEntity<>("Group deleted successfully.", HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "method get all", description = "admin can get all")
     @GetMapping
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get all", description = "admin can get all groups")
