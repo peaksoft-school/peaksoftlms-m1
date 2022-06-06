@@ -5,6 +5,7 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,5 +37,16 @@ public class Course {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
+
+    public void setUsers(User user) {
+        if (this.users == null) {
+            this.users = new ArrayList<>();
+        }
+        this.users.add(user);
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
 }

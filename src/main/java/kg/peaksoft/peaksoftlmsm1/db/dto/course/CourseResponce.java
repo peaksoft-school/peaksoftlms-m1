@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +21,5 @@ public class CourseResponce {
     private String nameCourse;
     private Date startCourse;
     private String description;
+    private List<User> users;
 }
