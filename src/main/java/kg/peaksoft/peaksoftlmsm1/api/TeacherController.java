@@ -2,10 +2,12 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
+import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import kg.peaksoft.peaksoftlmsm1.db.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,7 @@ import java.util.List;
 public class TeacherController {
 
     private final TeacherService teacherService;
+    private final CourseService courseService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can create teacher")
@@ -57,9 +60,19 @@ public class TeacherController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @Operation(summary = "method get Courses by User", description = "instructor can get own Courses")
     @GetMapping("/courses")
     public List<Course> getCoursesByUser(Authentication authentication){
         User user = (User) authentication.getPrincipal();
         return user.getCourses();
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @Operation(summary = "method add Student to Course", description = "instructor can add student to course")
+    @PostMapping("/courses/{courseId}/{studentId}")
+    public ResponseEntity<CourseResponce> addStudentToCourse(
+            @PathVariable("studentId") Long studentId,
+            @PathVariable("courseId") Long courseId){
+        return new ResponseEntity<>(courseService.addStudentToCourse(courseId,studentId), HttpStatus.OK);
     }
 }
