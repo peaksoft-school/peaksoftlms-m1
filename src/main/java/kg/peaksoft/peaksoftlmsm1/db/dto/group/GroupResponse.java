@@ -2,12 +2,12 @@ package kg.peaksoft.peaksoftlmsm1.db.dto.group;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
-import lombok.Builder;
+import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,5 +19,5 @@ public class GroupResponse {
     private String groupName;
     private Date startDate;
     private String description;
-    private Course course;
+    private List<User> users;
 }

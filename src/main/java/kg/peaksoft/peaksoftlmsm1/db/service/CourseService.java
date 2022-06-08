@@ -6,7 +6,9 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseEditMapper;
 import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
+import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
+import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -26,6 +28,7 @@ public class CourseService {
     private final CourseEditMapper courseEditMapper;
     private final CourseViewMapper courseViewMapper;
     private final UserRepository userRepository;
+    private final GroupRepository groupRepository;
 
     public CourseResponce save(CourseRequest courseRequest) {
         Course course = courseEditMapper.mapToEntity(courseRequest);
@@ -71,4 +74,14 @@ public class CourseService {
         course.setUsers(user);
         return courseViewMapper.mapToResponse(courseRepository.save(course));
     }
+
+    public CourseResponce addGroupToCourse(Long courseId, Long groupId) {
+        Course course = courseRepository.findById(courseId).orElseThrow(() ->
+                new ResourceNotFoundException("Entity", "id", courseId));
+        Group group = groupRepository.findById(groupId).orElseThrow(() ->
+                new ResourceNotFoundException("Entity", "id", groupId));
+        course.setGroups(group);
+        return courseViewMapper.mapToResponse(courseRepository.save(course));
+    }
+
 }

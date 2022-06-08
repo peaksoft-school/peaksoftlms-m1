@@ -75,4 +75,14 @@ public class TeacherController {
             @PathVariable("courseId") Long courseId){
         return new ResponseEntity<>(courseService.addStudentToCourse(courseId,studentId), HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @Operation(summary = "method add Group to Course", description = "instructor can add group to course")
+    @PostMapping("/courses/groups/{courseId}/{groupId}")
+    public ResponseEntity<CourseResponce> addGroupToCourse(
+            @PathVariable("groupId") Long groupId,
+            @PathVariable("courseId")  Long courseId){
+        return new ResponseEntity<>(courseService.addGroupToCourse(courseId,groupId), HttpStatus.OK);
+    }
+
 }

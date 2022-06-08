@@ -21,6 +21,8 @@ public class CourseViewMapper {
         responce.setNameCourse(course.getNameCourse());
         responce.setDescription(course.getDescription());
         responce.setStartCourse(course.getStartCourse());
+        responce.setUsers(course.getUsers());
+        responce.setGroups(course.getGroups());
         return responce;
     }
 
@@ -31,4 +33,5 @@ public class CourseViewMapper {
         }
         return response;
     }
+
 }

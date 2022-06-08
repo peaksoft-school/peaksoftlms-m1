@@ -1,12 +1,11 @@
 package kg.peaksoft.peaksoftlmsm1.db.dto.course;
 
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Builder;
+import kg.peaksoft.peaksoftlmsm1.db.entity.User;
+import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Date;
 import java.util.List;
@@ -22,4 +21,5 @@ public class CourseResponce {
     private Date startCourse;
     private String description;
     private List<User> users;
+    private List<Group> groups;
 }

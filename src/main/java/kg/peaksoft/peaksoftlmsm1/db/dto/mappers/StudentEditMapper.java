@@ -29,7 +29,7 @@ public class StudentEditMapper {
         user.setEmail(studentRequest.getEmail());
         user.setPassword(studentRequest.getPassword());
         user.setPhoneNumber(studentRequest.getPhoneNumber());
-        Group group1 = groupRepository.findById(studentRequest.getGroup().getId()).get();
+        Group group1 = groupRepository.findById(studentRequest.getGroup()).get();
         groups.add(group1);
         user.setGroups(groups);
         user.setStudyFormat(studentRequest.getStudyFormat());
@@ -45,7 +45,7 @@ public class StudentEditMapper {
         user.setEmail(studentRequest.getEmail());
         user.setPassword(studentRequest.getPassword());
         user.setPhoneNumber(studentRequest.getPhoneNumber());
-        Group group1 = groupRepository.findById(studentRequest.getGroup().getId()).get();
+        Group group1 = groupRepository.findById(studentRequest.getGroup()).get();
         groups.add(group1);
         user.setGroups(groups);
         user.setStudyFormat(studentRequest.getStudyFormat());

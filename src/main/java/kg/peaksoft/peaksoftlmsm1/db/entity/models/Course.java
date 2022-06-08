@@ -1,8 +1,11 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,12 +34,19 @@ public class Course {
     @Column(name = "description")
     private String description;
 
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_courses",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "groups_courses",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private List<Group> groups;
 
     public void setUsers(User user) {
         if (this.users == null) {
@@ -45,8 +55,25 @@ public class Course {
         this.users.add(user);
     }
 
+    /**
+     * эта аннотация убирает конфликт двух сеттеров
+     * @param users
+     */
+    @JsonBackReference("users")
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public void setGroups(Group group) {
+        if (this.groups == null) {
+            this.groups = new ArrayList<>();
+        }
+        this.groups.add(group);
+    }
+
+    @JsonBackReference("groups")
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
 }
