@@ -2,9 +2,11 @@ package kg.peaksoft.peaksoftlmsm1.db.dto.mappers;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class GroupEditMapper {
 
     public Group mapToEntity(GroupRequest groupRequest){
@@ -15,7 +17,6 @@ public class GroupEditMapper {
         group.setGroupName(groupRequest.getGroupName());
         group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
-        group.setCourse(groupRequest.getCourse());
         return group;
     }
 
@@ -23,7 +24,7 @@ public class GroupEditMapper {
         group.setGroupName(groupRequest.getGroupName());
         group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
-        group.setCourse(groupRequest.getCourse());
         return group;
     }
+
 }

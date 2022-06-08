@@ -22,7 +22,7 @@ public class GroupViewMapper {
         response.setDescription(group.getDescription());
         response.setStartDate(group.getStartDate());
         response.setImage(group.getImage());
-        response.setCourse(group.getCourse());
+        response.setUsers(group.getUsers());
         return response;
     }
 
@@ -33,4 +33,5 @@ public class GroupViewMapper {
         }
         return responses;
     }
+
 }

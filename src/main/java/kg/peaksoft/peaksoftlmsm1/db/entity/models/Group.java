@@ -28,13 +28,12 @@ public class Group {
     private Date startDate;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(mappedBy = "groups", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Course> courses;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(mappedBy = "groups")
     private List<User> users;
-
 
 }

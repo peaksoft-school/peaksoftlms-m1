@@ -41,4 +41,5 @@ public class CourseEditMapper {
         course.setUsers(userList);
         return course;
     }
+
 }
