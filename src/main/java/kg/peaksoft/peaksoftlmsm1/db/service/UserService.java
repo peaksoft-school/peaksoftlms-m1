@@ -8,6 +8,7 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
@@ -37,34 +39,41 @@ public class UserService implements UserDetailsService {
         user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
         user.setActive(true);
         userRepository.save(user);
+        log.info("Entity group save: {}", user.getFirstName());
         return userViewMapper.mapToResponse(user);
     }
 
     public UserResponse update(Long id, UserRequest userRequest){
-        Optional<User> user = userRepository.findById(id);
-        if(user.isEmpty()){
-            System.out.println(user + "with id not found");
-        }
+        Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity group with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
         userEditMapper.mapToUpdate(user.get(), userRequest);
+        log.info("Entity group updated: {}", id);
         return userViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
     public UserResponse getById(Long id){
-        Optional<User> user = userRepository.findById(id);
-        if(user.isEmpty()){
-            System.out.println(user + "with id not found");
-        }
+        Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity group with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
+        log.info("Get entity group by id: {}", id);
         return userViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
     public List<User> getAll(){
+        log.info("Entity group get all: {}");
         return userRepository.findAll();
     }
 
     public UserResponse delete(Long id){
-        User user = userRepository.findById(id).orElseThrow(() ->
-             new ResourceNotFoundException("Entity", "id", id));
+        User user = userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity group with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         userRepository.deleteById(id);
+        log.info("Delete entity group by id: {}", id);
         return userViewMapper.mapToResponse(user);
     }
 }

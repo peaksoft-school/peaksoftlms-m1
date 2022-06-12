@@ -9,12 +9,14 @@ import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.GroupResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class GroupService {
@@ -27,30 +29,36 @@ public class GroupService {
     public GroupResponse create(GroupRequest groupRequest){
       Group group = groupEditMapper.mapToEntity(groupRequest);
       groupRepository.save(group);
+        log.info("Entity group save: {}", group.getGroupName());
       return groupViewMapper.mapToResponse(group);
     }
 
     public GroupResponse update(Long id, GroupRequest groupRequest){
-        Optional<Group> group = groupRepository.findById(id);
-        if(group.isEmpty()){
-            System.out.println(group + "with id not found");
-        }
+        Optional<Group> group = Optional.ofNullable(groupRepository.findById(id).orElseThrow(() -> {
+        log.error("Entity group with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
         groupEditMapper.mapToUpdate(group.get(), groupRequest);
+        log.info("Entity group updated: {}", id);
         return groupViewMapper.mapToResponse(groupRepository.save(group.get()));
     }
 
     public GroupResponse getById(Long id){
-        Optional<Group> group = groupRepository.findById(id);
-        if(group.isEmpty()){
-            System.out.println(group + "with id not found");
-        }
+        Optional<Group> group = Optional.ofNullable(groupRepository.findById(id).orElseThrow(() -> {;
+        log.error("Entity group with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
+        log.info("Get entity group by id: {}", id);
         return groupViewMapper.mapToResponse(groupRepository.save(group.get()));
     }
 
     public GroupResponse delete(Long id){
-        Group group = groupRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Entity", "id", id));
+        Group group = groupRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity group with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         groupRepository.deleteById(id);
+        log.info("Delete entity group by id: {}", id);
         return groupViewMapper.mapToResponse(group);
     }
 
@@ -58,6 +66,7 @@ public class GroupService {
         GroupResponseAll groupResponseAll = new GroupResponseAll();
         Pageable pageable = PageRequest.of(page-1, size);
         groupResponseAll.setGroupResponses(groupViewMapper.map(groupRepository.findGroupBy(pageable)));
+        log.info("Entity Group get all: {}");
         return groupResponseAll;
     }
 
