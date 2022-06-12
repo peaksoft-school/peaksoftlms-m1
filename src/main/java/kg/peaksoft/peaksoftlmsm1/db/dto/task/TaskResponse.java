@@ -6,8 +6,6 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.models.FilePath;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
-
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
