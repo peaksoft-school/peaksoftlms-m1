@@ -13,6 +13,7 @@ import kg.peaksoft.peaksoftlmsm1.exception.ExceptionType;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.db.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
@@ -41,6 +43,7 @@ public class AuthController {
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
             User user = repository.findByEmail(authenticationToken.getName()).get();
+            log.info("inside AuthController login method");
             return ResponseEntity.ok()
                     .body(authMapper.view(jwtTokenUtil.generateToken(user), ExceptionType.Successfully, user));
         } catch (BadCredentialsException e) {
@@ -51,6 +54,7 @@ public class AuthController {
     @PostMapping("registration")
     @Operation(summary = "Admin can registration Student and Instructor", description = "Admin can registration Student and Instructor")
     public UserResponse create(@RequestBody UserRequest userRequest) {
+        log.info("inside AuthController create method");
         return userService.create(userRequest);
     }
 
@@ -58,6 +62,7 @@ public class AuthController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Admin can update Student and Instructor", description = "Admin can update Student and Instructor")
     public UserResponse update(@PathVariable Long id, @RequestBody UserRequest userRequest){
+        log.info("inside AuthController update method");
         return userService.update(id,userRequest);
     }
 
@@ -65,6 +70,7 @@ public class AuthController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Admin can delete Student and Instructor", description = "Admin can delete Student and Instructor")
     public UserResponse delete(@PathVariable Long id){
+        log.info("inside AuthController delete method");
         return userService.delete(id);
     }
 
@@ -72,6 +78,7 @@ public class AuthController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Admin can get by ID Student and Instructor", description = "Admin can get by ID Student and Instructor")
     public UserResponse getById(@PathVariable Long id){
+        log.info("inside AuthController get by id method");
         return userService.getById(id);
     }
 
@@ -79,6 +86,7 @@ public class AuthController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "Admin can get all Student and Instructor", description = "Admin can get all Student and Instructor")
     public List<User> getAll(){
+        log.info("inside AuthController get all method");
         return userService.getAll();
     }
 

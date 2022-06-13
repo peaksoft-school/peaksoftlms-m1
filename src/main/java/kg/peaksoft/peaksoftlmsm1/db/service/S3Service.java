@@ -10,6 +10,7 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.models.FilePath;
 import kg.peaksoft.peaksoftlmsm1.db.repository.FilePathRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class S3Service implements FileService{
@@ -38,8 +40,10 @@ public class S3Service implements FileService{
             repository.save(filePath);
             File file1 = convertMultiPartToFile(file);
             s3.putObject(bucketName, originalFilename, file1);
+            log.info("File save: {}", filePath.getFileName());
             return "id: "+filePath.getId() + "  fileName: " + filePath.getFileName();
         } catch (IOException e) {
+            log.error("FilePath = {} does not exists in database", file);
             throw  new RuntimeException(e);
         }
     }
@@ -49,6 +53,7 @@ public class S3Service implements FileService{
         FilePath filePath = repository.findById(id).get();
         S3Object object = s3.getObject(bucketName, filePath.getFileName());
         S3ObjectInputStream objectContent = object.getObjectContent();
+        log.info("File download: {}", id);
         try {
             return IOUtils.toByteArray(objectContent);
         } catch (IOException e) {
@@ -58,10 +63,13 @@ public class S3Service implements FileService{
 
     @Override
     public String deleteFile(Long id) {
-        FilePath filePath = repository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Entity", "id", id));
+        FilePath filePath = repository.findById(id).orElseThrow(() -> {
+            log.error("File with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         s3.deleteObject(bucketName, filePath.getFileName());
         repository.delete(filePath);
+        log.info("File deleted by id: {}", id);
         return "File successfully deleted";
     }
 
@@ -73,10 +81,11 @@ public class S3Service implements FileService{
     }
 
     public FilePath getById(Long id){
-        Optional<FilePath> filePath = repository.findById(id);
-        if(filePath.isEmpty()){
-            System.out.println(filePath + "with id not found");
-        }
+        Optional<FilePath> filePath = Optional.ofNullable(repository.findById(id).orElseThrow(() -> {
+            log.error("File with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
+        log.info("Get file by id: {}", id);
         return repository.save(filePath.get());
     }
 
@@ -85,6 +94,7 @@ public class S3Service implements FileService{
         FileOutputStream fos = new FileOutputStream( convFile );
         fos.write( file.getBytes() );
         fos.close();
+        log.info("File converted : {}", file);
         return convFile;
     }
 

@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.FilePath;
 import kg.peaksoft.peaksoftlmsm1.db.service.S3Service;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import static java.net.HttpURLConnection.HTTP_OK;
 
+@Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +29,7 @@ public class FileController {
     @Operation(summary = "method create", description = "Only Instructor can create file")
     @PostMapping
     public String upload(@RequestParam("file") MultipartFile file){
+        log.info("inside FileController upload method");
         return s3Service.saveFile(file);
     }
 
@@ -41,6 +44,7 @@ public class FileController {
         headers.add("Content-type", MediaType.ALL_VALUE);
         headers.add("Content-Disposition", "attachment; filename="+id);
         byte[] bytes = s3Service.downloadFile(id);
+        log.info("inside FileController download method");
         return  ResponseEntity.status(HTTP_OK).headers(headers).body(bytes);
     }
 
@@ -48,6 +52,7 @@ public class FileController {
     @Operation(summary = "method get by id", description = "Instructor can get by id file")
     @GetMapping("{id}")
     public ResponseEntity<FilePath> getById(@PathVariable Long id) {
+        log.info("inside FileController get By Id method");
         return ResponseEntity.ok(s3Service.getById(id));
     }
 
@@ -55,6 +60,7 @@ public class FileController {
     @Operation(summary = "method delete", description = "Only Instructor can delete file")
     @DeleteMapping("{id}")
     public  String delete(@PathVariable Long id){
+        log.info("inside FileController delete method");
         return s3Service.deleteFile(id);
     }
 
@@ -62,6 +68,7 @@ public class FileController {
     @Operation(summary = "method get all", description = "Only Instructor can get all file")
     @GetMapping
     public List<String> getAll(){
+        log.info("inside FileController get all method");
         return s3Service.listAllFiles();
     }
 
