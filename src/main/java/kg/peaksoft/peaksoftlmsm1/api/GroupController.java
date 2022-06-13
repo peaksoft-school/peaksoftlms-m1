@@ -19,8 +19,8 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Group controller", description = "ADMIN create, update, and delete")
-@RequestMapping("api/groups")
+@Tag(name = "Group controller", description = "ADMIN create, update and delete")
+@RequestMapping("api/admin/groups")
 public class GroupController {
 
     private final GroupService groupService;

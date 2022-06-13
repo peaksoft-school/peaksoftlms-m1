@@ -18,8 +18,8 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "VideoLesson controller", description = "Instructor can create, update, and delete")
-@RequestMapping("api/videoLessons")
+@Tag(name = "VideoLesson controller", description = "INSTRUCTOR can create, update and delete")
+@RequestMapping("api/teachers/videoLessons")
 public class VideoLessonController {
 
     private final VideoLessonService service;

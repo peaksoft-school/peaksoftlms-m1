@@ -19,8 +19,8 @@ import static java.net.HttpURLConnection.HTTP_OK;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "File controller", description = "Instructor can create, update, and delete")
-@RequestMapping("api/files")
+@Tag(name = "File controller", description = "INSTRUCTOR can create, update and delete")
+@RequestMapping("api/teachers/files")
 public class FileController {
 
     private final S3Service s3Service;;
