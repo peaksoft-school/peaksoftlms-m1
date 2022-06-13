@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.db.mappers.presentation;
+package kg.peaksoft.peaksoftlmsm1.db.dto.mappers;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.presentation.PresentationResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Presentation;
