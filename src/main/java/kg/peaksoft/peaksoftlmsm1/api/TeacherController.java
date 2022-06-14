@@ -24,46 +24,11 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
-@Tag(name = "Teacher controller", description = "ADMIN create, update, and delete")
+@Tag(name = "Teacher controller", description = "INSTRUCTOR can get and add")
 @RequestMapping("api/teachers")
 public class TeacherController {
 
-    private final TeacherService teacherService;
     private final CourseService courseService;
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method create", description = "admin can create teacher")
-    @PostMapping
-    public ResponseEntity<TeacherResponse> create(@RequestBody @Valid TeacherRequest request){
-        log.info("inside TeacherController create method");
-        return new ResponseEntity<>(teacherService.create(request), HttpStatus.CREATED);
-    }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method update", description = "admin can update teacher")
-    @PutMapping("{id}")
-    public ResponseEntity<TeacherResponse> update(@PathVariable Long id, @Valid @RequestBody TeacherRequest request){
-        log.info("inside TeacherController update method");
-        TeacherResponse teacherResponse = teacherService.update(id, request);
-        return new ResponseEntity<>(teacherResponse, HttpStatus.OK);
-    }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method getByID", description = "admin can getById teacher")
-    @GetMapping("{id}")
-    public ResponseEntity<TeacherResponse> getById(@PathVariable Long id) {
-        log.info("inside TeacherController getById method");
-        return ResponseEntity.ok(teacherService.getById(id));
-    }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method delete", description = "admin can delete teacher")
-    @DeleteMapping("{id}")
-    public ResponseEntity<TeacherResponse> delete(@PathVariable Long id) {
-        log.info("inside TeacherController delete method");
-        teacherService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get Courses by User", description = "instructor can get own Courses")

@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.db.mappers.videoLesson;
+package kg.peaksoft.peaksoftlmsm1.db.dto.mappers;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.videoLesson.VideoLessonResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.VideoLesson;

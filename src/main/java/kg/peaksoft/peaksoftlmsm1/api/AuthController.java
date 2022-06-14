@@ -31,7 +31,6 @@ import java.util.List;
 @Tag(name = "Authentication", description = "User with role ADMIN, INSTRUCTOR, STUDENT can authenticate")
 public class AuthController {
 
-    private final UserService userService;
     private final JwtTokenUtil jwtTokenUtil;
     private final UserRepository repository;
     private final AuthMapper authMapper;
@@ -49,45 +48,6 @@ public class AuthController {
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(authMapper.view("", ExceptionType.LOGIN_FAILED, null));
         }
-    }
-
-    @PostMapping("registration")
-    @Operation(summary = "Admin can registration Student and Instructor", description = "Admin can registration Student and Instructor")
-    public UserResponse create(@RequestBody UserRequest userRequest) {
-        log.info("inside AuthController create method");
-        return userService.create(userRequest);
-    }
-
-    @PutMapping("{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Admin can update Student and Instructor", description = "Admin can update Student and Instructor")
-    public UserResponse update(@PathVariable Long id, @RequestBody UserRequest userRequest){
-        log.info("inside AuthController update method");
-        return userService.update(id,userRequest);
-    }
-
-    @DeleteMapping ("{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Admin can delete Student and Instructor", description = "Admin can delete Student and Instructor")
-    public UserResponse delete(@PathVariable Long id){
-        log.info("inside AuthController delete method");
-        return userService.delete(id);
-    }
-
-    @GetMapping("{id}")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Admin can get by ID Student and Instructor", description = "Admin can get by ID Student and Instructor")
-    public UserResponse getById(@PathVariable Long id){
-        log.info("inside AuthController get by id method");
-        return userService.getById(id);
-    }
-
-    @GetMapping()
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Admin can get all Student and Instructor", description = "Admin can get all Student and Instructor")
-    public List<User> getAll(){
-        log.info("inside AuthController get all method");
-        return userService.getAll();
     }
 
 }
