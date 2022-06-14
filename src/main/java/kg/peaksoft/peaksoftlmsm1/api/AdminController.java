@@ -68,7 +68,14 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method create", description = "admin can registration student")
+    @Operation(summary = "method get all Teachers", description = "admin can get all teacher")
+    @GetMapping("/teachers/all")
+    public List<TeacherResponse> getAllTeachers() {
+        return teacherService.getAll();
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "method create", description = "admin can create student")
     @PostMapping("/students")
     public ResponseEntity<StudentResponse> create(@RequestBody @Valid StudentRequest request){
         log.info("inside StudentController create method");
@@ -93,12 +100,19 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method delete", description = "admin can delete")
+    @Operation(summary = "method delete", description = "admin can delete student")
     @DeleteMapping("/students/{id}")
     public ResponseEntity<StudentResponse> deleteStudent(@PathVariable Long id) {
         log.info("inside StudentController delete method");
         studentService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "method get all Students", description = "admin can get all students")
+    @GetMapping("/students/all")
+    public List<StudentResponse> getAllStudents() {
+        return studentService.getAll();
     }
 
 }

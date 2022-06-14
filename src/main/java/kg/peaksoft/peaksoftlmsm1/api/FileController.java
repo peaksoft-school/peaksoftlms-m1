@@ -20,7 +20,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "File controller", description = "INSTRUCTOR can create, update and delete")
-@RequestMapping("api/teachers/files")
+@RequestMapping("api/files")
 public class FileController {
 
     private final S3Service s3Service;;

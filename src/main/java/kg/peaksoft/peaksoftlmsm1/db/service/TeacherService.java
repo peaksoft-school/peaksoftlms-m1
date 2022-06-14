@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -57,4 +58,10 @@ public class TeacherService {
         log.info("Delete entity user by id: {}", id);
         return teacherViewMapper.mapToResponse(user);
     }
+
+    public List<TeacherResponse> getAll() {
+        log.info("Entity teacher get all: {}");
+        return teacherViewMapper.map(userRepository.findAll());
+    }
+
 }

@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Student controller", description = "STUDENT can use this controller")
-@RequestMapping("api/admin/students")
+@RequestMapping("api/students")
 public class StudentController {
 
 }

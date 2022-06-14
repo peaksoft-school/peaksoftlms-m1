@@ -4,6 +4,7 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.StudentEditMapper;
 import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.StudentViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.dto.student.StudentRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.student.StudentResponse;
+import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -57,4 +59,10 @@ public class StudentService {
         log.info("Delete entity user by id: {}", id);
         return studentViewMapper.mapToResponse(user);
     }
+
+    public List<StudentResponse> getAll() {
+        log.info("Entity student get all: {}");
+        return studentViewMapper.map(userRepository.findAll());
+    }
+
 }
