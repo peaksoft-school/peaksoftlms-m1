@@ -62,7 +62,7 @@ public class TeacherController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get Students by Course",
+    @Operation(summary = "method get students by course",
             description = "Instructor can get Students by Course")
     @GetMapping("/courses/{courseId}")
     public ResponseEntity<CourseResponseByIdForTeacher> getAllStudentsByCourseId(@PathVariable("courseId") Long courseId) {
