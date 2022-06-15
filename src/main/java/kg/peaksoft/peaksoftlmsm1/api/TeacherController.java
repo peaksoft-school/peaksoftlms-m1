@@ -3,6 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
@@ -57,6 +58,14 @@ public class TeacherController {
             @PathVariable("courseId")  Long courseId){
         log.info("inside TeacherController addGroupToCourse method");
         return new ResponseEntity<>(courseService.addGroupToCourse(courseId,groupId), HttpStatus.OK);
+    }
+
+    @GetMapping("/courses/{courseId}")
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @Operation(summary = "Для получения всех тестов",
+            description = "Позволяет получить все тесты по LESSON ID")
+    public ResponseEntity<CourseResponseByIdForTeacher> getAllStudentsByCourseId(@PathVariable("courseId") Long courseId) {
+        return new ResponseEntity<>(courseService.getByCourseId(courseId), HttpStatus.OK);
     }
 
 }
