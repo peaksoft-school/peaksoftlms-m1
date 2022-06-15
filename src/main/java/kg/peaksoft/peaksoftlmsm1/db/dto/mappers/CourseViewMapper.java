@@ -1,6 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.dto.mappers;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,18 @@ public class CourseViewMapper {
             response.add(mapToResponse(course));
         }
         return response;
+    }
+
+    public CourseResponseByIdForTeacher toCourseToStudent(Course course) {
+        if (course == null) {
+            return null;
+        }
+        CourseResponseByIdForTeacher responce = new CourseResponseByIdForTeacher();
+        if (course.getId() != null) {
+            responce.setId(course.getId());
+            responce.setUsers(course.getUsers());
+        }
+        return responce;
     }
 
     public CourseResponseForLesson toCourseByLessons(Course course) {
