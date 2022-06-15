@@ -61,10 +61,10 @@ public class TeacherController {
         return new ResponseEntity<>(courseService.addGroupToCourse(courseId,groupId), HttpStatus.OK);
     }
 
-    @GetMapping("/courses/{courseId}")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "Для получения всех тестов",
-            description = "Позволяет получить все тесты по LESSON ID")
+    @Operation(summary = "method get Students by Course",
+            description = "Instructor can get Students by Course")
+    @GetMapping("/courses/{courseId}")
     public ResponseEntity<CourseResponseByIdForTeacher> getAllStudentsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getByCourseId(courseId), HttpStatus.OK);
     }
