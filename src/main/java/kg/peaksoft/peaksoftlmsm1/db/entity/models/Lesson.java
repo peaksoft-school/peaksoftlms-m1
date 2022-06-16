@@ -37,4 +37,7 @@ public class Lesson {
     @JoinColumn(name = "link_id")
     private Link link;
 
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private Course course;
 }

@@ -2,6 +2,7 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseEditMapper;
 import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
@@ -103,6 +104,14 @@ public class CourseService {
         });
         course.setGroups(group);
         return courseViewMapper.mapToResponse(courseRepository.save(course));
+    }
+
+    public CourseResponseForLesson getLessonsByCourseId(Long courseId) {
+        log.info("Get entity course by id: {}", courseId);
+        return courseViewMapper.toCourseByLessons(courseRepository.findById(courseId).orElseThrow(() -> {
+            log.error("Entity course with id = {} does not exists in database", courseId);
+            throw new ResourceNotFoundException("Entity", "id", courseId);
+        }));
     }
 
 }

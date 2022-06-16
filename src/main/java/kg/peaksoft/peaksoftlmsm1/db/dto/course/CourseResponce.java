@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
+import kg.peaksoft.peaksoftlmsm1.db.entity.models.Lesson;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +23,5 @@ public class CourseResponce {
     private String description;
     private List<User> users;
     private List<Group> groups;
+    private List<Lesson> lessons;
 }

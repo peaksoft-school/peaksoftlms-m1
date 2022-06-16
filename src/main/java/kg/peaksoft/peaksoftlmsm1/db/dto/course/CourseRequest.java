@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Date;
 
 @Getter@Setter
@@ -16,4 +15,5 @@ public class CourseRequest {
     private Date startCourse;
     private String description;
     private Long user;
+    private Long lesson;
 }
