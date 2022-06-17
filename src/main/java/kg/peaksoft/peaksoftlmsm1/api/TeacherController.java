@@ -71,7 +71,7 @@ public class TeacherController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get Lessons by Course",
-            description = "instructor can get lessons to course")
+            description = "instructor can get lessons to Course")
     @GetMapping("/courses/lesson/{courseId}")
     public ResponseEntity<CourseResponseForLesson> getAllLessonsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getLessonsByCourseId(courseId), HttpStatus.OK);
