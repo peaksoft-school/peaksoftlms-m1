@@ -1,6 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import lombok.*;
@@ -35,7 +36,7 @@ public class Course {
     private String description;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "users_courses",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -47,6 +48,10 @@ public class Course {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id"))
     private List<Group> groups;
+
+    @JsonIgnore
+    @OneToMany(mappedBy ="course" ,fetch = FetchType.LAZY)
+    private List<Lesson> lessons;
 
     public void setUsers(User user) {
         if (this.users == null) {

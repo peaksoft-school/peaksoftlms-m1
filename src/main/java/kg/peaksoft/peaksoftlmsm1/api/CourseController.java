@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import lombok.RequiredArgsConstructor;
@@ -67,4 +68,5 @@ public class CourseController {
         log.info("inside CourseController get all method");
         return courseService.getAllCourses(size, page);
     }
+
 }

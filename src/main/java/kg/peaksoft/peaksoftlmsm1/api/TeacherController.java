@@ -6,6 +6,7 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
@@ -66,6 +67,14 @@ public class TeacherController {
     @GetMapping("/courses/{courseId}")
     public ResponseEntity<CourseResponseByIdForTeacher> getAllStudentsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getByCourseId(courseId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @Operation(summary = "method get Lessons by Course",
+            description = "instructor can get lessons to Course")
+    @GetMapping("/courses/lesson/{courseId}")
+    public ResponseEntity<CourseResponseForLesson> getAllLessonsByCourseId(@PathVariable("courseId") Long courseId) {
+        return new ResponseEntity<>(courseService.getLessonsByCourseId(courseId), HttpStatus.OK);
     }
 
 }

@@ -2,6 +2,7 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseEditMapper;
 import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseViewMapper;
@@ -18,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -109,6 +109,14 @@ public class CourseService {
     public CourseResponseByIdForTeacher getByCourseId(Long courseId) {
         log.info("Get entity course by id: {}", courseId);
         return courseViewMapper.toCourseToStudent(courseRepository.findById(courseId).orElseThrow(() -> {
+            log.error("Entity course with id = {} does not exists in database", courseId);
+            throw new ResourceNotFoundException("Entity", "id", courseId);
+        }));
+    }
+
+    public CourseResponseForLesson getLessonsByCourseId(Long courseId) {
+        log.info("Get entity course by id: {}", courseId);
+        return courseViewMapper.toCourseByLessons(courseRepository.findById(courseId).orElseThrow(() -> {
             log.error("Entity course with id = {} does not exists in database", courseId);
             throw new ResourceNotFoundException("Entity", "id", courseId);
         }));
