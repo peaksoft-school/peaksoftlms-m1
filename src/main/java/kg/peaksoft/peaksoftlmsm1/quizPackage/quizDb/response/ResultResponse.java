@@ -18,4 +18,5 @@ public class ResultResponse {
     private Double correctAnswers;
     private Double incorrectAnswers;
     private String percentToResult;
+
 }

@@ -23,6 +23,7 @@ public class LessonViewMapper {
         lessonResponse.setPresentation(lesson.getPresentation());
         lessonResponse.setLink(lesson.getLink());
         lessonResponse.setTask(lesson.getTask());
+        lessonResponse.setTest(lesson.getTest());
         return lessonResponse;
     }
 

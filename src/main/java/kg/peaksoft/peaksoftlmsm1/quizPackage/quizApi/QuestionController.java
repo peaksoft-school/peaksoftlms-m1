@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Slf4j
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Question controller", description = "Instructor can create, update and delete")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Question controller", description = "Instructor can create, update and delete")
 @RequestMapping("api/questions")
-public class QuestionApi {
+public class QuestionController {
 
     private final QuestionService questionService;
 
@@ -29,6 +29,7 @@ public class QuestionApi {
     @PostMapping("/{testId}")
     public ResponseEntity<QuestionResponse> save(@PathVariable Long testId,
                                                  @RequestBody QuestionRequest request) {
+        log.info("inside QuestionController create method");
         return new ResponseEntity<>(questionService.save(testId, request), HttpStatus.CREATED);
     }
 
@@ -37,6 +38,7 @@ public class QuestionApi {
     @PutMapping("{id}")
     public ResponseEntity<QuestionResponse> update(@PathVariable Long id,
                                                    @RequestBody @Valid QuestionRequest request) {
+        log.info("inside QuestionController update method");
         QuestionResponse questionResponse = questionService.update(id, request);
         return new ResponseEntity<>(questionResponse, HttpStatus.OK);
     }
@@ -45,6 +47,7 @@ public class QuestionApi {
     @Operation(summary = "method get by id", description = "Instructor can get by id question")
     @GetMapping("{id}")
     public ResponseEntity<QuestionResponse> getById(@PathVariable Long id) {
+        log.info("inside QuestionController get by id method");
         return ResponseEntity.ok(questionService.getById(id));
     }
 
@@ -52,6 +55,7 @@ public class QuestionApi {
     @Operation(summary = "method delete", description = "Instructor can delete question")
     @DeleteMapping("{id}")
     public ResponseEntity<QuestionResponse> delete(@PathVariable Long id) {
+        log.info("inside QuestionController delete method");
         questionService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

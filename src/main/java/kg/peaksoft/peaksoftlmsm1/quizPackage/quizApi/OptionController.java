@@ -6,6 +6,7 @@ import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizService.OptionService;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.request.OptionRequest;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.response.OptionResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,43 +14,48 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Answer controller", description = "Instructor can create, update and delete")
+@Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Option controller", description = "Instructor can create, update and delete")
 @RequestMapping("api/options")
-public class OptionApi {
+public class OptionController {
 
     private final OptionService optionService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method create", description = "Instructor can registration answer")
+    @Operation(summary = "method create", description = "Instructor can registration option")
     @PostMapping("/{questionId}")
     public ResponseEntity<OptionResponse> save(@PathVariable Long questionId,
                                                @RequestBody @Valid OptionRequest optionRequest) {
+        log.info("inside OptionController create method");
         return new ResponseEntity<>(optionService.save(questionId, optionRequest), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method update", description = "Instructor can update answer")
+    @Operation(summary = "method update", description = "Instructor can update option")
     @PutMapping("{id}")
     public ResponseEntity<OptionResponse> update(@PathVariable Long id,
                                                  @RequestBody @Valid OptionRequest request){
+        log.info("inside OptionController update method");
         OptionResponse optionResponse = optionService.update(id, request);
         return new ResponseEntity<>(optionResponse, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get by id", description = "Instructor can get by id answer")
+    @Operation(summary = "method get by id", description = "Instructor can get by id option")
     @GetMapping("{id}")
     public ResponseEntity<OptionResponse> getById(@PathVariable Long id) {
+        log.info("inside OptionController get by id method");
         return ResponseEntity.ok(optionService.getById(id));
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method delete", description = "Instructor can delete answer")
+    @Operation(summary = "method delete", description = "Instructor can delete option")
     @DeleteMapping("{id}")
     public ResponseEntity<OptionResponse> delete(@PathVariable Long id) {
+        log.info("inside OptionController delete method");
         optionService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

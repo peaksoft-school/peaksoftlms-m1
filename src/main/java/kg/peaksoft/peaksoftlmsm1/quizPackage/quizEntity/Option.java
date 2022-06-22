@@ -25,7 +25,7 @@ public class Option {
     private String option;
     private boolean isCorrect;
 
-    @ManyToOne(cascade = {MERGE, REFRESH, PERSIST}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {MERGE, REFRESH, PERSIST, DETACH}, fetch = FetchType.LAZY)
     @JoinColumn(name="questions_id")
     @JsonIgnore
     private Question question;

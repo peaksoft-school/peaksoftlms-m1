@@ -1,6 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.quizPackage.quizEntity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kg.peaksoft.peaksoftlmsm1.db.entity.models.Lesson;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,10 @@ public class Test {
     @JsonIgnore
     private List<Result> testResults;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "test")
+    private Lesson lesson;
+
     public void setQuestion(Question question) {
         if (this.questions == null) {
             this.questions = new ArrayList<>();
@@ -47,7 +52,7 @@ public class Test {
         this.questions.add(question);
     }
 
-    public void setOptions(List<Question> questionList) {
+    public void setQuestions(List<Question> questionList) {
         if (questions == null) {
             questions = questionList;
         }

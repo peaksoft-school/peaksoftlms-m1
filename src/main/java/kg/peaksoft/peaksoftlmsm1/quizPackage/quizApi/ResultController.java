@@ -7,35 +7,38 @@ import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizService.ResultService;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.request.AnswerRequest;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.response.ResultResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/results")
 @CrossOrigin(origins = "*", maxAge = 3600)
-@Tag(name = "Result", description = "The Result API")
-public class ResultApi {
+@Tag(name = "ResultController", description = "Instructor can get Results, Student can take the test")
+@RequestMapping("/api/results")
+public class ResultController {
+
     private  final ResultService resultService;
 
-    @PostMapping("/myTest")
-    @Operation(summary = "",
-            description = "")
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
+    @Operation(summary = "method save Result", description = "Saving student responses")
+    @PostMapping("/myTest")
     public ResultResponse saveResult(Authentication authentication, @RequestBody AnswerRequest answerRequest) {
+        log.info("inside ResultController save method");
         User user = (User) authentication.getPrincipal();
         return resultService.saveResult(answerRequest, user.getId());
     }
 
-    @GetMapping("/{testId}")
-    @Operation(summary = "",
-            description = "")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @Operation(summary = "method get Results", description = "Instructor can get results")
+    @GetMapping("/{testId}")
     public List<ResultResponse> getResults(@PathVariable Long testId) {
+        log.info("inside ResultController get all method");
         return resultService.getAllResultByTestId(testId);
     }
+
 }

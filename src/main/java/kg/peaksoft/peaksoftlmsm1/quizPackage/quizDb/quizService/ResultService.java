@@ -3,9 +3,9 @@ package kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizService;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.QuizRepository.OptionRepository;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.QuizRepository.ResultRepository;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.QuizRepository.TestRepository;
+import kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository.OptionRepository;
+import kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository.ResultRepository;
+import kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository.TestRepository;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizMappers.ResultViewMapper;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.request.AnswerRequest;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.response.ResultResponse;
@@ -14,6 +14,7 @@ import kg.peaksoft.peaksoftlmsm1.quizPackage.quizEntity.Result;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizEntity.Test;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizEnum.AccessTest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ import java.util.List;
 import static kg.peaksoft.peaksoftlmsm1.quizPackage.quizEnum.EQuestionType.MULTI_TYPE;
 import static kg.peaksoft.peaksoftlmsm1.quizPackage.quizEnum.EQuestionType.SINGLE_TYPE;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ResultService {
@@ -36,9 +38,12 @@ public class ResultService {
 
         Result result = new Result();
 
-        Test test = testRepository.findById(answerRequest.getTestId()).orElseThrow(() ->
-                new ResourceNotFoundException("Entity not found exception"));
-        User student = userRepository.findById(studentId).orElseThrow(() -> new ResourceNotFoundException("Entity not found with: " + studentId));
+        Test test = testRepository.findById(answerRequest.getTestId()).orElseThrow(() -> {
+            log.error("test with id = {} does not exists in database" + answerRequest.getTestId());
+            throw new ResourceNotFoundException("Not found test with this id: ");
+        });
+        User student = userRepository.findById(studentId).orElseThrow(() ->
+                new ResourceNotFoundException("Entity not found with: " + studentId));
         result.setTest(test);
         result.setUser(student);
         result.setTime(LocalDateTime.now());
@@ -63,6 +68,7 @@ public class ResultService {
     }
 
     public List<ResultResponse> getAllResultByTestId(Long testId) {
+        log.info("Get entity test by id: {}", testId);
         Test test = testRepository.findById(testId).orElseThrow();
         return resultViewMapper.map(resultRepository.findAllByTest(test));
     }

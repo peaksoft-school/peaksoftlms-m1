@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.quizPackage.QuizRepository;
+package kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository;
 
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizEntity.Test;
 import org.springframework.data.jpa.repository.JpaRepository;

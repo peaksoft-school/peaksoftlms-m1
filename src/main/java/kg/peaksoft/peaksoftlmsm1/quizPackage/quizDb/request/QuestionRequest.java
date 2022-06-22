@@ -13,6 +13,5 @@ public class QuestionRequest {
 
     private String questionTitle;
     private EQuestionType eQuestionType;
-    //private List<OptionRequest> optionRequestList;
 
 }

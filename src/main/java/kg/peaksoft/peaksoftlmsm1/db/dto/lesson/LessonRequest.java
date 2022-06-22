@@ -14,4 +14,6 @@ public class LessonRequest {
     private Long presentation;
     private Long task;
     private Long link;
+    private Long test;
+    private Long course;
 }

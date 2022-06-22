@@ -1,8 +1,8 @@
 package kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizService;
 
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.QuizRepository.OptionRepository;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.QuizRepository.QuestionRepository;
+import kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository.OptionRepository;
+import kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository.QuestionRepository;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizMappers.OptionEditMapper;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizMappers.OptionViewMapper;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.request.OptionRequest;
@@ -34,20 +34,29 @@ public class OptionService {
     }
 
     public OptionResponse update(Long id, OptionRequest optionRequest) {
-        Option option = optionRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Entity", "id", id));
+        Option option = optionRepository.findById(id).orElseThrow(() -> {
+                log.error("Entity option with id = {} does not exists in database", id);
+              throw new ResourceNotFoundException("Entity", "id", id);
+    });
+        log.info("Entity option updated: {}", id);
         return optionViewMapper.mapToResponse(optionRepository.save(optionEditMapper.mapToUpdate(option, optionRequest)));
     }
 
     public OptionResponse getById(Long id) {
-        return optionViewMapper.mapToResponse(optionRepository.findById(id).orElseThrow(()
-                -> new ResourceNotFoundException("Entity", "id", id)));
+        log.info("Get entity option by id: {}", id);
+        return optionViewMapper.mapToResponse(optionRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity option with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
     }
 
     public OptionResponse delete(Long id) {
-        Option option = optionRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("Entity", "id", id));
+        Option option = optionRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity option with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         optionRepository.deleteById(id);
+        log.info("Delete entity option by id: {}", id);
         return optionViewMapper.mapToResponse(option);
     }
 

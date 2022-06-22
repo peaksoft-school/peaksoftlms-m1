@@ -2,11 +2,12 @@ package kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.quizMappers;
 
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizDb.request.OptionRequest;
 import kg.peaksoft.peaksoftlmsm1.quizPackage.quizEntity.Option;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OptionEditMapper {
-
 
     public Option mapToEntity(OptionRequest optionRequest) {
         if (optionRequest == null) {
