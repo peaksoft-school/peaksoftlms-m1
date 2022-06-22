@@ -19,8 +19,8 @@ import static javax.persistence.CascadeType.*;
 public class Option {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "answer_gen")
-    @SequenceGenerator(name = "answer_gen", sequenceName = "answer_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "option_gen")
+    @SequenceGenerator(name = "option_gen", sequenceName = "option_seq", allocationSize = 1)
     private Long id;
     private String option;
     private boolean isCorrect;
