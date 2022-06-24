@@ -3,7 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.db.dto.teacher;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.Specialization;
+import kg.peaksoft.peaksoftlmsm1.db.entity.enums.Specialization;
 import lombok.Getter;
 import lombok.Setter;
 
