@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.quizEntity.Test;
+import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

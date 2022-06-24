@@ -3,7 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.db.dto.mappers;
 import kg.peaksoft.peaksoftlmsm1.db.dto.lesson.LessonRequest;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Lesson;
 import kg.peaksoft.peaksoftlmsm1.db.repository.*;
-import kg.peaksoft.peaksoftlmsm1.quizPackage.quizRepository.TestRepository;
+import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
