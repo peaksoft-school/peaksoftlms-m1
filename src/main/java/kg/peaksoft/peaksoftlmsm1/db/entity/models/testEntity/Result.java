@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity;
 
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.AccessTest;
+import kg.peaksoft.peaksoftlmsm1.db.entity.enums.AccessTest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

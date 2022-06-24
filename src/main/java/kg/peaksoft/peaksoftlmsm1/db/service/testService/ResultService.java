@@ -12,7 +12,7 @@ import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.ResultResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Question;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Result;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.AccessTest;
+import kg.peaksoft.peaksoftlmsm1.db.entity.enums.AccessTest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.EQuestionType.MULTI_TYPE;
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.EQuestionType.SINGLE_TYPE;
+import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType.MULTI_TYPE;
+import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType.SINGLE_TYPE;
 
 @Slf4j
 @Service

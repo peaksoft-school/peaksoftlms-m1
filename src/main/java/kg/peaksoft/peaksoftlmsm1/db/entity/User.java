@@ -2,8 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.db.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.Specialization;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.StudyFormat;
+import kg.peaksoft.peaksoftlmsm1.db.entity.enums.Specialization;
+import kg.peaksoft.peaksoftlmsm1.db.entity.enums.StudyFormat;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
 import lombok.*;
