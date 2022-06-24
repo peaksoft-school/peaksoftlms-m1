@@ -2,7 +2,7 @@ package kg.peaksoft.peaksoftlmsm1.db.dto.test.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.testEnum.EQuestionType;
+import kg.peaksoft.peaksoftlmsm1.db.entity.enumPackage.EQuestionType;
 import lombok.Getter;
 import lombok.Setter;
 
