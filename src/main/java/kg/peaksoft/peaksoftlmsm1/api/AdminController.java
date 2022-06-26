@@ -18,8 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -113,6 +115,15 @@ public class AdminController {
     @GetMapping("/students/all")
     public List<StudentResponse> getAllStudents() {
         return studentService.getAll();
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @Operation(summary = "Excel file import",
+            description = "Admin can import excel file")
+    @PostMapping("/students/importExcel")
+    public List<StudentResponse> importExcelFiles(@RequestParam(name = "file") MultipartFile files,
+                                                  @RequestParam Long groupId) throws IOException {
+        return studentService.importStudentsExcelFile(files, groupId);
     }
 
 }
