@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kg.peaksoft.peaksoftlmsm1.db.entity.enums.Specialization;
@@ -97,6 +98,30 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive;
+    }
+
+    public void setRoles(Role role) {
+        if (null == roles){
+            roles = new ArrayList<>();
+        }
+        roles.add(role);
+    }
+
+    @JsonBackReference("roles")
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setGroups(Group group) {
+        if (this.groups == null) {
+            this.groups = new ArrayList<>();
+        }
+        this.groups.add(group);
+    }
+
+    @JsonBackReference("groups")
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
 }

@@ -19,6 +19,9 @@ public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException(String resourceName) {
     }
 
+    public ResourceNotFoundException(String s, Long groupId) {
+    }
+
     public String getResourceName() {
         return resourceName;
     }
