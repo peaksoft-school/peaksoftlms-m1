@@ -26,4 +26,3 @@ jobs:
         environment_name: Peaksoftlms-env
         version_label: ${{github.SHA}}
         region: us-east-1
-        deployment_package: target/peaksoftlms-m1-2.2.5.jar
