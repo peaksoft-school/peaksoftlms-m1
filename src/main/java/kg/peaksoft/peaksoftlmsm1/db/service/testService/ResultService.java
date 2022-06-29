@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
+import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingList;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -15,6 +16,8 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test;
 import kg.peaksoft.peaksoftlmsm1.db.entity.enums.AccessTest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -98,6 +101,14 @@ public class ResultService {
 
     private String toStringInPercent(double number) {
         return (int) number + "%";
+    }
+
+    public RatingList getRatingToStudents(int page, int size) {
+        RatingList ratingList = new RatingList();
+        Pageable pageable = PageRequest.of(page -1, size);
+        ratingList.setResultResponseRatingList(resultViewMapper.mapListRatingResult(
+                resultRepository.findAllBy(pageable)));
+        return ratingList;
     }
 
 }

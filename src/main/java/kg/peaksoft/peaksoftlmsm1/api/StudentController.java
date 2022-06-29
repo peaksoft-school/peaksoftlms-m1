@@ -3,9 +3,11 @@ package kg.peaksoft.peaksoftlmsm1.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForStudentLesson;
+import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingList;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
+import kg.peaksoft.peaksoftlmsm1.db.service.testService.ResultService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,7 @@ import java.util.List;
 public class StudentController {
 
     private final CourseService courseService;
+    private final ResultService resultService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method get Courses by Students", description = "Student can get own Courses")
@@ -42,4 +45,12 @@ public class StudentController {
         return new ResponseEntity<>(courseService.getStudentLessonsByCourseId(courseId), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
+    @Operation(summary = "method get all rating students", description = "student can get all rating")
+    @GetMapping("rating")
+    public RatingList getAllRatingByTests(@RequestParam int size,
+                                          @RequestParam int page){
+        log.info("inside CourseController get all method");
+        return resultService.getRatingToStudents(size, page);
+    }
 }
