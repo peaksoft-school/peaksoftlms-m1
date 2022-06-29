@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.repository.testRepository;
 
+import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.ResultRatingResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Result;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test;
 import org.springframework.data.domain.Pageable;

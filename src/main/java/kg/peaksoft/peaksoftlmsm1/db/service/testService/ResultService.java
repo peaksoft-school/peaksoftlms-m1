@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingList;
+import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingListResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -103,10 +103,10 @@ public class ResultService {
         return (int) number + "%";
     }
 
-    public RatingList getRatingToStudents(int page, int size) {
-        RatingList ratingList = new RatingList();
+    public RatingListResponse getStudentsRating(int page, int size) {
+        RatingListResponse ratingList = new RatingListResponse();
         Pageable pageable = PageRequest.of(page -1, size);
-        ratingList.setResultResponseRatingList(resultViewMapper.mapListRatingResult(
+        ratingList.setResultRatingResponses(resultViewMapper.mapListRatingResult(
                 resultRepository.findAllBy(pageable)));
         return ratingList;
     }

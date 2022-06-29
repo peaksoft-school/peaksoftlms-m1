@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class RatingList {
+public class RatingListResponse {
 
-    private List<ResultResponseRating> resultResponseRatingList;
+    private List<ResultRatingResponse> resultRatingResponses;
 }

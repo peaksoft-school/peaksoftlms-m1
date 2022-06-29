@@ -3,7 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForStudentLesson;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingList;
+import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingListResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
@@ -48,9 +48,9 @@ public class StudentController {
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method get all rating students", description = "student can get all rating")
     @GetMapping("rating")
-    public RatingList getAllRatingByTests(@RequestParam int size,
-                                          @RequestParam int page){
+    public RatingListResponse getAllRatingByTests(@RequestParam int size,
+                                                  @RequestParam int page){
         log.info("inside CourseController get all method");
-        return resultService.getRatingToStudents(size, page);
+        return resultService.getStudentsRating(size, page);
     }
 }

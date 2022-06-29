@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class ResultResponseRating {
+public class ResultRatingResponse {
 
     private Long id;
     private User user;
