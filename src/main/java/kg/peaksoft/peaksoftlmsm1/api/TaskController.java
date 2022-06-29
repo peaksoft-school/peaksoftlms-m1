@@ -18,8 +18,8 @@ import javax.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/teachers/tasks")
 @Tag(name = "Task controller", description = "INSTRUCTOR can create, update and delete")
+@RequestMapping("api/teachers/tasks")
 public class TaskController {
 
     private final TaskService service;
