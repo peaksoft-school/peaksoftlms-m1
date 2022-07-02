@@ -2,11 +2,12 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.db.dto.student.StudentRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.student.StudentResponse;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForStudentLesson;
+import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingListResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
-import kg.peaksoft.peaksoftlmsm1.db.service.StudentService;
+import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
+import kg.peaksoft.peaksoftlmsm1.db.service.testService.ResultService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -26,6 +26,9 @@ import java.util.List;
 @RequestMapping("api/students")
 public class StudentController {
 
+    private final CourseService courseService;
+    private final ResultService resultService;
+
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method get Courses by Students", description = "Student can get own Courses")
     @GetMapping("/courses")
@@ -34,4 +37,20 @@ public class StudentController {
         return user.getCourses();
     }
 
+    @GetMapping("/courses/lessons/{courseId}")
+    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
+    @Operation(summary = "method get Student Lessons by Course",
+            description = "student can get lessons to course")
+    public ResponseEntity<CourseResponseForStudentLesson> getStudentsLessonsByCourseId(@PathVariable("courseId") Long courseId) {
+        return new ResponseEntity<>(courseService.getStudentLessonsByCourseId(courseId), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
+    @Operation(summary = "method get all rating students", description = "student can get all rating")
+    @GetMapping("rating")
+    public RatingListResponse getAllRatingByTests(@RequestParam int size,
+                                                  @RequestParam int page){
+        log.info("inside CourseController get all method");
+        return resultService.getStudentsRating(size, page);
+    }
 }
