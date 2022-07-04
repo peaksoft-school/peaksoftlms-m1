@@ -30,7 +30,7 @@ jobs:
           description: 'AWS Session Token when using temporary security credentials such as when assuming a role in AWS through STS'
           required: false
           application_name: peaksoftlms
-          environment_name: Peaksoftlms-env-1
+          environment_name: Peaksoftlms-env
           version_label: ${{github.SHA}}
           region: eu-central-1
           deployment_package: target/peaksoftlms-m1.jar
