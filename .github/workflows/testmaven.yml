@@ -29,8 +29,8 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           description: 'AWS Session Token when using temporary security credentials such as when assuming a role in AWS through STS'
           required: false
-          application_name: peaksoft-lms
-          environment_name: Peaksoftlms-env
+          application_name: peaksoftlms
+          environment_name: Peaksoftlms-env-1
           version_label: ${{github.SHA}}
           region: eu-central-1
           deployment_package: target/peaksoftlms-m1.jar
