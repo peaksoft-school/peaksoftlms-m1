@@ -43,5 +43,5 @@ jobs:
           application_name: peaksoftlms
           environment_name: Peaksoftlms-env
           version_label: ${{github.SHA}}
-          region: eu-central-1
+          region: us-east-1
           deployment_package: peaksoftlms-m1.jar
