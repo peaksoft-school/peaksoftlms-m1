@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  ci_part:
+  build:
 
     runs-on: ubuntu-latest
 
