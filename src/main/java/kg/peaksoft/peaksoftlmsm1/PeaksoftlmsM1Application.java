@@ -11,6 +11,7 @@ public class PeaksoftlmsM1Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PeaksoftlmsM1Application.class, args);
+		System.out.println("Hey, it's PeaksoftLms project");
 
 	}
 
