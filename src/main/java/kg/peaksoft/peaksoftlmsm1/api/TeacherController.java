@@ -38,7 +38,7 @@ public class TeacherController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method add Student to Course", description = "instructor can add student to course")
+    @Operation(summary = "method add Student to Course", description = "instructor can add Student to Course")
     @PostMapping("/courses/{courseId}/{studentId}")
     public ResponseEntity<CourseResponce> addStudentToCourse(
             @PathVariable("studentId") Long studentId,
@@ -48,7 +48,7 @@ public class TeacherController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method add Group to Course", description = "instructor can add group to course")
+    @Operation(summary = "method add Group to Course", description = "instructor can add Group to Course")
     @PostMapping("/courses/groups/{courseId}/{groupId}")
     public ResponseEntity<CourseResponce> addGroupToCourse(
             @PathVariable("groupId") Long groupId,
@@ -58,7 +58,7 @@ public class TeacherController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get students by course",
+    @Operation(summary = "method get Students by Course",
             description = "Instructor can get Students by Course")
     @GetMapping("/courses/{courseId}")
     public ResponseEntity<CourseResponseByIdForTeacher> getAllStudentsByCourseId(@PathVariable("courseId") Long courseId) {
@@ -67,7 +67,7 @@ public class TeacherController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get Lessons by Course",
-            description = "instructor can get lessons to Course")
+            description = "Instructor can get Lessons to Course")
     @GetMapping("/courses/lesson/{courseId}")
     public ResponseEntity<CourseResponseForLesson> getAllLessonsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getLessonsByCourseId(courseId), HttpStatus.OK);

@@ -18,14 +18,14 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
-@Tag(name = "ResultController", description = "Instructor can get Results, Student can take the test")
-@RequestMapping("/api/results")
+@Tag(name = "ResultController", description = "INSTRUCTOR can get Results, Student can take the Test")
+@RequestMapping("/api/teachers/results")
 public class ResultController {
 
     private  final ResultService resultService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
-    @Operation(summary = "method save Result", description = "Saving student responses")
+    @Operation(summary = "method save Result", description = "Saving Student responses")
     @PostMapping("/myTest")
     public ResultResponse saveResult(Authentication authentication, @RequestBody AnswerRequest answerRequest) {
         log.info("inside ResultController save method");
@@ -34,7 +34,7 @@ public class ResultController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get Results", description = "Instructor can get results")
+    @Operation(summary = "method get Results", description = "Instructor can get Results")
     @GetMapping("/{testId}")
     public List<ResultResponse> getResults(@PathVariable Long testId) {
         log.info("inside ResultController get all method");
