@@ -40,12 +40,11 @@ public class PresentationService {
     }
 
     public PresentationResponse getById(Long id){
-        Optional<Presentation> presentation = Optional.ofNullable(presentationRepository.findById(id).orElseThrow(() ->{
+        log.info("Get entity presentation by id: {}", id);
+        return presentationViewMapper.mapToResponse(presentationRepository.findById(id).orElseThrow(() -> {
             log.error("Entity presentation with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity presentation by id: {}", id);
-        return presentationViewMapper.mapToResponse(presentationRepository.save(presentation.get()));
     }
 
     public PresentationResponse delete(Long id) {

@@ -20,7 +20,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "File controller", description = "INSTRUCTOR can create, update and delete")
-@RequestMapping("api/files")
+@RequestMapping("api/teachers/files")
 public class FileController {
 
     private final S3Service s3Service;;
@@ -37,7 +37,7 @@ public class FileController {
      *  Метод download загружает файл из сервера и показывает в Postman
      */
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method download file", description = "Instructor can download file")
+    @Operation(summary = "method download File", description = "Instructor can download file")
     @GetMapping("download/{id}")
     public ResponseEntity<byte[]> download(@PathVariable Long id){
         HttpHeaders headers=new HttpHeaders();

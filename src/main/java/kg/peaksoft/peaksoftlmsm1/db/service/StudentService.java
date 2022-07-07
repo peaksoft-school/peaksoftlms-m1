@@ -54,12 +54,11 @@ public class StudentService {
     }
 
     public StudentResponse getById(Long id){
-        Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
-            log.error("Entity user with id = {} does not exists in database", id);
+        log.info("Get entity student by id: {}", id);
+        return studentViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity student with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity user by id: {}", id);
-        return studentViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
     public StudentResponse delete(Long id){

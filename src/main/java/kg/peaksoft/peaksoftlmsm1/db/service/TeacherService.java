@@ -41,12 +41,11 @@ public class TeacherService {
     }
 
     public TeacherResponse getById(Long id){
-        Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
-            log.error("Entity user with id = {} does not exists in database", id);
+        log.info("Get entity teacher by id: {}", id);
+        return teacherViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity teacher with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity user by id: {}", id);
-        return teacherViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
     public TeacherResponse delete(Long id){

@@ -40,13 +40,13 @@ public class StudentController {
     @GetMapping("/courses/lessons/{courseId}")
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method get Student Lessons by Course",
-            description = "student can get lessons to course")
+            description = "Student can get Lessons to Course")
     public ResponseEntity<CourseResponseForStudentLesson> getStudentsLessonsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getStudentLessonsByCourseId(courseId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
-    @Operation(summary = "method get all rating students", description = "student can get all rating")
+    @Operation(summary = "method get all rating Students", description = "Student can get all rating")
     @GetMapping("rating")
     public RatingListResponse getAllRatingByTests(@RequestParam int size,
                                                   @RequestParam int page){

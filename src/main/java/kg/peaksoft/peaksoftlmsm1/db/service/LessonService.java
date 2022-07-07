@@ -41,12 +41,11 @@ public class LessonService {
     }
 
     public LessonResponse getById(Long id){
-        Optional<Lesson> lesson = Optional.ofNullable(lessonRepository.findById(id).orElseThrow(() -> {;
-        log.error("Entity lesson with id = {} does not exists in database", id);
+        log.info("Get entity lesson by id: {}", id);
+        return lessonViewMapper.mapToResponse(lessonRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity lesson with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity lesson by id: {}", id);
-        return lessonViewMapper.mapToResponse(lessonRepository.save(lesson.get()));
     }
 
     public LessonResponse delete(Long id) {

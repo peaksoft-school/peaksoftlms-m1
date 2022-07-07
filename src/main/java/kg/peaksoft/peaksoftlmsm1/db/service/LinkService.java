@@ -42,12 +42,11 @@ public class LinkService {
     }
 
     public LinkResponse getById(Long id){
-        Optional<Link> link = Optional.ofNullable(linkRepository.findById(id).orElseThrow(() -> {
+        log.info("Get entity link by id: {}", id);
+        return linkViewMapper.mapToResponse(linkRepository.findById(id).orElseThrow(() -> {
             log.error("Entity link with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity link by id: {}", id);
-        return linkViewMapper.mapToResponse(linkRepository.save(link.get()));
     }
 
     public LinkResponse delete(Long id){

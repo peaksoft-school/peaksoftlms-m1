@@ -18,14 +18,14 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Question controller", description = "Instructor can create, update and delete")
-@RequestMapping("api/questions")
+@Tag(name = "Question controller", description = "INSTRUCTOR can create, update and delete")
+@RequestMapping("api/teachers/questions")
 public class QuestionController {
 
     private final QuestionService questionService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method create", description = "Instructor can registration question")
+    @Operation(summary = "method create", description = "Instructor can registration Question")
     @PostMapping("/{testId}")
     public ResponseEntity<QuestionResponse> save(@PathVariable Long testId,
                                                  @RequestBody QuestionRequest request) {
@@ -34,7 +34,7 @@ public class QuestionController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method update", description = "Instructor can update question")
+    @Operation(summary = "method update", description = "Instructor can update Question")
     @PutMapping("{id}")
     public ResponseEntity<QuestionResponse> update(@PathVariable Long id,
                                                    @RequestBody @Valid QuestionRequest request) {
@@ -44,7 +44,7 @@ public class QuestionController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get by id", description = "Instructor can get by id question")
+    @Operation(summary = "method get by id", description = "Instructor can get by id Question")
     @GetMapping("{id}")
     public ResponseEntity<QuestionResponse> getById(@PathVariable Long id) {
         log.info("inside QuestionController get by id method");
@@ -52,7 +52,7 @@ public class QuestionController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method delete", description = "Instructor can delete question")
+    @Operation(summary = "method delete", description = "Instructor can delete Question")
     @DeleteMapping("{id}")
     public ResponseEntity<QuestionResponse> delete(@PathVariable Long id) {
         log.info("inside QuestionController delete method");

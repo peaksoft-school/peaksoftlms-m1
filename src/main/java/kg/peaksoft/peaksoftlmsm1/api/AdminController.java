@@ -36,7 +36,7 @@ public class AdminController {
     private final StudentService studentService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method create", description = "admin can create teacher")
+    @Operation(summary = "method create", description = "admin can create Teacher")
     @PostMapping("/teachers")
     public ResponseEntity<TeacherResponse> create(@RequestBody @Valid TeacherRequest request){
         log.info("inside TeacherController create method");
@@ -44,7 +44,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method update", description = "admin can update teacher")
+    @Operation(summary = "method update", description = "admin can update Teacher")
     @PutMapping("/teachers/{id}")
     public ResponseEntity<TeacherResponse> update(@PathVariable Long id, @Valid @RequestBody TeacherRequest request){
         log.info("inside TeacherController update method");
@@ -53,7 +53,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method getByID", description = "admin can getById teacher")
+    @Operation(summary = "method getByID", description = "admin can getById Teacher")
     @GetMapping("/teachers/{id}")
     public ResponseEntity<TeacherResponse> getById(@PathVariable Long id) {
         log.info("inside TeacherController getById method");
@@ -61,7 +61,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method delete", description = "admin can delete teacher")
+    @Operation(summary = "method delete", description = "admin can delete Teacher")
     @DeleteMapping("/teachers/{id}")
     public ResponseEntity<TeacherResponse> delete(@PathVariable Long id) {
         log.info("inside TeacherController delete method");
@@ -70,14 +70,14 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method get all Teachers", description = "admin can get all teacher")
+    @Operation(summary = "method get all Teachers", description = "admin can get all Teachers")
     @GetMapping("/teachers/all")
     public List<TeacherResponse> getAllTeachers() {
         return teacherService.getAll();
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method create", description = "admin can create student")
+    @Operation(summary = "method create", description = "admin can create Student")
     @PostMapping("/students")
     public ResponseEntity<StudentResponse> create(@RequestBody @Valid StudentRequest request){
         log.info("inside StudentController create method");
@@ -85,7 +85,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method update", description = "admin can update student")
+    @Operation(summary = "method update", description = "admin can update Student")
     @PutMapping("/students/{id}")
     public ResponseEntity<StudentResponse> update(@PathVariable Long id, @Valid @RequestBody StudentRequest request){
         log.info("inside StudentController update method");
@@ -102,7 +102,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method delete", description = "admin can delete student")
+    @Operation(summary = "method delete", description = "admin can delete Student")
     @DeleteMapping("/students/{id}")
     public ResponseEntity<StudentResponse> deleteStudent(@PathVariable Long id) {
         log.info("inside StudentController delete method");
@@ -111,15 +111,15 @@ public class AdminController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "method get all Students", description = "admin can get all students")
+    @Operation(summary = "method get all Students", description = "admin can get all Students")
     @GetMapping("/students/all")
     public List<StudentResponse> getAllStudents() {
         return studentService.getAll();
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @Operation(summary = "Excel file import",
-            description = "Admin can import excel file")
+    @Operation(summary = "Excel File import",
+            description = "Admin can import excel File")
     @PostMapping("/students/importExcel")
     public List<StudentResponse> importExcelFiles(@RequestParam(name = "file") MultipartFile files,
                                                   @RequestParam Long groupId) throws IOException {
