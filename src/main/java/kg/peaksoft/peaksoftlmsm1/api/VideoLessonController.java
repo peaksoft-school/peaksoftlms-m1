@@ -24,7 +24,7 @@ public class VideoLessonController {
 
     private final VideoLessonService service;
 
-    @Operation(summary = "method create videoLesson", description = "Only Instructor can create videoLesson")
+    @Operation(summary = "method create VideoLesson", description = "Only Instructor can create VideoLesson")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @PostMapping
     public ResponseEntity<VideoLessonResponse> create(@RequestBody @Valid VideoLessonRequest request){
@@ -32,7 +32,7 @@ public class VideoLessonController {
         return new ResponseEntity<>(service.create(request), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "method update", description = "Only Instructor can update videoLesson")
+    @Operation(summary = "method update", description = "Only Instructor can update VideoLesson")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @PutMapping("{id}")
     public ResponseEntity<VideoLessonResponse> update(@PathVariable Long id, @Valid @RequestBody VideoLessonRequest request){
@@ -41,7 +41,7 @@ public class VideoLessonController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @Operation(summary = "method get by id", description = "Instructor can get by id videoLesson")
+    @Operation(summary = "method get by id", description = "Instructor can get by id VideoLesson")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @GetMapping("{id}")
     public ResponseEntity<VideoLessonResponse> getById(@PathVariable Long id) {
@@ -49,7 +49,7 @@ public class VideoLessonController {
         return ResponseEntity.ok(service.getById(id));
     }
 
-    @Operation(summary = "method delete", description = "Only Instructor can delete videoLesson")
+    @Operation(summary = "method delete", description = "Only Instructor can delete VideoLesson")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @DeleteMapping("{id}")
     public ResponseEntity<VideoLessonResponse> delete(@PathVariable Long id) {

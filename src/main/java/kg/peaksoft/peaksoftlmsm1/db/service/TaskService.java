@@ -40,13 +40,11 @@ public class TaskService {
     }
 
     public TaskResponse getById(Long id){
-        Optional<Task> task = Optional.ofNullable(repository.findById(id).orElseThrow(() -> {
+        log.info("Get entity task by id: {}", id);
+        return viewMapper.mapToResponse(repository.findById(id).orElseThrow(() -> {
             log.error("Entity task with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity task by id: {}", id);
-        return viewMapper.mapToResponse(repository.findById(id).orElseThrow(()
-                -> new ResourceNotFoundException("Entity", "id", id)));
     }
 
     public TaskResponse delete(Long id) {

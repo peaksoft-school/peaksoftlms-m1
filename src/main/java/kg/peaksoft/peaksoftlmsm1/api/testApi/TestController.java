@@ -19,8 +19,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
-@Tag(name = "Test controller", description = "Instructor create, update, get by id, get all and Test")
-@RequestMapping("api/tests")
+@Tag(name = "Test controller", description = "INSTRUCTOR create, update, get by id, get all and delete")
+@RequestMapping("api/teachers/tests")
 public class TestController {
 
     private final TestService testService;
@@ -68,7 +68,7 @@ public class TestController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "Instructor can add Question to Tests", description = "Instructor can add Question to Tests")
+    @Operation(summary = "Instructor can add Question to Tests", description = "Instructor can add Question to Test")
     @PostMapping("/{testId}/{questionId}")
     public ResponseEntity<TestResponse> addQuestionToTest(
             @PathVariable("testId") Long testId,

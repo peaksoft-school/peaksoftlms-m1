@@ -54,12 +54,11 @@ public class UserService implements UserDetailsService {
     }
 
     public UserResponse getById(Long id){
-        Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
-            log.error("Entity group with id = {} does not exists in database", id);
+        log.info("Get entity user by id: {}", id);
+        return userViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity user with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity group by id: {}", id);
-        return userViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
     public List<User> getAll(){

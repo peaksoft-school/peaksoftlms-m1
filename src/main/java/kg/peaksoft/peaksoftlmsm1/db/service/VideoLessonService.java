@@ -40,12 +40,11 @@ public class VideoLessonService {
     }
 
     public VideoLessonResponse getById(Long id){
-        Optional<VideoLesson> videoLesson = Optional.ofNullable(repository.findById(id).orElseThrow(() -> {
+        log.info("Get entity videoLesson by id: {}", id);
+        return viewMapper.mapperResponse(repository.findById(id).orElseThrow(() -> {
             log.error("Entity videoLesson with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        log.info("Get entity videoLesson by id: {}", id);
-        return viewMapper.mapperResponse(repository.save(videoLesson.get()));
     }
 
     public VideoLessonResponse delete(Long id) {

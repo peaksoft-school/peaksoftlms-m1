@@ -18,14 +18,14 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Option controller", description = "Instructor can create, update and delete")
-@RequestMapping("api/options")
+@Tag(name = "Option controller", description = "INSTRUCTOR can create, update and delete")
+@RequestMapping("api/teachers/options")
 public class OptionController {
 
     private final OptionService optionService;
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method create", description = "Instructor can registration option")
+    @Operation(summary = "method create", description = "Instructor can registration Option")
     @PostMapping("/{questionId}")
     public ResponseEntity<OptionResponse> save(@PathVariable Long questionId,
                                                @RequestBody @Valid OptionRequest optionRequest) {
@@ -34,7 +34,7 @@ public class OptionController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method update", description = "Instructor can update option")
+    @Operation(summary = "method update", description = "Instructor can update Option")
     @PutMapping("{id}")
     public ResponseEntity<OptionResponse> update(@PathVariable Long id,
                                                  @RequestBody @Valid OptionRequest request){
@@ -44,7 +44,7 @@ public class OptionController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get by id", description = "Instructor can get by id option")
+    @Operation(summary = "method get by id", description = "Instructor can get by id Option")
     @GetMapping("{id}")
     public ResponseEntity<OptionResponse> getById(@PathVariable Long id) {
         log.info("inside OptionController get by id method");
@@ -52,7 +52,7 @@ public class OptionController {
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method delete", description = "Instructor can delete option")
+    @Operation(summary = "method delete", description = "Instructor can delete Option")
     @DeleteMapping("{id}")
     public ResponseEntity<OptionResponse> delete(@PathVariable Long id) {
         log.info("inside OptionController delete method");
