@@ -80,13 +80,12 @@ public class S3Service implements FileService{
                 .map(S3ObjectSummary::getKey).collect(Collectors.toList());
     }
 
-    public FilePath getById(Long id){
-        Optional<FilePath> filePath = Optional.ofNullable(repository.findById(id).orElseThrow(() -> {
+    public FilePath getById(Long id) {
+        log.info("Get file by id: {}", id);
+        return repository.findById(id).orElseThrow(() -> {
             log.error("File with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        }));
-        log.info("Get file by id: {}", id);
-        return repository.save(filePath.get());
+        });
     }
 
     private File convertMultiPartToFile(MultipartFile file ) throws IOException {
