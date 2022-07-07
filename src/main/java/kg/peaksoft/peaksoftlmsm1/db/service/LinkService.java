@@ -49,14 +49,13 @@ public class LinkService {
         }));
     }
 
-    public LinkResponse delete(Long id){
-        Link link = linkRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id){
+        linkViewMapper.mapToResponse(linkRepository.findById(id).orElseThrow(() -> {
             log.error("Entity link with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         linkRepository.deleteById(id);
         log.info("Delete entity link by id: {}", id);
-        return linkViewMapper.mapToResponse(link);
     }
 
 }

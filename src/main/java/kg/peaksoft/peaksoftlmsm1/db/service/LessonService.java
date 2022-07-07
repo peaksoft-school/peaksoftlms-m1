@@ -48,13 +48,12 @@ public class LessonService {
         }));
     }
 
-    public LessonResponse delete(Long id) {
-        Lesson lesson = lessonRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        lessonViewMapper.mapToResponse(lessonRepository.findById(id).orElseThrow(() -> {
             log.error("Entity lesson with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         lessonRepository.deleteById(id);
         log.info("Delete entity lesson by id: {}", id);
-        return lessonViewMapper.mapToResponse(lesson);
     }
 }

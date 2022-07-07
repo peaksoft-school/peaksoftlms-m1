@@ -66,13 +66,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public UserResponse delete(Long id){
-        User user = userRepository.findById(id).orElseThrow(() -> {
-            log.error("Entity group with id = {} does not exists in database", id);
+    public void delete(Long id){
+        userViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity user with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         userRepository.deleteById(id);
-        log.info("Delete entity group by id: {}", id);
-        return userViewMapper.mapToResponse(user);
+        log.info("Delete entity user by id: {}", id);
     }
 }

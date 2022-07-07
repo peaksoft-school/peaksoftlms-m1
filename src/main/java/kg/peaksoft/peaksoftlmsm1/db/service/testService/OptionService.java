@@ -50,14 +50,13 @@ public class OptionService {
         }));
     }
 
-    public OptionResponse delete(Long id) {
-        Option option = optionRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        optionViewMapper.mapToResponse(optionRepository.findById(id).orElseThrow(() -> {
             log.error("Entity option with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         optionRepository.deleteById(id);
         log.info("Delete entity option by id: {}", id);
-        return optionViewMapper.mapToResponse(option);
     }
 
 }

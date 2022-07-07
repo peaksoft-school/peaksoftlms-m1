@@ -51,14 +51,13 @@ public class GroupService {
         }));
     }
 
-    public GroupResponse delete(Long id){
-        Group group = groupRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id){
+        groupViewMapper.mapToResponse(groupRepository.findById(id).orElseThrow(() -> {
             log.error("Entity group with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         groupRepository.deleteById(id);
         log.info("Delete entity group by id: {}", id);
-        return groupViewMapper.mapToResponse(group);
     }
 
     public GroupResponseAll getAllGroups(int page, int size){

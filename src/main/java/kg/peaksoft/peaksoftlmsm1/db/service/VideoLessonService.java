@@ -47,14 +47,13 @@ public class VideoLessonService {
         }));
     }
 
-    public VideoLessonResponse delete(Long id) {
-        VideoLesson videoLesson = repository.findById(id).orElseThrow(() -> {
-            log.error("Entity videoLesson with id = {} does not exists in database", id);
+    public void delete(Long id) {
+        viewMapper.mapperResponse(repository.findById(id).orElseThrow(() -> {
+            log.error("Entity lesson with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         repository.deleteById(id);
-        log.info("Delete entity videoLesson by id: {}", id);
-        return viewMapper.mapperResponse(videoLesson);
+        log.info("Delete entity lesson by id: {}", id);
     }
 
 }

@@ -47,14 +47,13 @@ public class TaskService {
         }));
     }
 
-    public TaskResponse delete(Long id) {
-        Task task = repository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        viewMapper.mapToResponse(repository.findById(id).orElseThrow(() -> {
             log.error("Entity task with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         repository.deleteById(id);
         log.info("Delete entity task by id: {}", id);
-        return viewMapper.mapToResponse(task);
     }
 
 }

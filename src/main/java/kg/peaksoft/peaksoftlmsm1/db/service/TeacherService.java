@@ -48,14 +48,13 @@ public class TeacherService {
         }));
     }
 
-    public TeacherResponse delete(Long id){
-        User user = userRepository.findById(id).orElseThrow(() -> {
-            log.error("Entity user with id = {} does not exists in database", id);
+    public void delete(Long id){
+        teacherViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
+            log.error("Entity teacher with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         userRepository.deleteById(id);
-        log.info("Delete entity user by id: {}", id);
-        return teacherViewMapper.mapToResponse(user);
+        log.info("Delete entity teacher by id: {}", id);
     }
 
     public List<TeacherResponse> getAll() {

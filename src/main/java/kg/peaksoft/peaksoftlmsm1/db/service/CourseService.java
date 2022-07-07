@@ -60,14 +60,13 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public CourseResponce delete(Long id) {
-        Course course = courseRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        courseViewMapper.mapToResponse(courseRepository.findById(id).orElseThrow(() -> {
             log.error("Entity course with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         courseRepository.deleteById(id);
         log.info("Delete entity course by id: {}", id);
-        return courseViewMapper.mapToResponse(course);
     }
 
     public CourseResponseAll getAllCourses(int page, int size) {

@@ -53,14 +53,13 @@ public class QuestionService {
         }));
     }
 
-    public QuestionResponse delete(Long id) {
-        Question question = questionRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        questionViewMapper.mapToResponse(questionRepository.findById(id).orElseThrow(() -> {
             log.error("Entity question with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         questionRepository.deleteById(id);
         log.info("Delete entity question by id: {}", id);
-        return questionViewMapper.mapToResponse(question);
     }
 
 }

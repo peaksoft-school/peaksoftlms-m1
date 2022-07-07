@@ -47,15 +47,13 @@ public class PresentationService {
         }));
     }
 
-    public PresentationResponse delete(Long id) {
-        Presentation presentation = presentationRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        presentationViewMapper.mapToResponse(presentationRepository.findById(id).orElseThrow(() -> {
             log.error("Entity presentation with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         presentationRepository.deleteById(id);
-        log.info("Delete entity presentation by id: {}", id);
-        return presentationViewMapper.mapToResponse(presentation);
-    }
+        log.info("Delete entity presentation by id: {}", id);  }
 }
 
 

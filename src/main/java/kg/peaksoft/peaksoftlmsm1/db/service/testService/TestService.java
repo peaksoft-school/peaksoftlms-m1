@@ -49,14 +49,13 @@ public class TestService {
         }));
     }
 
-    public TestResponse delete(Long id) {
-        Test test = testRepository.findById(id).orElseThrow(() -> {
+    public void delete(Long id) {
+        testViewMapper.mapToResponse(testRepository.findById(id).orElseThrow(() -> {
             log.error("Entity test with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
-        });
+        }));
         testRepository.deleteById(id);
         log.info("Delete entity test by id: {}", id);
-        return testViewMapper.mapToResponse(test);
     }
 
     public List<TestResponse> getAllTests() {
