@@ -2,7 +2,7 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponse;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
@@ -40,7 +40,7 @@ public class TeacherController {
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method add Student to Course", description = "instructor can add Student to Course")
     @PostMapping("/courses/{courseId}/{studentId}")
-    public ResponseEntity<CourseResponce> addStudentToCourse(
+    public ResponseEntity<CourseResponse> addStudentToCourse(
             @PathVariable("studentId") Long studentId,
             @PathVariable("courseId") Long courseId){
         log.info("inside TeacherController addStudentToCourse method");
@@ -50,7 +50,7 @@ public class TeacherController {
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method add Group to Course", description = "instructor can add Group to Course")
     @PostMapping("/courses/groups/{courseId}/{groupId}")
-    public ResponseEntity<CourseResponce> addGroupToCourse(
+    public ResponseEntity<CourseResponse> addGroupToCourse(
             @PathVariable("groupId") Long groupId,
             @PathVariable("courseId")  Long courseId){
         log.info("inside TeacherController addGroupToCourse method");

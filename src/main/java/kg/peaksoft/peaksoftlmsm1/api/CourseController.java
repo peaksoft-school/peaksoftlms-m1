@@ -3,7 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponse;
 import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class CourseController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can registration course")
     @PostMapping
-    public ResponseEntity<CourseResponce> create(@RequestBody @Valid CourseRequest request){
+    public ResponseEntity<CourseResponse> create(@RequestBody @Valid CourseRequest request){
         log.info("inside CourseController create method");
         return new ResponseEntity<>(courseService.save(request), HttpStatus.CREATED);
     }
@@ -36,8 +36,8 @@ public class CourseController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method update", description = "admin can update course")
     @PutMapping("{id}")
-    public ResponseEntity<CourseResponce> update(@PathVariable Long id, @Valid @RequestBody CourseRequest request){
-        CourseResponce courseResponse = courseService.update(id, request);
+    public ResponseEntity<CourseResponse> update(@PathVariable Long id, @Valid @RequestBody CourseRequest request){
+        CourseResponse courseResponse = courseService.update(id, request);
         log.info("inside CourseController update method");
         return new ResponseEntity<>(courseResponse, HttpStatus.OK);
     }
@@ -45,7 +45,7 @@ public class CourseController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get by id", description = "admin, instructor can get by id")
     @GetMapping("{id}")
-    public ResponseEntity<CourseResponce> getById(@PathVariable Long id) {
+    public ResponseEntity<CourseResponse> getById(@PathVariable Long id) {
         log.info("inside CourseController get by id method");
         return ResponseEntity.ok(courseService.getById(id));
     }
@@ -53,7 +53,7 @@ public class CourseController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method delete", description = "admin can delete")
     @DeleteMapping("{id}")
-    public ResponseEntity<CourseResponce> delete(@PathVariable Long id) {
+    public ResponseEntity<CourseResponse> delete(@PathVariable Long id) {
         log.info("inside CourseController delete method");
         courseService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

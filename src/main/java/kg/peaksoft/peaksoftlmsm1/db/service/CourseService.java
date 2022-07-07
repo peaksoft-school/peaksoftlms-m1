@@ -30,14 +30,14 @@ public class CourseService {
     private final UserRepository userRepository;
     private final GroupRepository groupRepository;
 
-    public CourseResponce save(CourseRequest courseRequest) {
+    public CourseResponse save(CourseRequest courseRequest) {
         Course course = courseEditMapper.mapToEntity(courseRequest);
         courseRepository.save(course);
         log.info("Entity course save: {}", course.getNameCourse());
         return courseViewMapper.mapToResponse(course);
     }
 
-    public CourseResponce update(Long id, CourseRequest courseRequest) {
+    public CourseResponse update(Long id, CourseRequest courseRequest) {
         Optional<Course> optional = Optional.ofNullable(courseRepository.findById(id).orElseThrow(() -> {
             log.error("Entity course with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
@@ -47,7 +47,7 @@ public class CourseService {
         return courseViewMapper.mapToResponse(courseRepository.save(optional.get()));
     }
 
-    public CourseResponce getById(Long id) {
+    public CourseResponse getById(Long id) {
         log.info("Get entity course by id: {}", id);
         return courseViewMapper.mapToResponse(courseRepository.findById(id).orElseThrow(()
                 -> {
@@ -76,7 +76,7 @@ public class CourseService {
         return courseResponseAll;
     }
 
-    public CourseResponce addStudentToCourse(Long courseId, Long studentId) {
+    public CourseResponse addStudentToCourse(Long courseId, Long studentId) {
         Course course = courseRepository.findById(courseId).orElseThrow(() -> {
             log.error("Entity course with id = {} does not exists in database", courseId);
             throw new ResourceNotFoundException("Entity", "id", courseId);
@@ -89,7 +89,7 @@ public class CourseService {
         return courseViewMapper.mapToResponse(courseRepository.save(course));
     }
 
-    public CourseResponce addGroupToCourse(Long courseId, Long groupId) {
+    public CourseResponse addGroupToCourse(Long courseId, Long groupId) {
         Course course = courseRepository.findById(courseId).orElseThrow(() -> {
             log.error("Entity course with id = {} does not exists in database", courseId);
             throw new ResourceNotFoundException("Entity", "id", courseId);

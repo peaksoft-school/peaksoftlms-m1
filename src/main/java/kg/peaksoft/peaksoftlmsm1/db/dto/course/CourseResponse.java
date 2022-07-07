@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CourseResponce {
+public class CourseResponse {
 
     private Long id;
     private String image;
