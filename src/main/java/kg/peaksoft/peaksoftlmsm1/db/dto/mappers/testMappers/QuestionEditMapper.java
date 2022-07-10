@@ -17,9 +17,10 @@ public class QuestionEditMapper {
         return question;
     }
 
-    public void mapToUpdate(Question question, QuestionRequest questionRequest) {
+    public Question mapToUpdate(Question question, QuestionRequest questionRequest) {
         question.setQuestionTitle(questionRequest.getQuestionTitle());
         question.setQuestionType(questionRequest.getEQuestionType());
+        return question;
     }
 
 }
