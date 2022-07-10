@@ -1,0 +1,13 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "674839503794.dkr.ecr.ap-northeast-2.amazonaws.com/docker:Docker-env",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "5000",
+      "HostPort": "5000"
+    }
+  ]
+}
