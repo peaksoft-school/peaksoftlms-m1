@@ -49,10 +49,22 @@ class UserServiceTest {
     @BeforeEach
     public void setup() {
         userList = new ArrayList<>();
-        user1 = new User(1L,"admin","lastName","password","89996786767",
-                "admin@gmail.com",null,null,null,false,null,null,null);
-        user2 = new User(2L,"admin2","lastName2","password2","89996786767",
-                "admin2@gmail.com",null,null,null,false,null,null,null);
+        user1 = User.builder()
+                .id(1L)
+                .firstName("admin")
+                .lastName("lastName")
+                .password("password")
+                .phoneNumber("89996786767")
+                .email("admin@gmail.com")
+                .build();
+        user2 = User.builder()
+                .id(1L)
+                .firstName("admin2")
+                .lastName("lastName22")
+                .password("password")
+                .phoneNumber("89996786767")
+                .email("admin2@gmail.com")
+                .build();
         userList.add(user1);
         userList.add(user2);
     }
