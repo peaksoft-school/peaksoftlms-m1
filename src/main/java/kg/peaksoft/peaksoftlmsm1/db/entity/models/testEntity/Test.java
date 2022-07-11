@@ -14,6 +14,7 @@ import static javax.persistence.CascadeType.ALL;
 
 @Setter
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
