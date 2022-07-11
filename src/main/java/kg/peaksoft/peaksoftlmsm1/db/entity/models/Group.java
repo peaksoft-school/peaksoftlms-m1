@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "groups")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 public class Group {
