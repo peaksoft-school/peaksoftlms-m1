@@ -1,19 +1,19 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.RatingListResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.RatingListResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.OptionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.ResultRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.ResultViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.AnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.ResultResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Question;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Result;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.AccessTest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.ResultViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.AnswerRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.ResultResponse;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Result;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test;
+import kg.peaksoft.peaksoftlmsm1.db.enums.AccessTest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -23,8 +23,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType.MULTI_TYPE;
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType.SINGLE_TYPE;
+import static kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType.MULTI_TYPE;
+import static kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType.SINGLE_TYPE;
 
 @Slf4j
 @Service

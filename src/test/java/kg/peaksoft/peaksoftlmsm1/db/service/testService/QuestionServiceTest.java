@@ -1,17 +1,15 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.QuestionEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.QuestionViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.QuestionRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.QuestionResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Question;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.QuestionEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.QuestionViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.QuestionRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.QuestionResponse;
+import kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.QuestionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -44,12 +42,12 @@ class QuestionServiceTest {
     private QuestionViewMapper questionViewMapper;
 
     private Question question;
-    private kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test test;
+    private kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test test;
 
     @BeforeEach
     public void setup() {
         question = new Question(1L,"question",null, EQuestionType.SINGLE_TYPE,null);
-        test = kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test.builder()
+        test = kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test.builder()
                 .id(1L)
                 .name("test")
                 .isActive(true)

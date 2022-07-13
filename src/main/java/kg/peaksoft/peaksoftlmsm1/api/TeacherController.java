@@ -2,11 +2,11 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseByIdForTeacher;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponseForLesson;
+import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseResponseByIdForTeacher;
+import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Course;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

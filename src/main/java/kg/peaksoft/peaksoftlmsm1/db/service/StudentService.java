@@ -1,13 +1,13 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.StudentEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.StudentViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.student.StudentRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.student.StudentResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.StudentEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.StudentViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.student.StudentRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.student.StudentResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.StudyFormat;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
+import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;

@@ -1,11 +1,11 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.TestEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.TestViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.TestRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.TestResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Question;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.TestEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.TestViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.TestRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.TestResponse;
+import kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.QuestionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -43,18 +43,18 @@ class TestServiceTest {
     @Mock
     private TestViewMapper testViewMapper;
 
-    private kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test test1;
-    private kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test test2;
+    private kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test test1;
+    private kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test test2;
 
     @BeforeEach
     public void setup() {
-        test1 = kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test.builder()
+        test1 = kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test.builder()
                 .id(1L)
                 .name("Java1")
                 .isActive(true)
                 .build();
 
-        test2 = kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test.builder()
+        test2 = kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test.builder()
                 .id(2L)
                 .name("Java2")
                 .isActive(true)
@@ -71,7 +71,7 @@ class TestServiceTest {
         testService.create(testRequest);
 
         Mockito.verify(testRepository, Mockito.times(1))
-                .save(ArgumentMatchers.any(kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test.class));
+                .save(ArgumentMatchers.any(kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test.class));
     }
 
     @Test
@@ -87,7 +87,7 @@ class TestServiceTest {
         testService.update(1L, testRequest);
 
         Mockito.verify(testRepository, Mockito.times(1))
-                .save(ArgumentMatchers.any(kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test.class));
+                .save(ArgumentMatchers.any(kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test.class));
     }
 
     @Test
@@ -97,7 +97,7 @@ class TestServiceTest {
         TestResponse testResponse = new TestResponse(1L,"new Java",null);
 
         Mockito.when(testRepository.findById(1L)).thenReturn(Optional.of(test1));
-        Mockito.when(testViewMapper.mapToResponse(Mockito.any(kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test.class))).thenReturn(testResponse);
+        Mockito.when(testViewMapper.mapToResponse(Mockito.any(kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test.class))).thenReturn(testResponse);
         TestResponse actualTestResponse = testService.getById(1L);
 
         Assertions.assertThat(actualTestResponse.getId()).isEqualTo(testResponse.getId());

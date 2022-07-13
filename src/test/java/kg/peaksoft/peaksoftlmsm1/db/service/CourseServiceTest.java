@@ -1,14 +1,14 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.CourseResponce;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.CourseEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.CourseViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.StudyFormat;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Lesson;
+import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Course;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;

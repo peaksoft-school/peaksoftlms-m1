@@ -2,9 +2,9 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
-import kg.peaksoft.peaksoftlmsm1.db.responseAll.GroupResponseAll;
+import kg.peaksoft.peaksoftlmsm1.api.dto.group.GroupRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.group.GroupResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.responseAll.GroupResponseAll;
 import kg.peaksoft.peaksoftlmsm1.db.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

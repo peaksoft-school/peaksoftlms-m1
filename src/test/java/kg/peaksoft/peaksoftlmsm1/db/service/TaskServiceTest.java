@@ -1,10 +1,10 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.TaskEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.TaskViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.task.TaskRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.task.TaskResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Task;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.TaskEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.TaskViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.task.TaskRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.task.TaskResponse;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Task;
 import kg.peaksoft.peaksoftlmsm1.db.repository.TaskRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.repository;
 
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Presentation;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Presentation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

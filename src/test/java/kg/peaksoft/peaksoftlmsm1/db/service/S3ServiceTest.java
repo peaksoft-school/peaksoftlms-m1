@@ -1,8 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
+import kg.peaksoft.peaksoftlmsm1.db.service.serviceS3.S3Service;
 import org.junit.jupiter.api.Test;
 import com.amazonaws.services.s3.AmazonS3;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.FilePath;
+import kg.peaksoft.peaksoftlmsm1.db.entity.FilePath;
 import kg.peaksoft.peaksoftlmsm1.db.repository.FilePathRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
