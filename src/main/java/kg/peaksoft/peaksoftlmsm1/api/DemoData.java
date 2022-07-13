@@ -42,7 +42,7 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
         user1.setEmail("admin@gmail.com");
         user1.setRoles(Arrays.asList(adminRole));
         user1.setCreated(LocalDateTime.now());
-       // userRepository.save(user1);
+        //userRepository.save(user1);
 
         Role instructorRole = new Role("ROLE_INSTRUCTOR");
         User user2 = new User();
