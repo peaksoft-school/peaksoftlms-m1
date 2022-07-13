@@ -42,7 +42,7 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
         user1.setEmail("admin@gmail.com");
         user1.setRoles(Arrays.asList(adminRole));
         user1.setCreated(LocalDateTime.now());
-        userRepository.save(user1);
+        //userRepository.save(user1);
 
         Role instructorRole = new Role("ROLE_INSTRUCTOR");
         User user2 = new User();
@@ -52,7 +52,7 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
         user2.setEmail("instructor@gmail.com");
         user2.setRoles(Arrays.asList(instructorRole));
         user2.setCreated(LocalDateTime.now());
-        userRepository.save(user2);
+        //userRepository.save(user2);
 
         Role studentRole = new Role("ROLE_STUDENT");
         User user3 = new User();
@@ -62,7 +62,7 @@ public class DemoData implements ApplicationListener<ContextRefreshedEvent> {
         user3.setEmail("student@gmail.com");
         user3.setRoles(Arrays.asList(studentRole));
         user3.setCreated(LocalDateTime.now());
-        userRepository.save(user3);
+        //userRepository.save(user3);
 
     }
 }
