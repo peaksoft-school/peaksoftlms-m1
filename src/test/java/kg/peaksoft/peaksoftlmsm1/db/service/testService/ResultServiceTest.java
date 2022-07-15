@@ -1,16 +1,16 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.ResultViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.AnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.QuestionAnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.ResultResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.ResultViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.AnswerRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.QuestionAnswerRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.ResultResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.AccessTest;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.StudyFormat;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Lesson;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Option;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Question;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Result;
+import kg.peaksoft.peaksoftlmsm1.db.enums.AccessTest;
+import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Result;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.OptionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.ResultRepository;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType.MULTI_TYPE;
+import static kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType.MULTI_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
@@ -51,7 +51,7 @@ class ResultServiceTest {
     private Question question;
     private Result result;
     private AnswerRequest answerRequest;
-    private kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test testForStudent;
+    private kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test testForStudent;
     private User student1;
     private Option option;
     private List<Result> resultList;
@@ -62,7 +62,7 @@ class ResultServiceTest {
     void prepare() {
         Lesson lesson = Lesson.builder().id(1L).name("ame").test(null).build();
 
-        testForStudent = kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Test
+        testForStudent = kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test
                 .builder()
                 .id(1L)
                 .name("test1")

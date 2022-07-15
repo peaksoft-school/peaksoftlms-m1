@@ -2,8 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.db.dto.presentation.PresentationRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.presentation.PresentationResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.presentation.PresentationRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.presentation.PresentationResponse;
 import kg.peaksoft.peaksoftlmsm1.db.service.PresentationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

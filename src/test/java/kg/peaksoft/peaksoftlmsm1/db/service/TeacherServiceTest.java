@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.TeacherEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.TeacherViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.teacher.TeacherResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.TeacherEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.TeacherViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.teacher.TeacherRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
@@ -20,8 +20,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.Specialization.BACKEND;
-import static kg.peaksoft.peaksoftlmsm1.db.entity.enums.Specialization.FRONTEND;
+import static kg.peaksoft.peaksoftlmsm1.db.enums.Specialization.BACKEND;
+import static kg.peaksoft.peaksoftlmsm1.db.enums.Specialization.FRONTEND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;

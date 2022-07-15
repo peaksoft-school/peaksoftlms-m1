@@ -2,26 +2,20 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.config.JwtTokenUtil;
-import kg.peaksoft.peaksoftlmsm1.db.dto.request.AuthRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.request.UserRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.response.AuthMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.response.AuthResponse;
-import kg.peaksoft.peaksoftlmsm1.db.dto.response.UserResponse;
+import kg.peaksoft.peaksoftlmsm1.config.security.JwtTokenUtil;
+import kg.peaksoft.peaksoftlmsm1.api.dto.request.AuthRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.response.AuthMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.response.AuthResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.exception.ExceptionType;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
-import kg.peaksoft.peaksoftlmsm1.db.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)

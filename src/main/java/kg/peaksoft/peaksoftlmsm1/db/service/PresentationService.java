@@ -1,10 +1,10 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.presentation.PresentationRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.presentation.PresentationResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Presentation;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.PresentationEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.PresentationViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.presentation.PresentationRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.presentation.PresentationResponse;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Presentation;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.PresentationEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.PresentationViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.repository.PresentationRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;

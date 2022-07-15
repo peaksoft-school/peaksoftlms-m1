@@ -1,10 +1,10 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.lesson.LessonRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.lesson.LessonResponse;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.LessonEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.LessonViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Lesson;
+import kg.peaksoft.peaksoftlmsm1.api.dto.lesson.LessonRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.lesson.LessonResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.LessonEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.LessonViewMapper;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;
 import kg.peaksoft.peaksoftlmsm1.db.repository.LessonRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;

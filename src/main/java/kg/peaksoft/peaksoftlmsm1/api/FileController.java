@@ -2,8 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.FilePath;
-import kg.peaksoft.peaksoftlmsm1.db.service.S3Service;
+import kg.peaksoft.peaksoftlmsm1.db.entity.FilePath;
+import kg.peaksoft.peaksoftlmsm1.db.service.serviceS3.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

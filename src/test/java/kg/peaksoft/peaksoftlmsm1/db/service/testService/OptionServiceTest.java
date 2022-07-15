@@ -1,12 +1,12 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.OptionEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.testMappers.OptionViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.OptionRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.test.request.response.OptionResponse;
-import kg.peaksoft.peaksoftlmsm1.db.entity.enums.EQuestionType;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Option;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.testEntity.Question;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.OptionEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.OptionViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.OptionRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.OptionResponse;
+import kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
+import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.OptionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.QuestionRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;

@@ -1,15 +1,15 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.course.*;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.CourseViewMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.course.*;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.CourseEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.CourseViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Course;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Course;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
-import kg.peaksoft.peaksoftlmsm1.db.responseAll.CourseResponseAll;
+import kg.peaksoft.peaksoftlmsm1.api.dto.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,12 +1,12 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupRequest;
-import kg.peaksoft.peaksoftlmsm1.db.dto.group.GroupResponse;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.GroupEditMapper;
-import kg.peaksoft.peaksoftlmsm1.db.dto.mappers.GroupViewMapper;
-import kg.peaksoft.peaksoftlmsm1.db.entity.models.Group;
+import kg.peaksoft.peaksoftlmsm1.api.dto.group.GroupRequest;
+import kg.peaksoft.peaksoftlmsm1.api.dto.group.GroupResponse;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.GroupEditMapper;
+import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.GroupViewMapper;
+import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
-import kg.peaksoft.peaksoftlmsm1.db.responseAll.GroupResponseAll;
+import kg.peaksoft.peaksoftlmsm1.api.dto.responseAll.GroupResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 
