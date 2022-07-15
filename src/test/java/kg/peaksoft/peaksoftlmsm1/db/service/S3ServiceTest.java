@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.db.service.serviceS3.S3Service;
+import kg.peaksoft.peaksoftlmsm1.service.S3.S3Service;
 import org.junit.jupiter.api.Test;
 import com.amazonaws.services.s3.AmazonS3;
 import kg.peaksoft.peaksoftlmsm1.db.entity.FilePath;
