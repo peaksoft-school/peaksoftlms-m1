@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: target/ppeaksoftlms-m1.jar
+          path: target/peaksoftlms-m1.jar
 
   cd_part:
     runs-on: ubuntu-latest
