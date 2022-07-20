@@ -1,4 +1,4 @@
-#Configured by Chyngyz Sharshekeev at 5pm 19.07.2022
+#Configured by Chyngyz Sharshekeev at 5pm 20.07.2022
 
 name: peaksoftlms-m1-CICD-Pipeline-to-AWS-ElasticBeanstalk
 
@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: target/ebook-m1.jar
+          path: target/ppeaksoftlms-m1.jar
 
   cd_part:
     runs-on: ubuntu-latest
@@ -49,5 +49,5 @@ jobs:
           application_name: peaksoftlms
           environment_name: Peaksoftlms-env
           version_label: ${{ github.SHA }}
-          region: eu-central-1
-          deployment_package: ebook-m1.jar
+          region: us-east-1
+          deployment_package: peaksoftlms-m1.jar
