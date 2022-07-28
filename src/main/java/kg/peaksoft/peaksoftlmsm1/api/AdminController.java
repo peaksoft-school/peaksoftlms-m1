@@ -24,7 +24,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/admin")
+@RequestMapping("api/admin")
 @Tag(name = "AdminController", description = "ADMIN can create, update, get by Id, delete, get all Teachers and Students")
 public class AdminController {
 

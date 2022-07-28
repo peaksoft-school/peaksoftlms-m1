@@ -1,6 +1,5 @@
 package kg.peaksoft.peaksoftlmsm1.config.security;
 
-import kg.peaksoft.peaksoftlmsm1.config.security.JwtTokenFilter;
 import kg.peaksoft.peaksoftlmsm1.db.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +38,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
 
                 .authorizeRequests()
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/api/public/**").permitAll()
                 .antMatchers( "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .anyRequest()
                 .authenticated()

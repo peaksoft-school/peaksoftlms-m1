@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/public")
+@RequestMapping("api/public")
 @Tag(name = "Authentication", description = "User with role ADMIN, INSTRUCTOR, STUDENT can authenticate")
 public class AuthController {
 

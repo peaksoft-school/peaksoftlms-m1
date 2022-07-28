@@ -1,6 +1,12 @@
-#Configured by Chyngyz Sharshekeev at 5pm 20.07.2022
+#Configured by Chyngyz Sharshekeev at 1pm 28.07.2022
 
 name: peaksoftlms-m1-CICD-Pipeline-to-AWS-ElasticBeanstalk
+env:
+  EB_PACKAGE_S3_BUCKET_NAME: "peaksoftlms-version-zip"
+  EB_APPLICATION_NAME      : "Peaksoftlms"
+  EB_ENVIRONMENT_NAME      : "Peaksoftlms-env"
+  DEPLOY_PACKAGE_NAME      : "peaksoftlms_${{ github.sha }}.zip"
+  AWS_REGION_NAME          : "eu-central-1"
 
 on:
   push:
@@ -45,8 +51,10 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           use_existing_version_if_available: false
-          application_name: peaksoftlms
-          environment_name: Peaksoftlms-env
+          application_name: ${{ env.EB_APPLICATION_NAME }}
+          environment_name: ${{ env.EB_ENVIRONMENT_NAME  }}
           version_label: ${{ github.SHA }}
-          region: us-east-1
+          region: ${{ env.AWS_REGION_NAME }}
           deployment_package: peaksoftlms-m1.jar
+
+
