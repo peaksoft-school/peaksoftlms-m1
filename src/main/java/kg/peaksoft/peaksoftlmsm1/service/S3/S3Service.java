@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class S3Service implements FileService {
 
-    @Value("${bucketName}")
+    @Value("${application.bucket.name}")
     private String bucketName;
     private final FilePathRepository repository;
     private final AmazonS3 s3;
