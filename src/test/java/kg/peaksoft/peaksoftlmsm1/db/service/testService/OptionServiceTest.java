@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.OptionEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.OptionViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.OptionRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.OptionResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.testMappers.OptionEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.testMappers.OptionViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.OptionRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.OptionResponse;
 import kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;

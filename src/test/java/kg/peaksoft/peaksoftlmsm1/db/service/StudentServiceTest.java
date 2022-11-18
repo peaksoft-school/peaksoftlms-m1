@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.StudentEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.StudentViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.student.StudentRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.student.StudentResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.StudentEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.StudentViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.student.StudentRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.student.StudentResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;

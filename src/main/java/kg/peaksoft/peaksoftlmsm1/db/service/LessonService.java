@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.lesson.LessonRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.lesson.LessonResponse;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.LessonEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.LessonViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.lesson.LessonRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.lesson.LessonResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.LessonEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.LessonViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;
 import kg.peaksoft.peaksoftlmsm1.db.repository.*;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;

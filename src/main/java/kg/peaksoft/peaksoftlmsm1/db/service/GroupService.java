@@ -1,12 +1,12 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.group.GroupRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.group.GroupResponse;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.GroupEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.GroupViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.group.GroupRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.group.GroupResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.GroupEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.GroupViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
-import kg.peaksoft.peaksoftlmsm1.api.dto.responseAll.GroupResponseAll;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll.GroupResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.ResultViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.AnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.QuestionAnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.ResultResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.testMappers.ResultViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.AnswerRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.QuestionAnswerRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.enums.AccessTest;
 import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
