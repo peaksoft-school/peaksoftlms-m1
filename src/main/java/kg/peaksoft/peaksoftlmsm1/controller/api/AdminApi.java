@@ -39,40 +39,40 @@ public class AdminApi {
     private final TeacherService teacherService;
     private final StudentService studentService;
 
-    @Operation(summary = "method create", description = "admin can create Teacher")
-    @PostMapping("/teachers")
+    @Operation(summary = "Create teacher", description = "Admin can create Teacher")
+    @PostMapping("teacher")
     public ResponseEntity<TeacherResponse> create(@RequestBody @Valid TeacherRequest request) {
         return new ResponseEntity<>(teacherService.create(request), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "method update", description = "admin can update Teacher")
-    @PutMapping("/teachers/{id}")
+    @Operation(summary = "Update teacher", description = "Admin can update teacher")
+    @PutMapping("teacher/{id}")
     public ResponseEntity<TeacherResponse> update(@PathVariable Long id, @Valid @RequestBody TeacherRequest request) {
         TeacherResponse teacherResponse = teacherService.update(id, request);
         return new ResponseEntity<>(teacherResponse, HttpStatus.OK);
     }
 
-    @Operation(summary = "method getByID", description = "admin can getById Teacher")
-    @GetMapping("/teachers/{id}")
+    @Operation(summary = "Get teacher by id", description = "Admin can get teacher by teacher id")
+    @GetMapping("teacher/{id}")
     public ResponseEntity<TeacherResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(teacherService.getById(id));
     }
 
-    @Operation(summary = "method delete", description = "admin can delete Teacher")
-    @DeleteMapping("/teachers/{id}")
+    @Operation(summary = "Delete teacher", description = "Admin can delete teacher by teacher id")
+    @DeleteMapping("teacher/{id}")
     public ResponseEntity<TeacherResponse> delete(@PathVariable Long id) {
         teacherService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Operation(summary = "method get all Teachers", description = "admin can get all Teachers")
-    @GetMapping("/teachers/all")
+    @Operation(summary = "Get all teachers", description = "Admin can get all teachers")
+    @GetMapping("teachers")
     public List<TeacherResponse> getAllTeachers() {
         return teacherService.getAll();
     }
 
     @Operation(summary = "method create", description = "admin can create Student")
-    @PostMapping("/students")
+    @PostMapping("students")
     public ResponseEntity<StudentResponse> create(@RequestBody @Valid StudentRequest request) {
         return new ResponseEntity<>(studentService.create(request), HttpStatus.CREATED);
     }
