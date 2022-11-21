@@ -71,43 +71,42 @@ public class AdminApi {
         return teacherService.getAll();
     }
 
-    @Operation(summary = "method create", description = "admin can create Student")
-    @PostMapping("students")
+    @Operation(summary = "Create student", description = "Admin can create student")
+    @PostMapping("student")
     public ResponseEntity<StudentResponse> create(@RequestBody @Valid StudentRequest request) {
         return new ResponseEntity<>(studentService.create(request), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "method update", description = "admin can update Student")
-    @PutMapping("/students/{id}")
+    @Operation(summary = "Update student", description = "Admin can update student")
+    @PutMapping("student/{id}")
     public ResponseEntity<StudentResponse> update(@PathVariable Long id, @Valid @RequestBody StudentRequest request) {
         StudentResponse studentResponse = studentService.update(id, request);
         return new ResponseEntity<>(studentResponse, HttpStatus.OK);
     }
 
-    @Operation(summary = "method get by id", description = "admin, instructor can get by id")
-    @GetMapping("/students/{id}")
+    @Operation(summary = "Get student by id", description = "Admin, instructor can get by id")
+    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+    @GetMapping("student/{id}")
     public ResponseEntity<StudentResponse> getByIdStudent(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getById(id));
     }
 
-    @Operation(summary = "method delete", description = "admin can delete Student")
-    @DeleteMapping("/students/{id}")
+    @Operation(summary = "Delete student", description = "Admin can delete student")
+    @DeleteMapping("student/{id}")
     public ResponseEntity<StudentResponse> deleteStudent(@PathVariable Long id) {
         studentService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Operation(summary = "method get all Students", description = "admin can get all Students")
-    @GetMapping("/students/all")
+    @Operation(summary = "Get all students", description = "Admin can get all students")
+    @GetMapping("students")
     public List<StudentResponse> getAllStudents() {
         return studentService.getAll();
     }
 
-    @Operation(summary = "Excel File import",
-            description = "Admin can import excel File")
-    @PostMapping("/students/importExcel")
-    public List<StudentResponse> importExcelFiles(@RequestParam(name = "file") MultipartFile files,
-                                                  @RequestParam Long groupId) throws IOException {
+    @Operation(summary = "Excel file import", description = "Admin can import excel file")
+    @PostMapping("import-excel")
+    public List<StudentResponse> importExcelFiles(@RequestParam(name = "file") MultipartFile files, @RequestParam Long groupId) throws IOException {
         return studentService.importStudentsExcelFile(files, groupId);
     }
 
