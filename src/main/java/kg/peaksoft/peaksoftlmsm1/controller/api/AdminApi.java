@@ -33,7 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("api/admin")
 @Tag(name = "AdminController", description = "ADMIN can create, update, get by Id, delete, get all Teachers and Students")
-public class AdminController {
+public class AdminApi {
 
     private final TeacherService teacherService;
     private final StudentService studentService;
