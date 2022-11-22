@@ -15,4 +15,5 @@ public class CourseResponseForStudentLesson {
 
     private Long id;
     private List<Lesson> lessons;
+
 }
