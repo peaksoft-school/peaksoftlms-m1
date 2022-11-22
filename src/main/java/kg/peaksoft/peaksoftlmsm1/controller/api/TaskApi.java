@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Task controller", description = "INSTRUCTOR can create, update and delete")
-@RequestMapping("api/teachers/tasks")
-public class TaskController {
+@RequestMapping("api/tasks")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Task API", description = "Task endpoints for instructor")
+public class TaskApi {
 
     private final TaskService service;
 
