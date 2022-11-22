@@ -27,20 +27,19 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/courses")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Course API", description = "Course endpoints")
-public class CourseController {
+public class CourseApi {
 
     private final CourseService courseService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can registration course")
     @PostMapping
     public ResponseEntity<CourseResponce> create(@RequestBody @Valid CourseRequest request) {
         return new ResponseEntity<>(courseService.save(request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method update", description = "admin can update course")
     @PutMapping("{id}")
     public ResponseEntity<CourseResponce> update(@PathVariable Long id, @Valid @RequestBody CourseRequest request) {
@@ -48,14 +47,12 @@ public class CourseController {
         return new ResponseEntity<>(courseResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get by id", description = "admin, instructor can get by id")
     @GetMapping("{id}")
     public ResponseEntity<CourseResponce> getById(@PathVariable Long id) {
         return ResponseEntity.ok(courseService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method delete", description = "admin can delete")
     @DeleteMapping("{id}")
     public ResponseEntity<CourseResponce> delete(@PathVariable Long id) {
@@ -63,11 +60,9 @@ public class CourseController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get all", description = "admin can get all")
     @GetMapping
-    public CourseResponseAll getAll(@RequestParam int size,
-                                    @RequestParam int page) {
+    public CourseResponseAll getAll(@RequestParam int size, @RequestParam int page) {
         return courseService.getAllCourses(size, page);
     }
 
