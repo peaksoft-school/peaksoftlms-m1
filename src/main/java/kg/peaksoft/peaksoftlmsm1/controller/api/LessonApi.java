@@ -24,20 +24,19 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/lessons")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Lesson controller", description = "INSTRUCTOR can create, update and delete")
+@Tag(name = "Lesson API", description = "Lesson endpoints for instructor")
 public class LessonApi {
 
     private final LessonService lessonService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Only Instructor can create lesson")
     @PostMapping
     public ResponseEntity<LessonResponse> create(@RequestBody @Valid LessonRequest request) {
         return new ResponseEntity<>(lessonService.create(request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Only Instructor can update lesson")
     @PutMapping("{id}")
     public ResponseEntity<LessonResponse> update(@PathVariable Long id, @Valid @RequestBody LessonRequest request) {
@@ -45,18 +44,17 @@ public class LessonApi {
         return new ResponseEntity<>(lessonResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id lesson")
     @GetMapping("{id}")
     public ResponseEntity<LessonResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(lessonService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Only Instructor can delete lesson")
     @DeleteMapping("{id}")
     public ResponseEntity<LessonResponse> delete(@PathVariable Long id) {
         lessonService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
