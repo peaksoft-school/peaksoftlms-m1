@@ -26,7 +26,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @Tag(name = "link controller", description = "INSTRUCTOR can create, update and delete")
 @RequestMapping("api/teachers/links")
-public class LinkController {
+public class LinkApi {
 
     private final LinkService linkService;
 
