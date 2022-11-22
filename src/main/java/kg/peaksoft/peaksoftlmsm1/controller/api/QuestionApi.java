@@ -23,14 +23,15 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("api/questions")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Question controller", description = "INSTRUCTOR can create, update and delete")
-@RequestMapping("api/teachers/questions")
-public class QuestionController {
+@Tag(name = "Question API", description = "Question endpoints for instructor")
+public class QuestionApi {
 
     private final QuestionService questionService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+
     @Operation(summary = "method create", description = "Instructor can registration Question")
     @PostMapping("/{testId}")
     public ResponseEntity<QuestionResponse> save(@PathVariable Long testId,
