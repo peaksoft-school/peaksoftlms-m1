@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.Date;
 
 @Getter
@@ -21,4 +22,5 @@ public class CourseRequest {
     private String description;
     private Long user;
     private Long lesson;
+
 }
