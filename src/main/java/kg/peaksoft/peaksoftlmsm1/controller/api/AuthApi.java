@@ -28,7 +28,7 @@ import java.util.NoSuchElementException;
 @RequestMapping("api/public")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Auth API", description = "Authentication endpoints")
-public class AuthController {
+public class AuthApi {
 
     private final JwtTokenUtil jwtTokenUtil;
     private final UserRepository repository;
