@@ -1,7 +1,5 @@
 package kg.peaksoft.peaksoftlmsm1.controller.dto.lesson;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Link;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Presentation;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Task;
@@ -16,7 +14,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class LessonResponse {
 
     private Long id;
@@ -26,4 +23,5 @@ public class LessonResponse {
     private Task task;
     private Link link;
     private Test test;
+
 }
