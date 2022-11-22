@@ -1,7 +1,5 @@
 package kg.peaksoft.peaksoftlmsm1.controller.dto.test.response;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test;
 import lombok.AllArgsConstructor;
@@ -15,7 +13,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class QuestionResponse {
 
     private Long id;
