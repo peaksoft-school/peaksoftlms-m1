@@ -37,7 +37,6 @@ public class PresentationApi {
         return new ResponseEntity<>(presentationService.create(request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Only Instructor can update presentation")
     @PutMapping("{id}")
     public ResponseEntity<PresentationResponse> update(@PathVariable Long id, @Valid @RequestBody PresentationRequest request) {
@@ -45,19 +44,18 @@ public class PresentationApi {
         return new ResponseEntity<>(presentationResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id presentation")
     @GetMapping("{id}")
     public ResponseEntity<PresentationResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(presentationService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Instructor can delete presentation")
     @DeleteMapping("{id}")
     public ResponseEntity<PresentationResponse> delete(@PathVariable Long id) {
         presentationService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
 
