@@ -24,20 +24,19 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/tasks")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Task API", description = "Task endpoints for instructor")
 public class TaskApi {
 
     private final TaskService service;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Only Instructor can create task")
     @PostMapping
     public ResponseEntity<TaskResponse> create(@RequestBody @Valid TaskRequest request) {
         return new ResponseEntity<>(service.create(request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Only Instructor can update task")
     @PutMapping("{id}")
     public ResponseEntity<TaskResponse> update(@PathVariable Long id, @Valid @RequestBody TaskRequest request) {
@@ -45,14 +44,12 @@ public class TaskApi {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id task")
     @GetMapping("{id}")
     public ResponseEntity<TaskResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Only Instructor can delete task")
     @DeleteMapping("{id}")
     public ResponseEntity<TaskResponse> delete(@PathVariable Long id) {
