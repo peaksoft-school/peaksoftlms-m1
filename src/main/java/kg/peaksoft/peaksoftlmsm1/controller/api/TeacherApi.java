@@ -25,50 +25,42 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/teachers")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Teacher API", description = "Instructor endpoints")
 public class TeacherApi {
 
     private final CourseService courseService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get Courses by User", description = "instructor can get own Courses")
-    @GetMapping("/courses")
+    @GetMapping("courses")
     public List<Course> getCoursesByUser(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return user.getCourses();
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method add Student to Course", description = "instructor can add Student to Course")
-    @PostMapping("/courses/{courseId}/{studentId}")
-    public ResponseEntity<CourseResponce> addStudentToCourse(
-            @PathVariable("studentId") Long studentId,
-            @PathVariable("courseId") Long courseId) {
+    @PostMapping("courses/{courseId}/{studentId}")
+    public ResponseEntity<CourseResponce> addStudentToCourse(@PathVariable("studentId") Long studentId,
+                                                             @PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.addStudentToCourse(courseId, studentId), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method add Group to Course", description = "instructor can add Group to Course")
-    @PostMapping("/courses/groups/{courseId}/{groupId}")
-    public ResponseEntity<CourseResponce> addGroupToCourse(
-            @PathVariable("groupId") Long groupId,
-            @PathVariable("courseId") Long courseId) {
+    @PostMapping("courses/groups/{courseId}/{groupId}")
+    public ResponseEntity<CourseResponce> addGroupToCourse(@PathVariable("groupId") Long groupId,
+                                                           @PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.addGroupToCourse(courseId, groupId), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get Students by Course",
-            description = "Instructor can get Students by Course")
-    @GetMapping("/courses/{courseId}")
+    @Operation(summary = "method get Students by Course", description = "Instructor can get Students by Course")
+    @GetMapping("courses/{courseId}")
     public ResponseEntity<CourseResponseByIdForTeacher> getAllStudentsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getByCourseId(courseId), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
-    @Operation(summary = "method get Lessons by Course",
-            description = "Instructor can get Lessons to Course")
-    @GetMapping("/courses/lesson/{courseId}")
+    @Operation(summary = "method get Lessons by Course", description = "Instructor can get Lessons to Course")
+    @GetMapping("courses/lesson/{courseId}")
     public ResponseEntity<CourseResponseForLesson> getAllLessonsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getLessonsByCourseId(courseId), HttpStatus.OK);
     }
