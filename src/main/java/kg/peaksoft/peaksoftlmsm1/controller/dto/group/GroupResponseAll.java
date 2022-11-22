@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll;
+package kg.peaksoft.peaksoftlmsm1.controller.dto.group;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.group.GroupResponse;
 import lombok.Getter;

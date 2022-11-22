@@ -6,7 +6,7 @@ import kg.peaksoft.peaksoftlmsm1.controller.mappers.GroupEditMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.mappers.GroupViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll.GroupResponseAll;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.group.GroupResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 
