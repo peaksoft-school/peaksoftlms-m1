@@ -1,5 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.controller.dto.response;
 
+import kg.peaksoft.peaksoftlmsm1.controller.dto.auth.AuthResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import org.springframework.stereotype.Component;

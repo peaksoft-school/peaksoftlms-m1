@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.dto.request;
+package kg.peaksoft.peaksoftlmsm1.controller.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;
