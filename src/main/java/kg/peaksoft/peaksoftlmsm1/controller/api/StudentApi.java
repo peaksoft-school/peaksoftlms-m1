@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Student controller", description = "STUDENT can use this controller")
 @RequestMapping("api/students")
-public class StudentController {
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Student API", description = "Student endpoints")
+public class StudentApi {
 
     private final CourseService courseService;
     private final ResultService resultService;
