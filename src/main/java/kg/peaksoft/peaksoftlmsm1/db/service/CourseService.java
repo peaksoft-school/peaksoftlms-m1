@@ -9,7 +9,7 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.CourseRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll.CourseResponseAll;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll.CourseResponseAll;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll;
+package kg.peaksoft.peaksoftlmsm1.controller.dto.course;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
 import lombok.Getter;
