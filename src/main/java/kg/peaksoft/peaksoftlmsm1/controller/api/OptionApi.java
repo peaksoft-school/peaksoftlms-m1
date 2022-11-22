@@ -24,37 +24,32 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/options")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Option API", description = "Option endpoints for instructor")
 public class OptionApi {
 
     private final OptionService optionService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Instructor can registration Option")
-    @PostMapping("/{questionId}")
-    public ResponseEntity<OptionResponse> save(@PathVariable Long questionId,
-                                               @RequestBody @Valid OptionRequest optionRequest) {
-        return new ResponseEntity<>(optionService.save(questionId, optionRequest), HttpStatus.CREATED);
+    @PostMapping("{questionId}")
+    public ResponseEntity<OptionResponse> save(@PathVariable Long questionId, @RequestBody @Valid OptionRequest request) {
+        return new ResponseEntity<>(optionService.save(questionId, request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Instructor can update Option")
     @PutMapping("{id}")
-    public ResponseEntity<OptionResponse> update(@PathVariable Long id,
-                                                 @RequestBody @Valid OptionRequest request) {
+    public ResponseEntity<OptionResponse> update(@PathVariable Long id, @RequestBody @Valid OptionRequest request) {
         OptionResponse optionResponse = optionService.update(id, request);
         return new ResponseEntity<>(optionResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id Option")
     @GetMapping("{id}")
     public ResponseEntity<OptionResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(optionService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Instructor can delete Option")
     @DeleteMapping("{id}")
     public ResponseEntity<OptionResponse> delete(@PathVariable Long id) {
