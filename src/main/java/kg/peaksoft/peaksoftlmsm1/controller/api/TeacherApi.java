@@ -2,7 +2,7 @@ package kg.peaksoft.peaksoftlmsm1.controller.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
@@ -41,14 +41,14 @@ public class TeacherApi {
 
     @Operation(summary = "method add Student to Course", description = "instructor can add Student to Course")
     @PostMapping("courses/{courseId}/{studentId}")
-    public ResponseEntity<CourseResponce> addStudentToCourse(@PathVariable("studentId") Long studentId,
+    public ResponseEntity<CourseResponse> addStudentToCourse(@PathVariable("studentId") Long studentId,
                                                              @PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.addStudentToCourse(courseId, studentId), HttpStatus.OK);
     }
 
     @Operation(summary = "method add Group to Course", description = "instructor can add Group to Course")
     @PostMapping("courses/groups/{courseId}/{groupId}")
-    public ResponseEntity<CourseResponce> addGroupToCourse(@PathVariable("groupId") Long groupId,
+    public ResponseEntity<CourseResponse> addGroupToCourse(@PathVariable("groupId") Long groupId,
                                                            @PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.addGroupToCourse(courseId, groupId), HttpStatus.OK);
     }

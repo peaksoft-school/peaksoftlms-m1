@@ -3,7 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.controller.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseRequest;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll.CourseResponseAll;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;
 
@@ -36,26 +36,26 @@ public class CourseApi {
 
     @Operation(summary = "method create", description = "admin can registration course")
     @PostMapping
-    public ResponseEntity<CourseResponce> create(@RequestBody @Valid CourseRequest request) {
+    public ResponseEntity<CourseResponse> create(@RequestBody @Valid CourseRequest request) {
         return new ResponseEntity<>(courseService.save(request), HttpStatus.CREATED);
     }
 
     @Operation(summary = "method update", description = "admin can update course")
     @PutMapping("{id}")
-    public ResponseEntity<CourseResponce> update(@PathVariable Long id, @Valid @RequestBody CourseRequest request) {
-        CourseResponce courseResponse = courseService.update(id, request);
+    public ResponseEntity<CourseResponse> update(@PathVariable Long id, @Valid @RequestBody CourseRequest request) {
+        CourseResponse courseResponse = courseService.update(id, request);
         return new ResponseEntity<>(courseResponse, HttpStatus.OK);
     }
 
     @Operation(summary = "method get by id", description = "admin, instructor can get by id")
     @GetMapping("{id}")
-    public ResponseEntity<CourseResponce> getById(@PathVariable Long id) {
+    public ResponseEntity<CourseResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(courseService.getById(id));
     }
 
     @Operation(summary = "method delete", description = "admin can delete")
     @DeleteMapping("{id}")
-    public ResponseEntity<CourseResponce> delete(@PathVariable Long id) {
+    public ResponseEntity<CourseResponse> delete(@PathVariable Long id) {
         courseService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

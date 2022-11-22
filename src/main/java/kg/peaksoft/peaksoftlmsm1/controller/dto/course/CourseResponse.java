@@ -7,7 +7,6 @@ import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -16,9 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CourseResponce {
+public class CourseResponse {
 
     private Long id;
     private String image;
@@ -29,6 +27,7 @@ public class CourseResponce {
     private List<Group> groups;
     private List<Lesson> lessons;
 
-    public CourseResponce(long id, String image, String java, Date startCourse, String nine, User user1, Object groups, Object lessons) {
+    public CourseResponse() {
     }
+
 }

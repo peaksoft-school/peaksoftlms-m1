@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.controller.dto.mappers;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponce;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseByIdForTeacher;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseForLesson;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseForStudentLesson;
@@ -13,11 +13,11 @@ import java.util.List;
 @Component
 public class CourseViewMapper {
 
-    public CourseResponce mapToResponse(Course course){
+    public CourseResponse mapToResponse(Course course){
         if (course == null) {
             return null;
         }
-        CourseResponce responce = new CourseResponce();
+        CourseResponse responce = new CourseResponse();
         if (course.getId() != null) {
             responce.setId(course.getId());
         }
@@ -29,8 +29,8 @@ public class CourseViewMapper {
         return responce;
     }
 
-    public List<CourseResponce> map(List<Course> courseList){
-        List<CourseResponce> response = new ArrayList<>();
+    public List<CourseResponse> map(List<Course> courseList){
+        List<CourseResponse> response = new ArrayList<>();
         for(Course course: courseList){
             response.add(mapToResponse(course));
         }
