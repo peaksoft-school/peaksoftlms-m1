@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.controller.mappers;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.response.UserResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.user.UserResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import org.springframework.stereotype.Component;
 

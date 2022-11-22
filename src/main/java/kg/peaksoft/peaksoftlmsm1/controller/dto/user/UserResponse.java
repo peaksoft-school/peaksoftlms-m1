@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.dto.response;
+package kg.peaksoft.peaksoftlmsm1.controller.dto.user;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
