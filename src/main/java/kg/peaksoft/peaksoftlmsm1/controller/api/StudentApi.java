@@ -25,6 +25,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/students")
+@PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Student API", description = "Student endpoints")
 public class StudentApi {
@@ -32,27 +33,23 @@ public class StudentApi {
     private final CourseService courseService;
     private final ResultService resultService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method get Courses by Students", description = "Student can get own Courses")
-    @GetMapping("/courses")
+    @GetMapping("courses")
     public List<Course> getCoursesByUser(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return user.getCourses();
     }
 
-    @GetMapping("/courses/lessons/{courseId}")
-    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
-    @Operation(summary = "method get Student Lessons by Course",
-            description = "Student can get Lessons to Course")
+    @Operation(summary = "method get Student Lessons by Course", description = "Student can get Lessons to Course")
+    @GetMapping("courses/lessons/{courseId}")
     public ResponseEntity<CourseResponseForStudentLesson> getStudentsLessonsByCourseId(@PathVariable("courseId") Long courseId) {
         return new ResponseEntity<>(courseService.getStudentLessonsByCourseId(courseId), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method get all rating Students", description = "Student can get all rating")
     @GetMapping("rating")
-    public RatingListResponse getAllRatingByTests(@RequestParam int size,
-                                                  @RequestParam int page) {
+    public RatingListResponse getAllRatingByTests(@RequestParam int size, @RequestParam int page) {
         return resultService.getStudentsRating(size, page);
     }
+
 }
