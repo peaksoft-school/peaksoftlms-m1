@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("api/lessons")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Lesson controller", description = "INSTRUCTOR can create, update and delete")
-@RequestMapping("api/teachers/lessons")
-public class LessonController {
+public class LessonApi {
 
     private final LessonService lessonService;
 
