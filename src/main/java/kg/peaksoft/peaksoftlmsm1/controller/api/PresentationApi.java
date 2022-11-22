@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Presentation controller", description = "INSTRUCTOR can create, update, and delete")
-@RequestMapping("api/teachers/presentations")
-public class PresentationController {
+@RequestMapping("api/presentations")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Presentation API", description = "Presentation endpoints for instructor")
+public class PresentationApi {
 
     private final PresentationService presentationService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Only Instructor can create presentation")
     @PostMapping
     public ResponseEntity<PresentationResponse> create(@RequestBody @Valid PresentationRequest request) {
