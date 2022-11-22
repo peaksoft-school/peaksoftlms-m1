@@ -24,6 +24,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/video-lessons")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Video Lesson API", description = "Video lesson endpoints")
 public class VideoLessonApi {
@@ -31,14 +32,12 @@ public class VideoLessonApi {
     private final VideoLessonService service;
 
     @Operation(summary = "method create VideoLesson", description = "Only Instructor can create VideoLesson")
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @PostMapping
     public ResponseEntity<VideoLessonResponse> create(@RequestBody @Valid VideoLessonRequest request) {
         return new ResponseEntity<>(service.create(request), HttpStatus.CREATED);
     }
 
     @Operation(summary = "method update", description = "Only Instructor can update VideoLesson")
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @PutMapping("{id}")
     public ResponseEntity<VideoLessonResponse> update(@PathVariable Long id, @Valid @RequestBody VideoLessonRequest request) {
         VideoLessonResponse response = service.update(id, request);
@@ -46,17 +45,16 @@ public class VideoLessonApi {
     }
 
     @Operation(summary = "method get by id", description = "Instructor can get by id VideoLesson")
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @GetMapping("{id}")
     public ResponseEntity<VideoLessonResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getById(id));
     }
 
     @Operation(summary = "method delete", description = "Only Instructor can delete VideoLesson")
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @DeleteMapping("{id}")
     public ResponseEntity<VideoLessonResponse> delete(@PathVariable Long id) {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
