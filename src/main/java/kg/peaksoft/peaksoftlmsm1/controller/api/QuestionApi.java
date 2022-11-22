@@ -31,31 +31,25 @@ public class QuestionApi {
 
     private final QuestionService questionService;
 
-
     @Operation(summary = "method create", description = "Instructor can registration Question")
-    @PostMapping("/{testId}")
-    public ResponseEntity<QuestionResponse> save(@PathVariable Long testId,
-                                                 @RequestBody QuestionRequest request) {
+    @PostMapping("{testId}")
+    public ResponseEntity<QuestionResponse> save(@PathVariable Long testId, @RequestBody QuestionRequest request) {
         return new ResponseEntity<>(questionService.save(testId, request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Instructor can update Question")
     @PutMapping("{id}")
-    public ResponseEntity<QuestionResponse> update(@PathVariable Long id,
-                                                   @RequestBody @Valid QuestionRequest request) {
+    public ResponseEntity<QuestionResponse> update(@PathVariable Long id, @RequestBody @Valid QuestionRequest request) {
         QuestionResponse questionResponse = questionService.update(id, request);
         return new ResponseEntity<>(questionResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id Question")
     @GetMapping("{id}")
     public ResponseEntity<QuestionResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(questionService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Instructor can delete Question")
     @DeleteMapping("{id}")
     public ResponseEntity<QuestionResponse> delete(@PathVariable Long id) {
