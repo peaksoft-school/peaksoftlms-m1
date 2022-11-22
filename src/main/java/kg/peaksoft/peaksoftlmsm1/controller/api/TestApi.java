@@ -25,20 +25,19 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/tests")
+@PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "Test API", description = "Test endpoints for instructor")
 public class TestApi {
 
     private final TestService testService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method create", description = "Instructor can create Test")
     @PostMapping
     public ResponseEntity<TestResponse> create(@RequestBody @Valid TestRequest request) {
         return new ResponseEntity<>(testService.create(request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method update", description = "Instructor can update Test")
     @PutMapping("{id}")
     public ResponseEntity<TestResponse> update(@PathVariable Long id, @Valid @RequestBody TestRequest request) {
@@ -46,14 +45,12 @@ public class TestApi {
         return new ResponseEntity<>(testResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get by id", description = "Instructor can get by id Test")
     @GetMapping("{id}")
     public ResponseEntity<TestResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(testService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method delete", description = "Instructor can delete Test")
     @DeleteMapping("{id}")
     public ResponseEntity<TestResponse> delete(@PathVariable Long id) {
@@ -61,19 +58,16 @@ public class TestApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "Instructor can get all Tests", description = "Instructor can get all Tests")
     @GetMapping()
     public ResponseEntity<List<TestResponse>> getAll() {
         return ResponseEntity.ok(testService.getAllTests());
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "Instructor can add Question to Tests", description = "Instructor can add Question to Test")
-    @PostMapping("/{testId}/{questionId}")
-    public ResponseEntity<TestResponse> addQuestionToTest(
-            @PathVariable("testId") Long testId,
-            @PathVariable("questionId") Long questionId) {
+    @PostMapping("{testId}/{questionId}")
+    public ResponseEntity<TestResponse> addQuestionToTest(@PathVariable("testId") Long testId,
+                                                          @PathVariable("questionId") Long questionId) {
         return new ResponseEntity<>(testService.addQuestionToTest(testId, questionId), HttpStatus.OK);
     }
 
