@@ -24,10 +24,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Teacher controller", description = "INSTRUCTOR can get and add")
 @RequestMapping("api/teachers")
-public class TeacherController {
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Teacher API", description = "Instructor endpoints")
+public class TeacherApi {
 
     private final CourseService courseService;
 
