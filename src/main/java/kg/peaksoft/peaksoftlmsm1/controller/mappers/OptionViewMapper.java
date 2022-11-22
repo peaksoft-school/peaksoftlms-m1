@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers;
+package kg.peaksoft.peaksoftlmsm1.controller.mappers;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.OptionResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
