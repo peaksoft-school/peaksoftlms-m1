@@ -7,7 +7,7 @@ import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.OptionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.ResultRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.testMappers.ResultViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers.ResultViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.AnswerRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;

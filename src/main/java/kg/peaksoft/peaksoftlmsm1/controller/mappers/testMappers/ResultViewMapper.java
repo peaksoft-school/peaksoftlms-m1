@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.testMappers;
+package kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultRatingResponse;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultResponse;

@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.testMappers.ResultViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers.ResultViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.AnswerRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.QuestionAnswerRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultResponse;

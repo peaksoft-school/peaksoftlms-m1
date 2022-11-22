@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.TeacherEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.TeacherViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.TeacherEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.TeacherViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.teacher.TeacherRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.teacher.TeacherResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;

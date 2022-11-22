@@ -2,8 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.group.GroupRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.group.GroupResponse;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.GroupEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.GroupViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.GroupEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.GroupViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
 import kg.peaksoft.peaksoftlmsm1.db.repository.GroupRepository;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.responseAll.GroupResponseAll;

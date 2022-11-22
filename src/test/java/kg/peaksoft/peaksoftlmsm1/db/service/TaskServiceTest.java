@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.TaskEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.TaskViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.TaskEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.TaskViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.task.TaskRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.task.TaskResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Task;

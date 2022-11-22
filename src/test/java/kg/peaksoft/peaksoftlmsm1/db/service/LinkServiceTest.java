@@ -2,8 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.link.LinkRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.link.LinkResponse;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.LinkEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.mappers.LinkViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.LinkEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.LinkViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Link;
 import kg.peaksoft.peaksoftlmsm1.db.repository.LinkRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
