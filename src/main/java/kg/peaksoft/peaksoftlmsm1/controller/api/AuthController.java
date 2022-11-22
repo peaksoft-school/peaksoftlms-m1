@@ -9,34 +9,39 @@ import kg.peaksoft.peaksoftlmsm1.controller.dto.response.AuthResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.exception.ExceptionType;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
-@CrossOrigin(origins = "*", allowedHeaders = "*",maxAge = 3600)
+import java.util.NoSuchElementException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/public")
-@Tag(name = "Authentication", description = "User with role ADMIN, INSTRUCTOR, STUDENT can authenticate")
+@CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
+@Tag(name = "Auth API", description = "Authentication endpoints")
 public class AuthController {
 
     private final JwtTokenUtil jwtTokenUtil;
     private final UserRepository repository;
     private final AuthMapper authMapper;
 
+    @Operation(summary = "Login", description = "Any user can login")
     @PostMapping("login")
-    @Operation(summary = "sign in method", description = "Login Admin, Instructor, Student")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         try {
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
-            User user = repository.findByEmail(authenticationToken.getName()).get();
-            log.info("inside AuthController login method");
+            User user = repository.findByEmail(authenticationToken.getName()).orElseThrow(() ->
+                    new NoSuchElementException("Email not found"));
             return ResponseEntity.ok()
                     .body(authMapper.view(jwtTokenUtil.generateToken(user), ExceptionType.Successfully, user));
         } catch (BadCredentialsException e) {
