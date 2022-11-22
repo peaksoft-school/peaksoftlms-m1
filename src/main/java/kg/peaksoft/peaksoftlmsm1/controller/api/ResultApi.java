@@ -21,10 +21,10 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("api/results")
 @CrossOrigin(origins = "*", maxAge = 3600)
-@Tag(name = "ResultController", description = "INSTRUCTOR can get Results, Student can take the Test")
-@RequestMapping("/api/teachers/results")
-public class ResultController {
+@Tag(name = "Result API", description = "Result endpoints for instructor & student")
+public class ResultApi {
 
     private final ResultService resultService;
 
