@@ -24,10 +24,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("api/tests")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Test controller", description = "INSTRUCTOR create, update, get by id, get all and delete")
-@RequestMapping("api/teachers/tests")
-public class TestController {
+@Tag(name = "Test API", description = "Test endpoints for instructor")
+public class TestApi {
 
     private final TestService testService;
 
