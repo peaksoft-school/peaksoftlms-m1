@@ -30,15 +30,15 @@ public class ResultApi {
 
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
     @Operation(summary = "method save Result", description = "Saving Student responses")
-    @PostMapping("/myTest")
-    public ResultResponse saveResult(Authentication authentication, @RequestBody AnswerRequest answerRequest) {
+    @PostMapping("my-test")
+    public ResultResponse saveResult(Authentication authentication, @RequestBody AnswerRequest request) {
         User user = (User) authentication.getPrincipal();
-        return resultService.saveResult(answerRequest, user.getId());
+        return resultService.saveResult(request, user.getId());
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @Operation(summary = "method get Results", description = "Instructor can get Results")
-    @GetMapping("/{testId}")
+    @GetMapping("{testId}")
     public List<ResultResponse> getResults(@PathVariable Long testId) {
         return resultService.getAllResultByTestId(testId);
     }
