@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.StudentEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.StudentViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.StudentEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.StudentViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.student.StudentRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.student.StudentResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;

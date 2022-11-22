@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.mappers;
+package kg.peaksoft.peaksoftlmsm1.controller.mappers.view;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.lesson.LessonResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;

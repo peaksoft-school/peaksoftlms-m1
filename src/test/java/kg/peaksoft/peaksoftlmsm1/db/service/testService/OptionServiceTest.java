@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.OptionEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.OptionViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.OptionEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.OptionViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.OptionRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.OptionResponse;
 import kg.peaksoft.peaksoftlmsm1.db.enums.EQuestionType;

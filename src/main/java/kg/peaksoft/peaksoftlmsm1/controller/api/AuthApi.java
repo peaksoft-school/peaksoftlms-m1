@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.config.security.JwtTokenUtil;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.auth.AuthRequest;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.AuthMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.AuthMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.auth.AuthResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.exception.ExceptionType;

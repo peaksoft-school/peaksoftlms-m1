@@ -1,4 +1,4 @@
-package kg.peaksoft.peaksoftlmsm1.controller.mappers;
+package kg.peaksoft.peaksoftlmsm1.controller.mappers.view;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.auth.AuthResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;

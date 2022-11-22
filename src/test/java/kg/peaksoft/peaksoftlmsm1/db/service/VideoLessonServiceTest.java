@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.VideoLessonEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.VideoLessonViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.VideoLessonEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.VideoLessonViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.videoLesson.VideoLessonRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.videoLesson.VideoLessonResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.VideoLesson;

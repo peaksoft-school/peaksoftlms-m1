@@ -2,8 +2,8 @@ package kg.peaksoft.peaksoftlmsm1.db.service;
 
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.CourseEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.CourseViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.CourseEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.CourseViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Course;

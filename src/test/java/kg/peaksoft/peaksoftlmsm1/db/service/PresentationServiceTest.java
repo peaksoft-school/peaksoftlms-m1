@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.PresentationEditMapper;
-import kg.peaksoft.peaksoftlmsm1.controller.mappers.PresentationViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.PresentationEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.PresentationViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.presentation.PresentationRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.presentation.PresentationResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Presentation;
