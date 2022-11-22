@@ -27,20 +27,19 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/groups")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Group API", description = "Admin group endpoints")
-public class GroupController {
+@Tag(name = "Group API", description = "Group endpoints for admin")
+public class GroupApi {
 
     private final GroupService groupService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method create", description = "admin can registration group")
     @PostMapping
     public ResponseEntity<GroupResponse> create(@RequestBody @Valid GroupRequest request) {
         return new ResponseEntity<>(groupService.create(request), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method update", description = "admin can update group")
     @PutMapping("{id}")
     public ResponseEntity<GroupResponse> update(@PathVariable Long id, @Valid @RequestBody GroupRequest request) {
@@ -48,14 +47,12 @@ public class GroupController {
         return new ResponseEntity<>(groupResponse, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get by id", description = "admin, instructor can get by id")
     @GetMapping("{id}")
     public ResponseEntity<GroupResponse> getById(@PathVariable Long id) {
         return ResponseEntity.ok(groupService.getById(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method delete", description = "admin can delete")
     @DeleteMapping("{id}")
     public ResponseEntity<GroupResponse> delete(@PathVariable Long id) {
@@ -63,11 +60,10 @@ public class GroupController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @Operation(summary = "method get all", description = "admin can get all groups")
-    public GroupResponseAll getAll(@RequestParam int size,
-                                   @RequestParam int page) {
+    @GetMapping
+    public GroupResponseAll getAll(@RequestParam int size, @RequestParam int page) {
         return groupService.getAllGroups(size, page);
     }
+
 }
