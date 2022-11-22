@@ -23,10 +23,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("api/options")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
-@Tag(name = "Option controller", description = "INSTRUCTOR can create, update and delete")
-@RequestMapping("api/teachers/options")
-public class OptionController {
+@Tag(name = "Option API", description = "Option endpoints for instructor")
+public class OptionApi {
 
     private final OptionService optionService;
 
