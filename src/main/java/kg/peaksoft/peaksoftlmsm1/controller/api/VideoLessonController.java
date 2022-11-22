@@ -6,15 +6,21 @@ import kg.peaksoft.peaksoftlmsm1.controller.dto.videoLesson.VideoLessonRequest;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.videoLesson.VideoLessonResponse;
 import kg.peaksoft.peaksoftlmsm1.db.service.VideoLessonService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
@@ -27,16 +33,14 @@ public class VideoLessonController {
     @Operation(summary = "method create VideoLesson", description = "Only Instructor can create VideoLesson")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @PostMapping
-    public ResponseEntity<VideoLessonResponse> create(@RequestBody @Valid VideoLessonRequest request){
-        log.info("inside VideoLessonController create method");
+    public ResponseEntity<VideoLessonResponse> create(@RequestBody @Valid VideoLessonRequest request) {
         return new ResponseEntity<>(service.create(request), HttpStatus.CREATED);
     }
 
     @Operation(summary = "method update", description = "Only Instructor can update VideoLesson")
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @PutMapping("{id}")
-    public ResponseEntity<VideoLessonResponse> update(@PathVariable Long id, @Valid @RequestBody VideoLessonRequest request){
-        log.info("inside VideoLessonController update method");
+    public ResponseEntity<VideoLessonResponse> update(@PathVariable Long id, @Valid @RequestBody VideoLessonRequest request) {
         VideoLessonResponse response = service.update(id, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -45,7 +49,6 @@ public class VideoLessonController {
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @GetMapping("{id}")
     public ResponseEntity<VideoLessonResponse> getById(@PathVariable Long id) {
-        log.info("inside VideoLessonController getById method");
         return ResponseEntity.ok(service.getById(id));
     }
 
@@ -53,7 +56,6 @@ public class VideoLessonController {
     @PreAuthorize("hasAnyAuthority('ROLE_INSTRUCTOR')")
     @DeleteMapping("{id}")
     public ResponseEntity<VideoLessonResponse> delete(@PathVariable Long id) {
-        log.info("inside VideoLessonController delete method");
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
