@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.service.testService.ResultService;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.AnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.ResultResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

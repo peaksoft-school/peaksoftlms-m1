@@ -6,7 +6,7 @@ import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
 import kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers.QuestionEditMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers.QuestionViewMapper;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.QuestionRequest;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.QuestionResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.QuestionResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test;
 import lombok.RequiredArgsConstructor;

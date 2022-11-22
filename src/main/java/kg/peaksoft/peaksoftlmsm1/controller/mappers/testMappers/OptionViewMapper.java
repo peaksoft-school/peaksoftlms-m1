@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.OptionResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.OptionResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
 import org.springframework.stereotype.Component;
 

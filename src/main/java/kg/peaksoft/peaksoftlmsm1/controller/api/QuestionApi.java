@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.db.service.testService.QuestionService;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.QuestionRequest;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.QuestionResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.QuestionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

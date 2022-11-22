@@ -3,7 +3,7 @@ package kg.peaksoft.peaksoftlmsm1.controller.api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponseForStudentLesson;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.RatingListResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.RatingListResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Course;
 import kg.peaksoft.peaksoftlmsm1.db.service.CourseService;

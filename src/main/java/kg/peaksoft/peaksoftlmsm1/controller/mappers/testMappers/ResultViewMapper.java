@@ -1,7 +1,7 @@
 package kg.peaksoft.peaksoftlmsm1.controller.mappers.testMappers;
 
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultRatingResponse;
-import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.response.ResultResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.ResultRatingResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.ResultResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Result;
 import org.springframework.stereotype.Component;
 
