@@ -1,19 +1,22 @@
 package kg.peaksoft.peaksoftlmsm1.controller.dto.student;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Group;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor@Builder
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@NoArgsConstructor
+@Builder
 public class StudentResponse {
+
     private Long id;
     private String firstName;
     private String lastName;
@@ -22,4 +25,5 @@ public class StudentResponse {
     private List<Group> group;
     private String password;
     private StudyFormat studyFormat;
+
 }
