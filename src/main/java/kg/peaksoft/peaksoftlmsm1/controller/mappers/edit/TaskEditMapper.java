@@ -12,7 +12,7 @@ public class TaskEditMapper {
 
     private final FilePathRepository repository;
 
-    public Task create(TaskRequest request){
+    public Task create(TaskRequest request) {
         if (request == null) {
             return null;
         }
@@ -26,7 +26,7 @@ public class TaskEditMapper {
         return task;
     }
 
-    public Task update(Task task, TaskRequest request){
+    public Task update(Task task, TaskRequest request) {
         task.setName(request.getName());
         task.setText(request.getText());
         task.setLink(request.getLink());
