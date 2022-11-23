@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class TaskViewMapper {
 
-    public TaskResponse mapToResponse(Task task){
+    public TaskResponse mapToResponse(Task task) {
         if (task == null) {
             return null;
         }
@@ -27,9 +27,9 @@ public class TaskViewMapper {
         return response;
     }
 
-    public List<TaskResponse> map(List<Task> tasks){
+    public List<TaskResponse> map(List<Task> tasks) {
         List<TaskResponse> responses = new ArrayList<>();
-        for(Task task : tasks){
+        for (Task task : tasks) {
             responses.add(mapToResponse(task));
         }
         return responses;
