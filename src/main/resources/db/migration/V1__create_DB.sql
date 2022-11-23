@@ -14,7 +14,7 @@ create table roles (id int8 not null,
                     name varchar(255),
                     primary key (id));
 
-create table link (id int8 not null,
+create table links (id int8 not null,
                    link varchar(255),
                    text varchar(255),
                    primary key (id));
