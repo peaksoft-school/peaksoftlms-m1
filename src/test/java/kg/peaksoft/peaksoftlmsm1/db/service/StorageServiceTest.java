@@ -1,6 +1,6 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.service.S3Service;
+import kg.peaksoft.peaksoftlmsm1.service.StorageService;
 import org.junit.jupiter.api.Test;
 import com.amazonaws.services.s3.AmazonS3;
 import kg.peaksoft.peaksoftlmsm1.db.entity.FilePath;
@@ -24,11 +24,11 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.DisplayName.class)
-class S3ServiceTest {
+class StorageServiceTest {
 
     @Autowired
     @InjectMocks
-    private S3Service service;
+    private StorageService service;
     @Value("${bucketName}")
     private String bucketName;
     @Mock

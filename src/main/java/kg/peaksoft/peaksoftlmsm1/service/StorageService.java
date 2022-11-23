@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class S3Service implements FileService {
+public class StorageService implements FileService {
 
     @Value("${application.bucket.name}")
     private String bucketName;
