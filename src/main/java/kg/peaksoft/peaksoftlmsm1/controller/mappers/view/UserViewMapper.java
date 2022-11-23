@@ -10,12 +10,12 @@ import java.util.List;
 @Component
 public class UserViewMapper {
 
-    public UserResponse mapToResponse(User user){
+    public UserResponse mapToResponse(User user) {
         if (user == null) {
             return null;
         }
         UserResponse response = new UserResponse();
-        if(user.getId() != null) {
+        if (user.getId() != null) {
             response.setId(user.getId());
         }
         response.setFirstName(user.getFirstName());
@@ -26,9 +26,9 @@ public class UserViewMapper {
         return response;
     }
 
-    public List<UserResponse> map(List<User> userList){
+    public List<UserResponse> map(List<User> userList) {
         List<UserResponse> response = new ArrayList<>();
-        for(User user: userList){
+        for (User user : userList) {
             response.add(mapToResponse(user));
         }
         return response;
