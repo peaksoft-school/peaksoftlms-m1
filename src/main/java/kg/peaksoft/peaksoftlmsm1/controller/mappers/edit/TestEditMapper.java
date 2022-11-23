@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class TestEditMapper {
 
     public Test mapToEntity(TestRequest testRequest) {
-        if(testRequest == null) {
+        if (testRequest == null) {
             return null;
         }
         Test test = new Test();
@@ -23,4 +23,5 @@ public class TestEditMapper {
         return test1;
 
     }
+
 }
