@@ -25,9 +25,10 @@ public class TestViewMapper {
 
     public List<TestResponse> map(List<Test> testList) {
         List<TestResponse> responses = new ArrayList<>();
-        for(Test test: testList){
+        for (Test test : testList) {
             responses.add(mapToResponse(test));
         }
         return responses;
     }
+
 }
