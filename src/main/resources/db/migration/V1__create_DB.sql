@@ -77,7 +77,7 @@ create table results (id int8 not null,
                       test_id int8,
                       user_id int8, primary key (id));
 
-create table task (id int8 not null,
+create table tasks (id int8 not null,
                    code varchar(255),
                    image varchar(255),
                    link varchar(255),
