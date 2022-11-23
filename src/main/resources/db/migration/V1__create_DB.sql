@@ -46,7 +46,7 @@ create table groups (id int8 not null,
 create table groups_courses (course_id int8 not null,
                              group_id int8 not null);
 
-create table lesson (id int8 not null,
+create table lessons (id int8 not null,
                      name varchar(255),
                      course_id int8 not null,
                      link_id int8,
