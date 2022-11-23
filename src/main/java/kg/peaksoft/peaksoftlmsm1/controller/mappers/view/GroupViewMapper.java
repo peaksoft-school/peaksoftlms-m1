@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class GroupViewMapper {
 
-    public GroupResponse mapToResponse(Group group){
+    public GroupResponse mapToResponse(Group group) {
         if (group == null) {
             return null;
         }
@@ -26,9 +26,9 @@ public class GroupViewMapper {
         return response;
     }
 
-    public List<GroupResponse> map(List<Group> groupList){
+    public List<GroupResponse> map(List<Group> groupList) {
         List<GroupResponse> responses = new ArrayList<>();
-        for(Group group: groupList){
+        for (Group group : groupList) {
             responses.add(mapToResponse(group));
         }
         return responses;
