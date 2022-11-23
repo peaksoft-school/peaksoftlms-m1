@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class TeacherViewMapper {
 
-    public TeacherResponse mapToResponse(User user){
+    public TeacherResponse mapToResponse(User user) {
         if (user == null) {
             return null;
         }
@@ -27,11 +27,12 @@ public class TeacherViewMapper {
         return teacherResponse;
     }
 
-    public List<TeacherResponse> map(List<User> userList){
+    public List<TeacherResponse> map(List<User> userList) {
         List<TeacherResponse> responses = new ArrayList<>();
-        for(User user: userList){
+        for (User user : userList) {
             responses.add(mapToResponse(user));
         }
         return responses;
     }
+
 }
