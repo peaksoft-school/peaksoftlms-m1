@@ -27,7 +27,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 @RequestMapping("api/files")
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
 @Tag(name = "File Api", description = "Files endpoints")
-public class FileApi {
+public class StorageApi {
 
     private final S3Service s3Service;
 
