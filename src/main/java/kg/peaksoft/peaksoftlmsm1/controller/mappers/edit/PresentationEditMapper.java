@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PresentationEditMapper {
 
-    public Presentation create(PresentationRequest presentationRequest){
+    public Presentation create(PresentationRequest presentationRequest) {
         if (presentationRequest == null) {
             return null;
         }
@@ -19,12 +19,13 @@ public class PresentationEditMapper {
 
     }
 
-    public Presentation update(Presentation presentation, PresentationRequest presentationRequest){
+    public Presentation update(Presentation presentation, PresentationRequest presentationRequest) {
         presentation.setName(presentationRequest.getName());
         presentation.setDescription(presentationRequest.getDescription());
         presentation.setFile(presentationRequest.getFile());
         return presentation;
     }
+
 }
 
 
