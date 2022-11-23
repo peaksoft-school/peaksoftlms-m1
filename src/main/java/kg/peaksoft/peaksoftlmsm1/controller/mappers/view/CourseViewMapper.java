@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class CourseViewMapper {
 
-    public CourseResponse mapToResponse(Course course){
+    public CourseResponse mapToResponse(Course course) {
         if (course == null) {
             return null;
         }
@@ -29,9 +29,9 @@ public class CourseViewMapper {
         return responce;
     }
 
-    public List<CourseResponse> map(List<Course> courseList){
+    public List<CourseResponse> map(List<Course> courseList) {
         List<CourseResponse> response = new ArrayList<>();
-        for(Course course: courseList){
+        for (Course course : courseList) {
             response.add(mapToResponse(course));
         }
         return response;
