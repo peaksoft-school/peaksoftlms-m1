@@ -12,8 +12,7 @@ import java.util.Set;
 @Component
 public class AuthMapper {
 
-    public AuthResponse view(String token, String message, User user){
-
+    public AuthResponse view(String token, String message, User user) {
         var authResponse = new AuthResponse();
         if (user != null) {
             setAuthority(authResponse, user.getRoles());
@@ -25,9 +24,10 @@ public class AuthMapper {
 
     public void setAuthority(AuthResponse authResponse, List<Role> roles) {
         Set<String> authorities = new HashSet<>();
-        for(Role role: roles){
+        for (Role role : roles) {
             authorities.add(role.getName());
         }
         authResponse.setAuthorities(authorities);
     }
+
 }
