@@ -99,7 +99,7 @@ public class StudentService {
                 user.setPhoneNumber((formatter.formatCellValue(row.getCell(3))));
                 user.setEmail(formatter.formatCellValue(row.getCell(4)));
                 user.setPassword(formatter.formatCellValue(row.getCell(5)));
-                user.setCreated(LocalDateTime.now());
+                user.setCreatedAt(LocalDateTime.now());
                 userList.add(user);
             }
 

@@ -22,7 +22,7 @@ public class UserViewMapper {
         response.setLastName(user.getLastName());
         response.setEmail(user.getEmail());
         response.setActive(user.isActive());
-        response.setCreated(user.getCreated());
+        response.setCreated(user.getCreatedAt());
         return response;
     }
 

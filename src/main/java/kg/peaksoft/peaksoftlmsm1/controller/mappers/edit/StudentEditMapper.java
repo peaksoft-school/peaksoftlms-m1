@@ -33,7 +33,7 @@ public class StudentEditMapper {
         groups.add(group1);
         user.setGroups(groups);
         user.setStudyFormat(studentRequest.getStudyFormat());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setRoles(studentRequest.getRole());
         return user;
     }
@@ -49,7 +49,7 @@ public class StudentEditMapper {
         groups.add(group1);
         user.setGroups(groups);
         user.setStudyFormat(studentRequest.getStudyFormat());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         return user;
     }
 

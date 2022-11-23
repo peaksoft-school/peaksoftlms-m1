@@ -20,7 +20,7 @@ public class TeacherEditMapper {
         user.setPassword(teacherRequest.getPassword());
         user.setPhoneNumber(teacherRequest.getPhoneNumber());
         user.setSpecialization(teacherRequest.getSpecialization());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setRoles(teacherRequest.getRole());
         return user;
     }
@@ -32,7 +32,7 @@ public class TeacherEditMapper {
         user.setPassword(teacherRequest.getPassword());
         user.setPhoneNumber(teacherRequest.getPhoneNumber());
         user.setSpecialization(teacherRequest.getSpecialization());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         return user;
     }
 

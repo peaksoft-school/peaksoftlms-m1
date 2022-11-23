@@ -42,8 +42,7 @@ class StudentServiceTest {
     private StudentEditMapper studentEditMapper;
     @Mock
     private StudentViewMapper studentViewMapper;
-    @Mock
-    private GroupRepository groupRepository;
+
     @Mock
     private XSSFSheet sheet;
     @Mock
@@ -219,7 +218,7 @@ class StudentServiceTest {
                 user.setPhoneNumber((formatter.formatCellValue(row.getCell(3))));
                 user.setEmail(formatter.formatCellValue(row.getCell(4)));
                 user.setPassword(formatter.formatCellValue(row.getCell(5)));
-                user.setCreated(LocalDateTime.now());
+                user.setCreatedAt(LocalDateTime.now());
                 userList.add(user);
             }
 

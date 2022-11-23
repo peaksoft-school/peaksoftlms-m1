@@ -17,7 +17,7 @@ public class UserEditMapper {
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setEmail(userRequest.getEmail());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         return user;
     }
 
@@ -25,7 +25,7 @@ public class UserEditMapper {
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setEmail(userRequest.getEmail());
-        user.setCreated(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         return user;
     }
 
