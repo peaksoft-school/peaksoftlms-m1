@@ -21,7 +21,7 @@ public class UserEditMapper {
         return user;
     }
 
-    public User mapToUpdate(User user, UserRequest userRequest){
+    public User mapToUpdate(User user, UserRequest userRequest) {
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setEmail(userRequest.getEmail());
