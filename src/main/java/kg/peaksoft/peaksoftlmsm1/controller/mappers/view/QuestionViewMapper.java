@@ -26,9 +26,10 @@ public class QuestionViewMapper {
 
     public List<QuestionResponse> map(List<Question> questionList) {
         List<QuestionResponse> responses = new ArrayList<>();
-        for(Question question: questionList){
+        for (Question question : questionList) {
             responses.add(mapToResponse(question));
         }
         return responses;
     }
+
 }
