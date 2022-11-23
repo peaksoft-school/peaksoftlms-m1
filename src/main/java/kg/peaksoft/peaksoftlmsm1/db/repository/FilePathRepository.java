@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FilePathRepository extends CrudRepository<FilePath, Long> {
+
 }
