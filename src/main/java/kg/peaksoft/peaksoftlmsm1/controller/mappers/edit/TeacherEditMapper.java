@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Component
 public class TeacherEditMapper {
 
-    public User mapToEntity(TeacherRequest teacherRequest){
+    public User mapToEntity(TeacherRequest teacherRequest) {
         if (teacherRequest == null) {
             return null;
         }
@@ -25,7 +25,7 @@ public class TeacherEditMapper {
         return user;
     }
 
-    public User mapToUpdate(User user, TeacherRequest teacherRequest){
+    public User mapToUpdate(User user, TeacherRequest teacherRequest) {
         user.setFirstName(teacherRequest.getFirstName());
         user.setLastName(teacherRequest.getLastName());
         user.setEmail(teacherRequest.getEmail());
