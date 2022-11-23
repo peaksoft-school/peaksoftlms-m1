@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class VideoLessonViewMapper {
 
-    public VideoLessonResponse mapperResponse(VideoLesson videoLesson){
+    public VideoLessonResponse mapperResponse(VideoLesson videoLesson) {
         if (videoLesson == null) {
             return null;
         }
@@ -24,11 +24,12 @@ public class VideoLessonViewMapper {
         return response;
     }
 
-    public List<VideoLessonResponse> map(List<VideoLesson> lessons){
+    public List<VideoLessonResponse> map(List<VideoLesson> lessons) {
         List<VideoLessonResponse> responses = new ArrayList<>();
-        for(VideoLesson lesson: lessons){
+        for (VideoLesson lesson : lessons) {
             responses.add(mapperResponse(lesson));
         }
         return responses;
     }
+
 }
