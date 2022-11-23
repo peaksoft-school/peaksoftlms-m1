@@ -2,11 +2,24 @@ package kg.peaksoft.peaksoftlmsm1.db.entity.testEntity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Lesson;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +39,10 @@ public class Test {
     @SequenceGenerator(name = "test_gen", sequenceName = "test_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
+
     private String name;
-    @Column(name = "idActive")
+
+    @Column(name = "is_active")
     private boolean isActive;
 
     @OneToMany(cascade = ALL, fetch = FetchType.EAGER, mappedBy = "test")
@@ -48,13 +63,6 @@ public class Test {
             this.questions = new ArrayList<>();
         }
         this.questions.add(question);
-    }
-
-    public void setQuestions(List<Question> questionList) {
-        if (questions == null) {
-            questions = questionList;
-        }
-        this.questions = questionList;
     }
 
 }

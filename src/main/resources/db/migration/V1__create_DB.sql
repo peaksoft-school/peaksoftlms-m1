@@ -86,7 +86,7 @@ create table task (id int8 not null,
                    file_id int8, primary key (id));
 
 create table tests (id int8 not null,
-                    id_active boolean,
+                    is_active boolean,
                     name varchar(255),
                     primary key (id));
 
