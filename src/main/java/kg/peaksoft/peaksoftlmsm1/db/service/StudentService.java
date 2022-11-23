@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Slf4j
@@ -78,9 +79,8 @@ public class StudentService {
 
     public List<StudentResponse> importStudentsExcelFile(MultipartFile files, Long groupId) throws IOException {
 
-        Group group = groupRepository.findById(groupId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Entity user with id = {} does not exists in database", groupId);
-        });
+        Group group = groupRepository.findById(groupId).orElseThrow(() ->
+                new NoSuchElementException("Group not found"));
 
         List<User> userList = new ArrayList<>();
         XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
