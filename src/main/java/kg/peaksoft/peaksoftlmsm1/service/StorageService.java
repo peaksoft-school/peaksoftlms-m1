@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -41,23 +43,24 @@ public class StorageService implements FileService {
             File file1 = convertMultiPartToFile(file);
             s3.putObject(bucketName, originalFilename, file1);
             log.info("File save: {}", filePath.getFileName());
-            return "id: "+filePath.getId() + "  fileName: " + filePath.getFileName();
+            return "id: " + filePath.getId() + "  fileName: " + filePath.getFileName();
         } catch (IOException e) {
             log.error("FilePath = {} does not exists in database", file);
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public byte[] downloadFile(Long id) {
-        FilePath filePath = repository.findById(id).get();
+        FilePath filePath = repository.findById(id).orElseThrow(() ->
+                new NoSuchElementException("File not found"));
         S3Object object = s3.getObject(bucketName, filePath.getFileName());
         S3ObjectInputStream objectContent = object.getObjectContent();
         log.info("File download: {}", id);
         try {
             return IOUtils.toByteArray(objectContent);
         } catch (IOException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +79,7 @@ public class StorageService implements FileService {
     @Override
     public List<String> listAllFiles() {
         ListObjectsV2Result listObjectsV2Result = s3.listObjectsV2(bucketName);
-        return  listObjectsV2Result.getObjectSummaries().stream()
+        return listObjectsV2Result.getObjectSummaries().stream()
                 .map(S3ObjectSummary::getKey).collect(Collectors.toList());
     }
 
@@ -84,14 +87,13 @@ public class StorageService implements FileService {
         log.info("Get file by id: {}", id);
         return repository.findById(id).orElseThrow(() -> {
             log.error("File with id = {} does not exists in database", id);
-            throw new ResourceNotFoundException("Entity", "id", id);
-        });
+            throw new ResourceNotFoundException("Entity", "id", id);});
     }
 
-    private File convertMultiPartToFile(MultipartFile file ) throws IOException {
-        File convFile = new File( file.getOriginalFilename() );
-        FileOutputStream fos = new FileOutputStream( convFile );
-        fos.write( file.getBytes() );
+    private File convertMultiPartToFile(MultipartFile file) throws IOException {
+        File convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
         fos.close();
         log.info("File converted : {}", file);
         return convFile;
