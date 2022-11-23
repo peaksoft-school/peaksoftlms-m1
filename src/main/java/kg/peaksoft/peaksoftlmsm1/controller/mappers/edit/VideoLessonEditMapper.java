@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class VideoLessonEditMapper {
 
-    public VideoLesson create(VideoLessonRequest request){
+    public VideoLesson create(VideoLessonRequest request) {
         if (request == null) {
             return null;
         }
@@ -18,7 +18,7 @@ public class VideoLessonEditMapper {
         return videoLesson;
     }
 
-    public VideoLesson update(VideoLesson videoLesson, VideoLessonRequest request){
+    public VideoLesson update(VideoLesson videoLesson, VideoLessonRequest request) {
         videoLesson.setName(request.getName());
         videoLesson.setDescription(request.getDescription());
         videoLesson.setLink(request.getLink());
