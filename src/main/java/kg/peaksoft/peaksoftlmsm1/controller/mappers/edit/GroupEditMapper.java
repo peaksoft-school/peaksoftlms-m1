@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class GroupEditMapper {
 
-    public Group mapToEntity(GroupRequest groupRequest){
+    public Group mapToEntity(GroupRequest groupRequest) {
         if (groupRequest == null) {
             return null;
         }
@@ -20,7 +20,7 @@ public class GroupEditMapper {
         return group;
     }
 
-    public Group mapToUpdate(Group group, GroupRequest groupRequest){
+    public Group mapToUpdate(Group group, GroupRequest groupRequest) {
         group.setGroupName(groupRequest.getGroupName());
         group.setStartDate(groupRequest.getStartDate());
         group.setDescription(groupRequest.getDescription());
