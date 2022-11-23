@@ -43,10 +43,10 @@ public class ResultService {
 
         Test test = testRepository.findById(answerRequest.getTestId()).orElseThrow(() -> {
             log.error("test with id = {} does not exists in database" + answerRequest.getTestId());
-            throw new ResourceNotFoundException("Not found test with this id: ");
+            throw new ResourceNotFoundException();
         });
         User student = userRepository.findById(studentId).orElseThrow(() ->
-                new ResourceNotFoundException("Entity not found with: " + studentId));
+                new ResourceNotFoundException());
         result.setTest(test);
         result.setUser(student);
         result.setTime(LocalDateTime.now());

@@ -28,7 +28,7 @@ public class QuestionService {
     public QuestionResponse save(Long testId, QuestionRequest questionRequest) {
         Test test = testRepository.findById(testId).orElseThrow(() -> {
             log.error("test with id = {} does not exists in database", testId);
-            throw new ResourceNotFoundException("Not found test with this id: " + testId);
+            throw new ResourceNotFoundException();
         });
         Question question = questionEditMapper.mapToEntity(questionRequest);
         question.setTest(test);

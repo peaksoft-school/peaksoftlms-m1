@@ -26,7 +26,7 @@ public class OptionService {
     public OptionResponse save(Long questionId, OptionRequest optionRequest) {
         Question question = questionRepository.findById(questionId).orElseThrow(() -> {
             log.error("question with id = {} does not exists in database", questionId);
-            throw new ResourceNotFoundException("Not found question with this id: " + questionId);
+            throw new ResourceNotFoundException();
         });
         Option option = optionEditMapper.mapToEntity(optionRequest);
         option.setQuestion(question);
