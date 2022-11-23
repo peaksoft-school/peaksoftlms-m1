@@ -26,7 +26,7 @@ public class ResultViewMapper {
 
     public List<ResultResponse> map(List<Result> results) {
         List<ResultResponse> responses = new ArrayList<>();
-        for(Result result: results){
+        for (Result result : results) {
             responses.add(mapToResponse(result));
         }
         return responses;
