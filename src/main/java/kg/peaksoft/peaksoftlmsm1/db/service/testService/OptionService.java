@@ -35,9 +35,9 @@ public class OptionService {
 
     public OptionResponse update(Long id, OptionRequest optionRequest) {
         Option option = optionRepository.findById(id).orElseThrow(() -> {
-                log.error("Entity option with id = {} does not exists in database", id);
-              throw new ResourceNotFoundException("Entity", "id", id);
-    });
+            log.error("Entity option with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         log.info("Entity option updated: {}", id);
         return optionViewMapper.mapToResponse(optionRepository.save(optionEditMapper.mapToUpdate(option, optionRequest)));
     }
