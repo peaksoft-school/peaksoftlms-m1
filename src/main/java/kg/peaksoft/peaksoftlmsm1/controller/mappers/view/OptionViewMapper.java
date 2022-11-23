@@ -24,9 +24,10 @@ public class OptionViewMapper {
 
     public List<OptionResponse> map(List<Option> optionList) {
         List<OptionResponse> responses = new ArrayList<>();
-        for(Option option : optionList){
+        for (Option option : optionList) {
             responses.add(mapToResponse(option));
         }
         return responses;
     }
+
 }
