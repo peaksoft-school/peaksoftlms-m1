@@ -17,7 +17,7 @@ public class StudentEditMapper {
 
     private final GroupRepository groupRepository;
 
-    public User mapToEntity(StudentRequest studentRequest){
+    public User mapToEntity(StudentRequest studentRequest) {
         if (studentRequest == null) {
             return null;
         }
@@ -38,7 +38,7 @@ public class StudentEditMapper {
         return user;
     }
 
-    public User mapToUpdate(User user, StudentRequest studentRequest){
+    public User mapToUpdate(User user, StudentRequest studentRequest) {
         List<Group> groups = new ArrayList<>();
         user.setFirstName(studentRequest.getFirstName());
         user.setLastName(studentRequest.getLastName());
