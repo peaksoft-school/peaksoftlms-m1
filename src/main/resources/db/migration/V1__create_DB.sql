@@ -56,7 +56,7 @@ create table lessons (id int8 not null,
                      video_lesson_id int8,
                      primary key (id));
 
-create table presentation (id int8 not null,
+create table presentations (id int8 not null,
                            description varchar(255),
                            file varchar(255),
                            name varchar(255),
