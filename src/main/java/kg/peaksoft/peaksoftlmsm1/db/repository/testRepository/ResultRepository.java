@@ -12,5 +12,7 @@ import java.util.List;
 public interface ResultRepository extends JpaRepository<Result, Long> {
 
     List<Result> findAllByTest(Test test);
+
     List<Result> findAllBy(Pageable pageable);
+
 }
