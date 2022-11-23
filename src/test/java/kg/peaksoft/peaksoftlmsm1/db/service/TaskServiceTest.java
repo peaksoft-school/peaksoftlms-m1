@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.TaskEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.TaskViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.task.TaskRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.task.TaskResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.TaskEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.TaskViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.task.TaskRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.task.TaskResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Task;
 import kg.peaksoft.peaksoftlmsm1.db.repository.TaskRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;

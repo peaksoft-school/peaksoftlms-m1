@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.UserEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.UserViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.request.UserRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.response.UserResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.UserEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.UserViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.user.UserRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.user.UserResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;

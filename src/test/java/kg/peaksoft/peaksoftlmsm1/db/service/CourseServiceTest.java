@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.course.CourseResponce;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.CourseEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.CourseViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.course.CourseResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.CourseEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.CourseViewMapper;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Course;
@@ -83,9 +83,9 @@ class CourseServiceTest {
         course1.setUsers(user1);
         Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(user1));
 
-        CourseResponce courseResponce = new CourseResponce(1L,"image","Java", null,"Nine",user1,null,null);
+        CourseResponse courseResponse = new CourseResponse();
 
-        Mockito.when(courseViewMapper.mapToResponse(courseRepository.save(course1))).thenReturn(courseResponce);
+        Mockito.when(courseViewMapper.mapToResponse(courseRepository.save(course1))).thenReturn(courseResponse);
 
         courseService.addStudentToCourse(1L,1L);
 
@@ -140,9 +140,9 @@ class CourseServiceTest {
         course1.setGroups(group1);
         Mockito.when(groupRepository.findById(1L)).thenReturn(Optional.of(group1));
 
-        CourseResponce courseResponce = new CourseResponce(1L,"image","Java", null,"Nine",null,group1,null);
+        CourseResponse courseResponse = new CourseResponse();
 
-        Mockito.when(courseViewMapper.mapToResponse(courseRepository.save(course1))).thenReturn(courseResponce);
+        Mockito.when(courseViewMapper.mapToResponse(courseRepository.save(course1))).thenReturn(courseResponse);
 
         courseService.addGroupToCourse(1L,1L);
     }
@@ -152,15 +152,15 @@ class CourseServiceTest {
     @DisplayName("JUnit test for {7} should find Course by id")
     void shouldFindCourseById() {
 
-        CourseResponce courseResponce = new CourseResponce(1L,"image","Java",null,"Nine",null,null,null);
+        CourseResponse courseResponse = new CourseResponse();
 
         Mockito.when(courseRepository.findById(2L)).thenReturn(Optional.of(course1));
-        Mockito.when(courseViewMapper.mapToResponse(Mockito.any(Course.class))).thenReturn(courseResponce);
+        Mockito.when(courseViewMapper.mapToResponse(Mockito.any(Course.class))).thenReturn(courseResponse);
 
-        CourseResponce actualCourseResponse = courseService.getById(2L);
+        CourseResponse actualCourseResponse = courseService.getById(2L);
 
-        Assertions.assertThat(actualCourseResponse.getId()).isEqualTo(courseResponce.getId());
-        Assertions.assertThat(actualCourseResponse.getNameCourse()).isEqualTo(courseResponce.getNameCourse());
+        Assertions.assertThat(actualCourseResponse.getId()).isEqualTo(courseResponse.getId());
+        Assertions.assertThat(actualCourseResponse.getNameCourse()).isEqualTo(courseResponse.getNameCourse());
 
     }
 

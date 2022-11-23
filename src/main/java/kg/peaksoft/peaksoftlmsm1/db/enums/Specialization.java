@@ -4,4 +4,5 @@ public enum Specialization {
 
     BACKEND,
     FRONTEND
+
 }

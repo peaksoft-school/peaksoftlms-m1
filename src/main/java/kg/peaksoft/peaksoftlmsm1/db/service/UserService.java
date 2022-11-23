@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.UserEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.UserViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.request.UserRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.response.UserResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.UserEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.UserViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.user.UserRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.user.UserResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Slf4j
@@ -34,7 +35,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public UserResponse create(UserRequest userRequest){
+    public UserResponse create(UserRequest userRequest) {
         User user = userEditMapper.mapToEntity(userRequest);
         user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
         user.setActive(true);
@@ -43,17 +44,17 @@ public class UserService implements UserDetailsService {
         return userViewMapper.mapToResponse(user);
     }
 
-    public UserResponse update(Long id, UserRequest userRequest){
+    public UserResponse update(Long id, UserRequest userRequest) {
         Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
             log.error("Entity group with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        userEditMapper.mapToUpdate(user.get(), userRequest);
+        userEditMapper.mapToUpdate(user.orElseThrow(NoSuchElementException::new), userRequest);
         log.info("Entity group updated: {}", id);
         return userViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
-    public UserResponse getById(Long id){
+    public UserResponse getById(Long id) {
         log.info("Get entity user by id: {}", id);
         return userViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
             log.error("Entity user with id = {} does not exists in database", id);
@@ -61,12 +62,12 @@ public class UserService implements UserDetailsService {
         }));
     }
 
-    public List<User> getAll(){
-        log.info("Entity group get all: {}");
+    public List<User> getAll() {
+        log.info("Entity group get all");
         return userRepository.findAll();
     }
 
-    public UserResponse delete(Long id){
+    public UserResponse delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> {
             log.error("Entity group with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
@@ -75,4 +76,5 @@ public class UserService implements UserDetailsService {
         log.info("Delete entity group by id: {}", id);
         return userViewMapper.mapToResponse(user);
     }
+
 }

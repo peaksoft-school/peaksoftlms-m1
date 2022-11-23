@@ -1,9 +1,9 @@
 package kg.peaksoft.peaksoftlmsm1.db.service;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.StudentEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.StudentViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.student.StudentRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.student.StudentResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.StudentEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.StudentViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.student.StudentRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.student.StudentResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.Role;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.enums.StudyFormat;
@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Slf4j
@@ -36,24 +37,24 @@ public class StudentService {
     private final StudentViewMapper studentViewMapper;
     private final GroupRepository groupRepository;
 
-    public StudentResponse create(StudentRequest request){
+    public StudentResponse create(StudentRequest request) {
         User user = studentEditMapper.mapToEntity(request);
         userRepository.save(user);
         log.info("Entity user save: {}", user.getFirstName());
         return studentViewMapper.mapToResponse(user);
     }
 
-    public StudentResponse update(Long id, StudentRequest request){
+    public StudentResponse update(Long id, StudentRequest request) {
         Optional<User> user = Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> {
             log.error("Entity user with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
         }));
-        studentEditMapper.mapToUpdate(user.get(), request);
+        studentEditMapper.mapToUpdate(user.orElseThrow(NoSuchElementException::new), request);
         log.info("Entity user updated: {}", id);
         return studentViewMapper.mapToResponse(userRepository.save(user.get()));
     }
 
-    public StudentResponse getById(Long id){
+    public StudentResponse getById(Long id) {
         log.info("Get entity student by id: {}", id);
         return studentViewMapper.mapToResponse(userRepository.findById(id).orElseThrow(() -> {
             log.error("Entity student with id = {} does not exists in database", id);
@@ -61,7 +62,7 @@ public class StudentService {
         }));
     }
 
-    public StudentResponse delete(Long id){
+    public StudentResponse delete(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> {
             log.error("Entity user with id = {} does not exists in database", id);
             throw new ResourceNotFoundException("Entity", "id", id);
@@ -72,64 +73,43 @@ public class StudentService {
     }
 
     public List<StudentResponse> getAll() {
-        log.info("Entity student get all: {}");
+        log.info("Entity student get all");
         return studentViewMapper.map(userRepository.findAll());
     }
 
     public List<StudentResponse> importStudentsExcelFile(MultipartFile files, Long groupId) throws IOException {
-
-        Group group = groupRepository.findById(groupId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Entity user with id = {} does not exists in database", groupId);
-        });
-
+        Group group = groupRepository.findById(groupId).orElseThrow(() ->
+                new NoSuchElementException("Group not found"));
         List<User> userList = new ArrayList<>();
         XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
         XSSFSheet sheet = workbook.getSheetAt(0);
 
         DataFormatter formatter = new DataFormatter();
-
         for (int index = 0; index < sheet.getPhysicalNumberOfRows(); index++) {
             if (index > 0) {
                 User user = new User();
                 XSSFRow row = sheet.getRow(index);
-
                 user.setFirstName(formatter.formatCellValue(row.getCell(0)));
                 user.setLastName(formatter.formatCellValue(row.getCell(1)));
                 user.setStudyFormat(StudyFormat.valueOf(formatter.formatCellValue(row.getCell(2))));
                 user.setPhoneNumber((formatter.formatCellValue(row.getCell(3))));
                 user.setEmail(formatter.formatCellValue(row.getCell(4)));
                 user.setPassword(formatter.formatCellValue(row.getCell(5)));
-                user.setCreated(LocalDateTime.now());
+                user.setCreatedAt(LocalDateTime.now());
                 userList.add(user);
             }
-
         }
-
         Role role = new Role("ROLE_STUDENT");
         for (User user : userList) {
             user.setRoles(role);
             user.setGroups(group);
             userRepository.save(user);
         }
-
         List<StudentResponse> studentResponses = new ArrayList<>();
         for (User user : userRepository.findAll()) {
             studentResponses.add(studentViewMapper.mapToResponse(user));
         }
         return studentResponses;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

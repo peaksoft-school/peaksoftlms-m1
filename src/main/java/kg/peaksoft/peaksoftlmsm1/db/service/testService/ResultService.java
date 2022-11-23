@@ -1,15 +1,15 @@
 package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.RatingListResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.RatingListResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.User;
 import kg.peaksoft.peaksoftlmsm1.db.repository.UserRepository;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.OptionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.ResultRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.TestRepository;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.ResultViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.AnswerRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.ResultResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.ResultViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.AnswerRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.ResultResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Result;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Test;
@@ -38,15 +38,13 @@ public class ResultService {
     private final TestRepository testRepository;
 
     public ResultResponse saveResult(AnswerRequest answerRequest, Long studentId) {
-
         Result result = new Result();
-
         Test test = testRepository.findById(answerRequest.getTestId()).orElseThrow(() -> {
+            //noinspection PlaceholderCountMatchesArgumentCount
             log.error("test with id = {} does not exists in database" + answerRequest.getTestId());
-            throw new ResourceNotFoundException("Not found test with this id: ");
+            throw new ResourceNotFoundException();
         });
-        User student = userRepository.findById(studentId).orElseThrow(() ->
-                new ResourceNotFoundException("Entity not found with: " + studentId));
+        User student = userRepository.findById(studentId).orElseThrow(ResourceNotFoundException::new);
         result.setTest(test);
         result.setUser(student);
         result.setTime(LocalDateTime.now());
@@ -56,7 +54,6 @@ public class ResultService {
         double correctAnswers = 0;
         int indexOfQuestionFromStudent = 0;
 
-
         for (Question question : test.getQuestions()) {
             correctAnswers += calculateCountCorrectAnswersOfQuestion(question, answerRequest.getQuestionAnswerRequestList()
                     .get(indexOfQuestionFromStudent).getSelectedAnswerId());
@@ -65,9 +62,7 @@ public class ResultService {
         result.setCorrectAnswers(correctAnswers);
         result.setIncorrectAnswers(countQuestionsOfTest - correctAnswers);
         result.setPercentOfResult(toStringInPercent(correctAnswers * 100 / countQuestionsOfTest));
-
         return resultViewMapper.mapToResponse(resultRepository.save(result));
-
     }
 
     public List<ResultResponse> getAllResultByTestId(Long testId) {
@@ -77,7 +72,6 @@ public class ResultService {
     }
 
     private double calculateCountCorrectAnswersOfQuestion(Question question, List<Long> selectedAnswerId) {
-
         double correctAnswers = 0;
         if (question.getQuestionType().equals(SINGLE_TYPE)) {
             for (Long aLong : selectedAnswerId) {
@@ -105,9 +99,8 @@ public class ResultService {
 
     public RatingListResponse getStudentsRating(int page, int size) {
         RatingListResponse ratingList = new RatingListResponse();
-        Pageable pageable = PageRequest.of(page -1, size);
-        ratingList.setResultRatingResponses(resultViewMapper.mapListRatingResult(
-                resultRepository.findAllBy(pageable)));
+        Pageable pageable = PageRequest.of(page - 1, size);
+        ratingList.setResultRatingResponses(resultViewMapper.mapListRatingResult(resultRepository.findAllBy(pageable)));
         return ratingList;
     }
 

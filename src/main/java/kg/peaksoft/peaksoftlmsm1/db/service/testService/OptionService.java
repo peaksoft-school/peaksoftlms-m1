@@ -3,10 +3,10 @@ package kg.peaksoft.peaksoftlmsm1.db.service.testService;
 import kg.peaksoft.peaksoftlmsm1.exception.ResourceNotFoundException;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.OptionRepository;
 import kg.peaksoft.peaksoftlmsm1.db.repository.testRepository.QuestionRepository;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.OptionEditMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.mappers.testMappers.OptionViewMapper;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.OptionRequest;
-import kg.peaksoft.peaksoftlmsm1.api.dto.test.request.response.OptionResponse;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.edit.OptionEditMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.mappers.view.OptionViewMapper;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.request.OptionRequest;
+import kg.peaksoft.peaksoftlmsm1.controller.dto.test.response.OptionResponse;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Option;
 import kg.peaksoft.peaksoftlmsm1.db.entity.testEntity.Question;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class OptionService {
     public OptionResponse save(Long questionId, OptionRequest optionRequest) {
         Question question = questionRepository.findById(questionId).orElseThrow(() -> {
             log.error("question with id = {} does not exists in database", questionId);
-            throw new ResourceNotFoundException("Not found question with this id: " + questionId);
+            throw new ResourceNotFoundException();
         });
         Option option = optionEditMapper.mapToEntity(optionRequest);
         option.setQuestion(question);
@@ -35,9 +35,9 @@ public class OptionService {
 
     public OptionResponse update(Long id, OptionRequest optionRequest) {
         Option option = optionRepository.findById(id).orElseThrow(() -> {
-                log.error("Entity option with id = {} does not exists in database", id);
-              throw new ResourceNotFoundException("Entity", "id", id);
-    });
+            log.error("Entity option with id = {} does not exists in database", id);
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         log.info("Entity option updated: {}", id);
         return optionViewMapper.mapToResponse(optionRepository.save(optionEditMapper.mapToUpdate(option, optionRequest)));
     }
