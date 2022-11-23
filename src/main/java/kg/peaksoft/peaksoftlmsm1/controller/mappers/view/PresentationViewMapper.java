@@ -20,5 +20,6 @@ public class PresentationViewMapper {
         presentationResponse.setFile(presentation.getFile());
         return presentationResponse;
     }
+
 }
 
