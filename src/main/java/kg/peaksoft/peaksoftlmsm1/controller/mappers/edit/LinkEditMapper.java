@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class LinkEditMapper {
 
-    public Link mapToEntity(LinkRequest linkRequest){
-        if(linkRequest == null){
+    public Link mapToEntity(LinkRequest linkRequest) {
+        if (linkRequest == null) {
             return null;
         }
         Link link = new Link();
@@ -19,9 +19,10 @@ public class LinkEditMapper {
         return link;
     }
 
-    public Link mapToUpdate(Link link, LinkRequest linkRequest){
+    public Link mapToUpdate(Link link, LinkRequest linkRequest) {
         link.setText(linkRequest.getText());
         link.setLink(linkRequest.getLink());
         return link;
     }
+
 }
