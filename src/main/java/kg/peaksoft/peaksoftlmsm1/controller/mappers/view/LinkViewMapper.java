@@ -10,12 +10,12 @@ import java.util.List;
 @Component
 public class LinkViewMapper {
 
-    public LinkResponse mapToResponse(Link link){
-        if(link == null){
+    public LinkResponse mapToResponse(Link link) {
+        if (link == null) {
             return null;
         }
         LinkResponse linkResponse = new LinkResponse();
-        if(link.getId() != null){
+        if (link.getId() != null) {
             linkResponse.setId(link.getId());
         }
         linkResponse.setText(link.getText());
@@ -23,11 +23,12 @@ public class LinkViewMapper {
         return linkResponse;
     }
 
-    public List<LinkResponse> map(List<Link> links){
+    public List<LinkResponse> map(List<Link> links) {
         List<LinkResponse> responses = new ArrayList<>();
-        for(Link link : links){
+        for (Link link : links) {
             responses.add(mapToResponse(link));
         }
         return responses;
     }
+
 }
