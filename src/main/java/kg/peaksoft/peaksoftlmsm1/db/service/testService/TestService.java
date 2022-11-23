@@ -35,7 +35,8 @@ public class TestService {
     public TestResponse update(Long id, TestRequest groupRequest) {
         Optional<Test> test = Optional.ofNullable(testRepository.findById(id).orElseThrow(() -> {
             log.error("Entity test with id = {} does not exists in database", id);
-            throw new ResourceNotFoundException("Entity", "id", id);}));
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
         testEditMapper.mapToUpdate(test.get(), groupRequest);
         return testViewMapper.mapToResponse(testRepository.save(test.get()));
     }
@@ -44,13 +45,15 @@ public class TestService {
         log.info("Get entity test by id: {}", id);
         return testViewMapper.mapToResponse(testRepository.findById(id).orElseThrow(() -> {
             log.error("Entity test with id = {} does not exists in database", id);
-            throw new ResourceNotFoundException("Entity", "id", id);}));
+            throw new ResourceNotFoundException("Entity", "id", id);
+        }));
     }
 
     public TestResponse delete(Long id) {
         Test test = testRepository.findById(id).orElseThrow(() -> {
             log.error("Entity test with id = {} does not exists in database", id);
-            throw new ResourceNotFoundException("Entity", "id", id);});
+            throw new ResourceNotFoundException("Entity", "id", id);
+        });
         testRepository.deleteById(id);
         log.info("Delete entity test by id: {}", id);
         return testViewMapper.mapToResponse(test);
@@ -63,10 +66,12 @@ public class TestService {
     public TestResponse addQuestionToTest(Long testId, Long questionId) {
         Test test = testRepository.findById(testId).orElseThrow(() -> {
             log.error("Entity test with id = {} does not exists in database", testId);
-            throw new ResourceNotFoundException("Entity", "id", testId);});
+            throw new ResourceNotFoundException("Entity", "id", testId);
+        });
         Question question = questionRepository.findById(questionId).orElseThrow(() -> {
             log.error("Entity question with id = {} does not exists in database", questionId);
-            throw new ResourceNotFoundException("Entity", "id", questionId);});
+            throw new ResourceNotFoundException("Entity", "id", questionId);
+        });
         test.setQuestion(question);
         return testViewMapper.mapToResponse(testRepository.save(test));
     }
